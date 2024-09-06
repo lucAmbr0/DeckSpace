@@ -22,6 +22,20 @@
     --StandardTextFont: "Noto Sans";
 }
 
+.DARKMODE {
+    --palette-950: 255, 241, 241;
+    --palette-900: 255, 224, 224;
+    --palette-800: 255, 198, 198;
+    --palette-700: 255, 159, 159;
+    --palette-600: 255, 104, 104;
+    --palette-500: 251, 56, 56;
+    --palette-400: 232, 26, 26;
+    --palette-300: 202, 18, 18;
+    --palette-200: 161, 19, 19;
+    --palette-100: 134, 22, 22;
+    --palette-50: 73, 6, 6;
+}
+
 /* -------------------- FONTS --------------------*/
 
 @font-face {

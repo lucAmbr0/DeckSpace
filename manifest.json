@@ -4,9 +4,9 @@
   "description": "DeckSpace is a customizable web app for managing virtual card games. It allows players to simulate card decks, manage chips, and mirror card displays for easy gameplay without the need for physical cards.",
   "start_url": "index.html",
   "id": "DeckSpace",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#151515",
-  "theme_color": "#151515",
+  "theme_color": "#CA1212",
   "orientation": "landscape",
   "icons": [
     {

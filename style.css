@@ -131,8 +131,11 @@ h4 {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    margin: auto auto;
+    margin: 0 0;
     background-color: #151515;
+    border-bottom: solid 60px #151515;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-radius: 0 0 50px 50px;
 }
 
 #splashScreenBox img {

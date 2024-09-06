@@ -18,6 +18,130 @@
     --palette-900: 134, 22, 22;
     --palette-950: 73, 6, 6;
 
-    --HeadingFont: "Rubik";
+    --HeadingFont: "SUSE";
     --StandardTextFont: "Noto Sans";
+}
+
+.DARKMODE {
+    --palette-950: 255, 241, 241;
+    --palette-900: 255, 224, 224;
+    --palette-800: 255, 198, 198;
+    --palette-700: 255, 159, 159;
+    --palette-600: 255, 104, 104;
+    --palette-500: 251, 56, 56;
+    --palette-400: 232, 26, 26;
+    --palette-300: 202, 18, 18;
+    --palette-200: 161, 19, 19;
+    --palette-100: 134, 22, 22;
+    --palette-50: 73, 6, 6;
+}
+
+/* -------------------- FONTS --------------------*/
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('Fonts/Noto_Sans/NotoSans-VariableFont_wdth\,wght.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SUSE';
+    src: url('Fonts/SUSE/SUSE-VariableFont_wght.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Material Outlined';
+    src: url('Fonts/Material_Symbols/MaterialSymbolsOutlined-VariableFont_FILL\,GRAD\,opsz\,wght.ttf') format('truetype');
+    font-style: normal;
+    font-display: swap;
+}
+
+/* -------------------- ANIMATIONS --------------------*/
+
+@keyframes leftToRight {
+    0% {
+        transform: translateX(-60px) rotate(-3deg);
+        opacity: 0;
+    }
+    70% {
+        transform: translateX(2px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes logoZoomIn {
+    0% {
+        scale: 0.8;
+        opacity: 0;
+        transform: rotate(-10deg);
+    }
+    70% {
+        scale: 1.03;
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(0deg);
+        scale: 1;
+    }
+}
+
+/* -------------------- RULES --------------------*/
+
+body {
+    display: flex;
+    margin: 0;
+}
+
+h1 {
+    font-size: 32px;
+    margin: 5px;
+}
+h2 {
+    font-size: 24px;
+    margin: 5px;
+}
+h3 {
+    font-size: 20px;
+    margin: 5px;
+}
+h4 {
+    font-size: 18px;
+    margin: 5px;
+}
+
+#splashScreenBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    margin: auto auto;
+    background-color: #151515;
+}
+
+#splashScreenBox img {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    margin: 40px;
+    animation: logoZoomIn 0.3s ease-in-out forwards;
+}
+
+#splashScreenAppInfo {
+    display: flex;
+    flex-direction: column;
+    color: rgb(var(--palette-400));
+    font-family: var(--HeadingFont);
+    opacity: 0;
+    animation: leftToRight 0.5s 0.1s ease-in-out forwards;
+}
+
+#splashScreenAppInfo h4 {
+    color: rgb(var(--palette-300));
 }

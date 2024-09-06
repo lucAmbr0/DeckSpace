@@ -21,3 +21,10 @@ function serviceWorker() {
     })
   }
 }
+
+// ---------------  FUNCTIONS  ---------------
+
+splashscreen();
+function splashscreen() {
+  document.createElement()
+}

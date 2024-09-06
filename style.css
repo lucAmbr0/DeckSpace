@@ -56,3 +56,56 @@
     font-style: normal;
     font-display: swap;
 }
+
+/* -------------------- RULES --------------------*/
+
+body {
+    display: flex;
+    margin: 0;
+}
+
+h1 {
+    font-size: 32px;
+    margin: 5px;
+}
+h2 {
+    font-size: 24px;
+    margin: 5px;
+}
+h3 {
+    font-size: 20px;
+    margin: 5px;
+}
+h4 {
+    font-size: 18px;
+    margin: 5px;
+}
+
+#splashScreenBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    margin: auto auto;
+    background-color: #151515;
+}
+
+#splashScreenBox img {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    margin: 40px;
+}
+
+#splashScreenAppInfo {
+    display: flex;
+    flex-direction: column;
+    color: rgb(var(--palette-400));
+    font-family: var(--HeadingFont);
+}
+
+#splashScreenAppInfo h4 {
+    color: rgb(var(--palette-300));
+}

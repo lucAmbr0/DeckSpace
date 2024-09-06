@@ -57,6 +57,39 @@
     font-display: swap;
 }
 
+/* -------------------- ANIMATIONS --------------------*/
+
+@keyframes leftToRight {
+    0% {
+        transform: translateX(-60px) rotate(-3deg);
+        opacity: 0;
+    }
+    70% {
+        transform: translateX(2px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes logoZoomIn {
+    0% {
+        scale: 0.8;
+        opacity: 0;
+        transform: rotate(-10deg);
+    }
+    70% {
+        scale: 1.03;
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(0deg);
+        scale: 1;
+    }
+}
+
 /* -------------------- RULES --------------------*/
 
 body {
@@ -93,10 +126,11 @@ h4 {
 }
 
 #splashScreenBox img {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     display: flex;
     margin: 40px;
+    animation: logoZoomIn 0.3s ease-in-out forwards;
 }
 
 #splashScreenAppInfo {
@@ -104,6 +138,8 @@ h4 {
     flex-direction: column;
     color: rgb(var(--palette-400));
     font-family: var(--HeadingFont);
+    opacity: 0;
+    animation: leftToRight 0.5s 0.1s ease-in-out forwards;
 }
 
 #splashScreenAppInfo h4 {

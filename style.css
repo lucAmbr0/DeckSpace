@@ -40,19 +40,19 @@
 
 @font-face {
     font-family: 'Noto Sans';
-    src: url('Fonts/Noto_Sans/NotoSans-VariableFont_wdth\,wght.ttf') format('truetype');
+    src: url('fonts/Noto_Sans/NotoSans-VariableFont_wdth\,wght.ttf') format('truetype');
     font-style: normal;
 }
 
 @font-face {
     font-family: 'SUSE';
-    src: url('Fonts/SUSE/SUSE-VariableFont_wght.ttf') format('truetype');
+    src: url('fonts/SUSE/SUSE-VariableFont_wght.ttf') format('truetype');
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Material Outlined';
-    src: url('Fonts/Material_Symbols/MaterialSymbolsOutlined-VariableFont_FILL\,GRAD\,opsz\,wght.ttf') format('truetype');
+    src: url('fonts/Material_Symbols/MaterialSymbolsOutlined-VariableFont_FILL\,GRAD\,opsz\,wght.ttf') format('truetype');
     font-style: normal;
     font-display: swap;
 }

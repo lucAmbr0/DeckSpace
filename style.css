@@ -90,6 +90,15 @@
     }
 }
 
+@keyframes exitUp {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
 /* -------------------- RULES --------------------*/
 
 body {
@@ -115,6 +124,7 @@ h4 {
 }
 
 #splashScreenBox {
+    position: absolute;
     display: flex;
     flex-direction: row;
     justify-content: center;

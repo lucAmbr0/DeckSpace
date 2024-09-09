@@ -145,6 +145,7 @@ h4 {
     border-bottom: solid 60px #151515;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     border-radius: 0 0 50px 50px;
+    z-index: 100;
 }
 
 #splashScreenBox img {
@@ -178,17 +179,18 @@ h4 {
     background-color: aqua;
     width: 100vw;
     height: 100vh;
+    background-color: limegreen;
 }
 
 .gameScene div {
     width: 100%;
-    background-color: limegreen;
 }
 
 .bottomBar, .topBar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: rgba(0,0,0,0.2);
 }
 .bottomBar div {
     background-color: blue;
@@ -235,12 +237,12 @@ h4 {
 
 .cardsTable {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
     border: none;
-    flex-wrap: wrap;  /* Allow wrapping */
-    overflow: scroll;
+    flex-wrap: nowrap;  /* Allow wrapping */
+    /* overflow: scroll; */
     height: 80vh; /* Full height */
 }
 
@@ -248,15 +250,15 @@ h4 {
     display: flex;
     height: 72vh;
     width: 48vh;
-    border-radius: 30px;
+    border-radius: 6vh;
     background-color: aquamarine;
-    margin: 0 10px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    margin: 0 -40vh;
+    box-shadow: 0 0 1vh rgba(0,0,0,0.3);
     z-index: 1;
     transition: all 0.2s ease; /* Optional: for a nice hover effect */
 }
 
 .gameScene div.card:hover {
     transform: translateY(-2.5vh); /* Bring the card up slightly */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 1vh 2vh rgba(0,0,0,0.3);
 }

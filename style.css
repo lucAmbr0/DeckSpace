@@ -64,10 +64,12 @@
         transform: translateX(-60px) rotate(-3deg);
         opacity: 0;
     }
+
     70% {
         transform: translateX(2px) rotate(0deg);
         opacity: 1;
     }
+
     100% {
         transform: translateX(0px);
         opacity: 1;
@@ -80,10 +82,12 @@
         opacity: 0;
         transform: rotate(-10deg);
     }
+
     70% {
         scale: 1.03;
         opacity: 1;
     }
+
     100% {
         transform: rotate(0deg);
         scale: 1;
@@ -94,6 +98,7 @@
     0% {
         transform: translateY(0);
     }
+
     100% {
         transform: translateY(-100%);
     }
@@ -112,14 +117,17 @@ h1 {
     font-size: 32px;
     margin: 5px;
 }
+
 h2 {
     font-size: 24px;
     margin: 5px;
 }
+
 h3 {
     font-size: 20px;
     margin: 5px;
 }
+
 h4 {
     font-size: 18px;
     margin: 5px;
@@ -144,7 +152,7 @@ h4 {
     margin: 0 0;
     background-color: #151515;
     border-bottom: solid 60px #151515;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 0 0 50px 50px;
     z-index: 100;
 }
@@ -183,16 +191,14 @@ h4 {
     background-color: limegreen;
 }
 
-.gameScene div {
-    width: 100%;
-}
-
-.bottomBar, .topBar {
+.bottomBar,
+.topBar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
 }
+
 .bottomBar div {
     background-color: blue;
     border: 0;
@@ -228,7 +234,7 @@ h4 {
     border-radius: 100%;
     border: 0;
     background-color: #dedede;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     margin: 5px;
     width: 30px;
     height: 30px;
@@ -241,7 +247,7 @@ h4 {
     height: 100%;
 }
 
-.dealerContainer h2 {
+.dealerBadge {
     font-family: var(--HeadingFont);
     background-color: aqua;
     text-align: center;
@@ -253,6 +259,29 @@ h4 {
     margin: auto 0.5vh;
 }
 
+.mirroredBalanceContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: fit-content;
+}
+
+.mirroredBalanceContainer div {
+    margin: auto 1vh auto 0;
+}
+
+.mirroredBalanceContainer h2 {
+    font-family: var(--StandardTextFont);
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
+    text-align: center;
+    padding: 1vh 2vh;
+    border-radius: 10vh;
+    font-size: 6.5vh;
+    line-height: 1;
+    margin: 0;
+}
+
 /* -------------------- CARD TABLE --------------------*/
 
 .cardsTable {
@@ -261,9 +290,11 @@ h4 {
     justify-content: center;
     align-items: center;
     border: none;
-    flex-wrap: nowrap;  /* Allow wrapping */
+    flex-wrap: nowrap;
+    /* Allow wrapping */
     /* overflow: scroll; */
-    height: 80vh; /* Full height */
+    height: 80vh;
+    /* Full height */
 }
 
 .gameScene div.card {
@@ -273,12 +304,14 @@ h4 {
     border-radius: 6vh;
     background-color: aquamarine;
     margin: 0 -40vh;
-    box-shadow: 0 0 1vh rgba(0,0,0,0.3);
+    box-shadow: 0 0 1vh rgba(0, 0, 0, 0.3);
     z-index: 1;
-    transition: all 0.2s ease; /* Optional: for a nice hover effect */
+    transition: all 0.2s ease;
+    /* Optional: for a nice hover effect */
 }
 
 .gameScene div.card:hover {
-    transform: translateY(-2.5vh); /* Bring the card up slightly */
-    box-shadow: 0 1vh 2vh rgba(0,0,0,0.3);
+    transform: translateY(-2.5vh);
+    /* Bring the card up slightly */
+    box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.3);
 }

@@ -22,13 +22,21 @@ function serviceWorker() {
   }
 }
 
+// ---------------  DEBUG VARIABLES  ---------------
+
+const startAnimation = false;
+
+
 // ---------------  FUNCTIONS  ---------------
 
 splashscreen();
 function splashscreen() {
+  if (!startAnimation) {
+    document.getElementById("splashScreenBox").style.animation = "exitUp 0s ease-in-out forwards"
+    return;
+  }
   document.body.style.height = "100vh";
   setTimeout(() => {
     document.getElementById("splashScreenBox").style.animation = "exitUp 0.5s ease-in-out forwards"
-  }, 1500);
-  
+  }, 1500); 
 }

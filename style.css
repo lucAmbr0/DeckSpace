@@ -162,3 +162,66 @@ h4 {
 #splashScreenAppInfo h4 {
     color: rgb(var(--palette-300));
 }
+
+/* -------------------- GAME SCENE --------------------*/
+
+.gameScene {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 8fr 1fr;
+    background-color: aqua;
+    width: 100vw;
+    height: 100vh;
+}
+
+.gameScene div {
+    width: 100%;
+    background-color: limegreen;
+    border: dotted 2px black;
+}
+
+.bottomBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.bottomBar div {
+    background-color: blue;
+    border: 0;
+    width: fit-content;
+    height: 100%;
+}
+
+.balanceContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.balanceContainer div {
+    display: flex;
+    font-family: var(--HeadingFont);
+    align-items: center;
+    text-align: center;
+    margin: auto 10px;
+
+}
+
+.actionsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0 10px;
+    align-items: center;
+}
+
+.actionsContainer button {
+    border-radius: 100%;
+    border: 0;
+    background-color: #dedede;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+}

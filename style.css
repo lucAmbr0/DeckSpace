@@ -184,7 +184,7 @@ h4 {
 .gameScene {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 10% 80% 10%;
+    grid-template-rows: 40px 1fr 40px;
     background-color: aqua;
     width: 100vw;
     height: 100vh;
@@ -200,7 +200,6 @@ h4 {
 }
 
 .bottomBar div {
-    background-color: blue;
     border: 0;
     width: fit-content;
     height: 100%;
@@ -231,13 +230,21 @@ h4 {
 }
 
 .actionsContainer button {
-    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 35%;
     border: 0;
-    background-color: #dedede;
+    background-color: rgba(222, 222, 222, 0.5);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    margin: 5px;
+    margin: 1.5px;
     width: 30px;
     height: 30px;
+    transition: 0.2s ease scale;
+}
+
+.actionsContainer button:active {
+    scale: 0.9;
 }
 
 .dealerContainer {
@@ -251,12 +258,12 @@ h4 {
     font-family: var(--HeadingFont);
     background-color: aqua;
     text-align: center;
-    padding: 0.5vh 1vh;
-    border-radius: 2.5vh;
-    border: solid 0.5vh black;
-    font-size: 7vh;
+    padding: 1px 2px;
+    border-radius: 10px;
+    border: solid 2px black;
+    font-size: 30px;
     line-height: 1;
-    margin: auto 0.5vh;
+    margin: auto 2px;
 }
 
 .mirroredBalanceContainer {
@@ -267,7 +274,7 @@ h4 {
 }
 
 .mirroredBalanceContainer div {
-    margin: auto 1vh auto 0;
+    margin: auto 4px auto 0;
 }
 
 .mirroredBalanceContainer h2 {
@@ -275,9 +282,9 @@ h4 {
     background-color: rgba(255, 255, 255, 0.3);
     color: black;
     text-align: center;
-    padding: 1vh 2vh;
-    border-radius: 10vh;
-    font-size: 6.5vh;
+    padding: 4px 8px;
+    border-radius: 100px;
+    font-size: 28px;
     line-height: 1;
     margin: 0;
 }
@@ -291,27 +298,27 @@ h4 {
     align-items: center;
     border: none;
     flex-wrap: nowrap;
-    /* Allow wrapping */
-    /* overflow: scroll; */
-    height: 80vh;
-    /* Full height */
+    padding: 0 10px;
+    margin: 0 20px;
+    overflow: scroll;
+    height: 100%;
 }
 
 .gameScene div.card {
     display: flex;
-    height: 72vh;
-    width: 48vh;
+    height: calc(100vh - 110px);
+    aspect-ratio: 2 / 3;
+    margin: 0 calc((-100vh - 110px)/3);
+    object-fit: contain;
     border-radius: 6vh;
     background-color: aquamarine;
-    margin: 0 -40vh;
     box-shadow: 0 0 1vh rgba(0, 0, 0, 0.3);
     z-index: 1;
+    overflow: scroll;
     transition: all 0.2s ease;
-    /* Optional: for a nice hover effect */
 }
 
 .gameScene div.card:hover {
-    transform: translateY(-2.5vh);
-    /* Bring the card up slightly */
+    transform: translateY(-10px);
     box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.3);
 }

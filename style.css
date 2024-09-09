@@ -127,6 +127,7 @@ h4 {
 
 .upsideDown {
     transform: rotate(180deg);
+    text-align: end;
 }
 
 /* -------------------- SPLASHSCREEN BOX --------------------*/
@@ -231,6 +232,25 @@ h4 {
     margin: 5px;
     width: 30px;
     height: 30px;
+}
+
+.dealerContainer {
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.dealerContainer h2 {
+    font-family: var(--HeadingFont);
+    background-color: aqua;
+    text-align: center;
+    padding: 0.5vh 1vh;
+    border-radius: 2.5vh;
+    border: solid 0.5vh black;
+    font-size: 7vh;
+    line-height: 1;
+    margin: auto 0.5vh;
 }
 
 /* -------------------- CARD TABLE --------------------*/

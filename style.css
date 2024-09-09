@@ -103,6 +103,8 @@
 
 body {
     display: flex;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
 }
 
@@ -125,19 +127,24 @@ h4 {
 
 #splashScreenBox {
     position: absolute;
+    max-width: 100vw;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
-    margin: auto auto;
+    margin: 0 0;
     background-color: #151515;
+    border-bottom: solid 60px #151515;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-radius: 0 0 50px 50px;
 }
 
 #splashScreenBox img {
     width: 200px;
     height: 200px;
+    max-width: 80vw;
     display: flex;
     margin: 40px;
     animation: logoZoomIn 0.3s ease-in-out forwards;

@@ -26,8 +26,9 @@ function serviceWorker() {
 
 splashscreen();
 function splashscreen() {
+  document.body.style.height = "100vh";
   setTimeout(() => {
-    document.getElementById("splashScreenBox").style.animation = "exitUp 0.4s ease-in-out forwards"
+    document.getElementById("splashScreenBox").style.animation = "exitUp 0.5s ease-in-out forwards"
   }, 1500);
   
 }

@@ -2,12 +2,12 @@
   "name": "DeckSpace",
   "short_name": "DeckSpace",
   "description": "DeckSpace is a customizable web app for managing virtual card games. It allows players to simulate card decks, manage chips, and mirror card displays for easy gameplay without the need for physical cards.",
-  "start_url": "index.html",
-  "id": "DeckSpace",
+  "start_url": "/",
+  "id": "/",
+  "orientation": "landscape",
   "display": "fullscreen",
   "background_color": "#151515",
   "theme_color": "#CA1212",
-  "orientation": "landscape",
   "icons": [
     {
       "src": "https://github.com/lucAmbr0/DeckSpace/blob/master/icons/icon-any-192x192.png?raw=true",
@@ -38,38 +38,27 @@
     {
       "src": "https://github.com/lucAmbr0/DeckSpace/blob/master/screenshots/mobile-screenshot1.png?raw=true",
       "sizes": "1082x2402",
-      "type": "image/png",
-      "platform": "mobile"
+      "type": "image/png"
     },
     {
       "src": "https://github.com/lucAmbr0/DeckSpace/blob/master/screenshots/mobile-screenshot2.png?raw=true",
       "sizes": "1082x2402",
-      "type": "image/png",
-      "platform": "mobile"
+      "type": "image/png"
     },
     {
       "src": "https://github.com/lucAmbr0/DeckSpace/blob/master/screenshots/mobile-screenshot3.png?raw=true",
       "sizes": "1082x2402",
-      "type": "image/png",
-      "platform": "mobile"
+      "type": "image/png"
     },
     {
       "src": "https://github.com/lucAmbr0/DeckSpace/blob/master/screenshots/mobile-screenshot4.png?raw=true",
       "sizes": "1082x2402",
-      "type": "image/png",
-      "platform": "mobile"
+      "type": "image/png"
     },
     {
       "src": "https://github.com/lucAmbr0/DeckSpace/blob/master/screenshots/mobile-screenshot5.png?raw=true",
       "sizes": "1082x2402",
-      "type": "image/png",
-      "platform": "mobile"
-    },
-    {
-      "src": "https://github.com/lucAmbr0/DeckSpace/blob/master/screenshots/mobile-screenshot6.png?raw=true",
-      "sizes": "1082x2402",
-      "type": "image/png",
-      "platform": "mobile"
+      "type": "image/png"
     }
   ]
 }

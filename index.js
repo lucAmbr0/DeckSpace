@@ -24,7 +24,7 @@ function serviceWorker() {
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-const startAnimation = true;
+const startAnimation = false;
 
 
 // ---------------  FUNCTIONS  ---------------
@@ -32,11 +32,34 @@ const startAnimation = true;
 splashscreen();
 function splashscreen() {
   if (!startAnimation) {
-    document.getElementById("splashScreenBox").style.animation = "exitUp 0s ease-in-out forwards"
+    try {
+      document.getElementById("splashScreenBox").style.animation = "exitUp 0s ease-in-out forwards"
+    }
+    catch (e) {
+      console.log(e);
+    }
     return;
   }
   document.body.style.height = "100vh";
   setTimeout(() => {
     document.getElementById("splashScreenBox").style.animation = "exitUp 0.5s ease-in-out forwards"
   }, 1500); 
+}
+
+
+const balanceControls = document.getElementById("balanceControlsContainer");
+const userBalanceBtn = document.getElementById("userBalanceBtn");
+const userBalanceAmountContainer = document.getElementById("userBalanceAmountContainer");
+
+function toggleBalanceControls() {
+  if (balanceControls.classList.contains("balanceControlsHIDDEN")) {
+    balanceControls.classList.remove("balanceControlsHIDDEN");
+    userBalanceAmountContainer.style.animation = "balanceControlsEntrance forwards ease-out .4s"
+    userBalanceBtn.classList.add("userBalanceBtnACTIVE");
+  }
+  else {
+    balanceControls.classList.add("balanceControlsHIDDEN");
+    userBalanceBtn.classList.remove("userBalanceBtnACTIVE");
+    userBalanceAmountContainer.style.animation = "none"
+  }
 }

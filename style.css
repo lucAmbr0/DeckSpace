@@ -76,6 +76,17 @@
     }
 }
 
+@keyframes balanceControlsEntrance {
+        0% {
+            opacity: 1;
+            clip-path: inset(0 100% 0 0 round 20px); 
+        }
+        100% {
+            clip-path: inset(0 0 0 0 round 20px);
+            opacity: 1;
+        }
+}
+
 @keyframes logoZoomIn {
     0% {
         scale: 0.8;
@@ -129,6 +140,10 @@ body {
     margin: 0;
 }
 
+h1,h2,h3,h4,h5,p {
+    color: #151515;
+}
+
 h1 {
     font-size: 32px;
     margin: 5px;
@@ -136,7 +151,7 @@ h1 {
 
 h2 {
     font-size: 24px;
-    padding: 5px;
+    padding: 5px 10px;
 }
 
 h3 {
@@ -237,10 +252,6 @@ h4 {
     padding: 0;
 }
 
-.balanceContainer div h2 {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
 .actionsContainer {
     display: flex;
     flex-direction: row;
@@ -300,7 +311,7 @@ h4 {
 .mirroredBalanceContainer h2 {
     font-family: var(--StandardTextFont);
     background-color: rgba(255, 255, 255, 0.3);
-    color: black;
+    color: #151515;
     text-align: center;
     padding: 4px 8px;
     border-radius: 100px;
@@ -310,11 +321,8 @@ h4 {
 }
 
 .amountTxt {
-    transition: 0.2s ease scale;
-}
-
-.amountTxt:active {
-    scale: 0.9;
+    border-radius: 20px 0 0 20px;
+    transition: 0.2s color ease-out;
 }
 
 /* -------------------- CARD TABLE --------------------*/
@@ -366,7 +374,7 @@ h4 {
 }
 
 .whiteBtn {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 
@@ -384,6 +392,15 @@ h4 {
     height: fit-content;
     z-index: 2;
     border-radius: 0 20px 20px 0;
+}
+
+.balanceControlsHIDDEN {
+    display: none !important;
+}
+
+.userBalanceBtnACTIVE {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: whitesmoke;
 }
 
 .balanceControlsUI button {

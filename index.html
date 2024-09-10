@@ -35,14 +35,14 @@
   </head>
 
   <body>
-    <div id="splashScreenBox">
+    <!-- <div id="splashScreenBox">
       <img src="icons/icon-any-512x512.png" alt="App Logo">
       <div id="splashScreenAppInfo">
         <h1>DeckSpace</h1>
         <h3>by lucAmbr0</h2>
         <h4>vx.x.x</h4>
       </div>
-    </div>
+    </div> -->
     <div>
       <div class="gameScene">
         <div class="topBar">
@@ -70,9 +70,9 @@
             <div class="betAmountContainer">
               <h2 class="amountTxt">30</h2>
             </div>
-            <div class="balanceAmountContainer">
-              <h2 class="amountTxt">230</h2>
-              <div class="balanceControlsUI">
+            <div class="balanceAmountContainer" id="userBalanceAmountContainer">
+              <h2 class="amountTxt" id="userBalanceBtn" onclick="toggleBalanceControls()">230</h2>
+              <div class="balanceControlsUI balanceControlsHIDDEN" id="balanceControlsContainer">
                 <button class="redBtn">
                   <span class="material-symbols-outlined"> delete </span>
                 </button>

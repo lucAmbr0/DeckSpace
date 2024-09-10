@@ -43,7 +43,7 @@ function splashscreen() {
   document.body.style.height = "100vh";
   setTimeout(() => {
     document.getElementById("splashScreenBox").style.animation = "exitUp 0.5s ease-in-out forwards"
-  }, 1500); 
+  }, 1500);
 }
 
 
@@ -52,14 +52,41 @@ const userBalanceBtn = document.getElementById("userBalanceBtn");
 const userBalanceAmountContainer = document.getElementById("userBalanceAmountContainer");
 
 function toggleBalanceControls() {
-  if (balanceControls.classList.contains("balanceControlsHIDDEN")) {
-    balanceControls.classList.remove("balanceControlsHIDDEN");
+  if (balanceControls.classList.contains("controlsHIDDEN")) {
+    if (!betControls.classList.contains("controlsHIDDEN")) {
+      betControls.classList.add("controlsHIDDEN");
+      userBetBtn.classList.remove("userBalanceBtnACTIVE");
+      userBetAmountContainer.style.animation = "none";
+    }
+    balanceControls.classList.remove("controlsHIDDEN");
     userBalanceAmountContainer.style.animation = "balanceControlsEntrance forwards ease-out .4s"
     userBalanceBtn.classList.add("userBalanceBtnACTIVE");
   }
   else {
-    balanceControls.classList.add("balanceControlsHIDDEN");
+    balanceControls.classList.add("controlsHIDDEN");
     userBalanceBtn.classList.remove("userBalanceBtnACTIVE");
-    userBalanceAmountContainer.style.animation = "none"
+    userBalanceAmountContainer.style.animation = "none";
+  }
+}
+
+const betControls = document.getElementById("betControlsContainer");
+const userBetBtn = document.getElementById("userBetBtn");
+const userBetAmountContainer = document.getElementById("userBetAmountContainer");
+
+function toggleBetControls() {
+  if (betControls.classList.contains("controlsHIDDEN")) {
+    if (!balanceControls.classList.contains("controlsHIDDEN")) {
+      balanceControls.classList.add("controlsHIDDEN");
+      userBalanceBtn.classList.remove("userBalanceBtnACTIVE");
+      userBalanceAmountContainer.style.animation = "none";
+    }
+    betControls.classList.remove("controlsHIDDEN");
+    userBetAmountContainer.style.animation = "balanceControlsEntrance forwards ease-out .3s"
+    userBetBtn.classList.add("userBalanceBtnACTIVE");
+  }
+  else {
+    betControls.classList.add("controlsHIDDEN");
+    userBetBtn.classList.remove("userBalanceBtnACTIVE");
+    userBetAmountContainer.style.animation = "none";
   }
 }

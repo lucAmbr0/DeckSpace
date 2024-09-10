@@ -67,12 +67,30 @@
         </div>
         <div class="bottomBar">
           <div class="balanceContainer">
-            <div class="betAmountContainer">
-              <h2 class="amountTxt">30</h2>
+            <div class="betAmountContainer" id="userBetAmountContainer">
+              <h2 class="amountTxt" id="userBetBtn" onclick="toggleBetControls()">30</h2>
+              <div class="balanceControlsUI controlsHIDDEN" id="betControlsContainer">
+                <button class="redBtn">
+                  <span class="material-symbols-outlined"> close </span>
+                </button>
+                <button class="greenBtn">
+                  <span class="material-symbols-outlined"> speed_2x </span>
+                </button>
+                <div style="margin-left: 10px;"></div>
+                <button class="yellowBtn">
+                  <span class="material-symbols-outlined"> undo </span>
+                </button>
+                <button class="orangeBtn">
+                  <span class="material-symbols-outlined"> remove </span>
+                </button>
+                <button class="greenBtn">
+                  <span class="material-symbols-outlined"> add </span>
+                </button>
+              </div>
             </div>
             <div class="balanceAmountContainer" id="userBalanceAmountContainer">
               <h2 class="amountTxt" id="userBalanceBtn" onclick="toggleBalanceControls()">230</h2>
-              <div class="balanceControlsUI balanceControlsHIDDEN" id="balanceControlsContainer">
+              <div class="balanceControlsUI controlsHIDDEN" id="balanceControlsContainer">
                 <button class="redBtn">
                   <span class="material-symbols-outlined"> delete </span>
                 </button>

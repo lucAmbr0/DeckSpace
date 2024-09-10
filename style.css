@@ -106,6 +106,22 @@
 
 /* -------------------- RULES --------------------*/
 
+html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: none;
+}
+
 body {
     display: flex;
     width: 100vw;
@@ -120,7 +136,7 @@ h1 {
 
 h2 {
     font-size: 24px;
-    margin: 5px;
+    padding: 5px;
 }
 
 h3 {
@@ -217,8 +233,12 @@ h4 {
     font-family: var(--HeadingFont);
     align-items: center;
     text-align: center;
-    margin: auto 10px;
+    margin: auto 0;
+    padding: 0;
+}
 
+.balanceContainer div h2 {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .actionsContainer {
@@ -289,6 +309,14 @@ h4 {
     margin: 0;
 }
 
+.amountTxt {
+    transition: 0.2s ease scale;
+}
+
+.amountTxt:active {
+    scale: 0.9;
+}
+
 /* -------------------- CARD TABLE --------------------*/
 
 .cardsTable {
@@ -321,4 +349,56 @@ h4 {
 .gameScene div.card:hover {
     transform: translateY(-10px);
     box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.3);
+}
+
+/* -------------------- BUTTONS --------------------*/
+
+.redBtn {
+    background-color: rgba(165, 30, 30, 0.8);
+}
+
+.orangeBtn {
+    background-color: rgba(208, 147, 33, 0.8);
+}
+
+.greenBtn {
+    background-color: rgba(33, 116, 33, 0.8);
+}
+
+.whiteBtn {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+
+/* -------------------- BALANCE CONTROLS --------------------*/
+
+.balanceAmountContainer .balanceControlsUI {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: 40px;
+    padding: 5px 2.5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: fit-content;
+    height: fit-content;
+    z-index: 2;
+    border-radius: 0 20px 20px 0;
+}
+
+.balanceControlsUI button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    margin: 0 2px;
+    width: 30px;
+    height: 30px;
+    transition: 0.2s ease scale;
+}
+
+.balanceControlsUI button:active {
+    scale: 0.9;
 }

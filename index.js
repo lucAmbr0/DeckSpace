@@ -59,7 +59,7 @@ function toggleBalanceControls() {
       userBetAmountContainer.style.animation = "none";
     }
     balanceControls.classList.remove("controlsHIDDEN");
-    userBalanceAmountContainer.style.animation = "balanceControlsEntrance forwards ease-out .4s"
+    userBalanceAmountContainer.style.animation = "balanceControlsEntrance forwards ease-out .3s"
     userBalanceBtn.classList.add("userBalanceBtnACTIVE");
   }
   else {

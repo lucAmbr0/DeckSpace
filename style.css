@@ -79,11 +79,11 @@
 @keyframes balanceControlsEntrance {
         0% {
             opacity: 1;
-            clip-path: inset(0 100% 0 0 round 20px); 
+            clip-path: inset(0 100% 0 0 round 50px); 
         }
         100% {
-            clip-path: inset(0 0 0 0 round 20px);
             opacity: 1;
+            clip-path: inset(0 0 0 0 round 50px);
         }
 }
 
@@ -146,7 +146,7 @@ h1 {
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 30px;
     padding: 5px 10px;
 }
 
@@ -211,11 +211,11 @@ h4 {
 .gameScene {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 40px 1fr 40px;
-    background-color: aqua;
+    grid-template-rows: 40px 1fr 50px;
+    background-color: rgb(45, 45, 45);
     width: 100vw;
     height: 100vh;
-    background-color: limegreen;
+    background-color: rgb(137, 192, 137);
 }
 
 .bottomBar,
@@ -223,7 +223,8 @@ h4 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.2);
+    padding: 0 5px;
+    /* background-color: rgba(0, 0, 0, 0.2); */
 }
 
 .bottomBar div {
@@ -283,7 +284,7 @@ h4 {
 
 .dealerBadge {
     font-family: var(--HeadingFont);
-    background-color: aqua;
+    background-color: rgb(213, 158, 48);
     text-align: center;
     padding: 1px 2px;
     border-radius: 10px;
@@ -319,6 +320,7 @@ h4 {
 .amountTxt {
     margin-left: 3px;
     border-radius: 20px 0 0 20px;
+    line-height: 1;
     transition: 0.2s color ease-out;
 }
 
@@ -339,12 +341,12 @@ h4 {
 
 .gameScene div.card {
     display: flex;
-    height: calc(100vh - 110px);
+    height: calc(100vh - 120px);
     aspect-ratio: 2 / 3;
-    margin: 0 calc((-100vh - 110px)/3);
+    margin: 0 calc((-100vh - 120px)/3);
     object-fit: contain;
     border-radius: 6vh;
-    background-color: aquamarine;
+    background-color: rgb(204, 204, 204);
     box-shadow: 0 0 1vh rgba(0, 0, 0, 0.3);
     z-index: 1;
     overflow: scroll;
@@ -386,13 +388,14 @@ h4 {
     display: flex;
     flex-direction: row;
     position: relative;
-    height: 40px;
+    height: 30px;
     padding: 5px 2.5px;
     background-color: rgba(0, 0, 0, 0.5);
-    height: fit-content;
     z-index: 2;
     border-radius: 0 20px 20px 0;
     visibility: visible;
+    margin: auto 0;
+    align-items: center;
     transition: max-width 0.5s ease;  /* Ensure smooth transitions */
 }
 

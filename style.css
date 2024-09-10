@@ -140,10 +140,6 @@ body {
     margin: 0;
 }
 
-h1,h2,h3,h4,h5,p {
-    color: #151515;
-}
-
 h1 {
     font-size: 32px;
     margin: 5px;
@@ -321,6 +317,7 @@ h4 {
 }
 
 .amountTxt {
+    margin-left: 3px;
     border-radius: 20px 0 0 20px;
     transition: 0.2s color ease-out;
 }
@@ -369,6 +366,10 @@ h4 {
     background-color: rgba(208, 147, 33, 0.8);
 }
 
+.yellowBtn {
+    background-color: rgba(231, 212, 42, 0.8);
+}
+
 .greenBtn {
     background-color: rgba(33, 116, 33, 0.8);
 }
@@ -381,21 +382,23 @@ h4 {
 
 /* -------------------- BALANCE CONTROLS --------------------*/
 
-.balanceAmountContainer .balanceControlsUI {
+.balanceAmountContainer .balanceControlsUI, .betAmountContainer .balanceControlsUI {
     display: flex;
     flex-direction: row;
     position: relative;
     height: 40px;
     padding: 5px 2.5px;
     background-color: rgba(0, 0, 0, 0.5);
-    width: fit-content;
     height: fit-content;
     z-index: 2;
     border-radius: 0 20px 20px 0;
+    visibility: visible;
+    transition: max-width 0.5s ease;  /* Ensure smooth transitions */
 }
 
-.balanceControlsHIDDEN {
-    display: none !important;
+.controlsHIDDEN {
+    max-width: 0 !important;
+    visibility: hidden !important;
 }
 
 .userBalanceBtnACTIVE {

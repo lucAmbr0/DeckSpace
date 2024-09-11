@@ -141,22 +141,26 @@ function switchBadge() {
   if (badge >= 4) {
     badge = 0;
   }
-  switch (badge) {
-    case 0:
-      badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> account_circle </span>PLAYER`;
-      badgeElement.style.backgroundColor = "rgb(128, 170, 212)";
-      break;
-    case 1:
-      badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> poker_chip </span>DEALER`;
-      badgeElement.style.backgroundColor = "rgb(255, 206, 108)";
-      break;
-    case 2:
-      badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> tablet </span>TABLE`;
-      badgeElement.style.backgroundColor = "rgb(186, 139, 215)";
-      break;
-    case 3:
-      badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> no_accounts </span>SPECTATOR`;
-      badgeElement.style.backgroundColor = "rgb(201, 201, 201)";
-      break;
-  }
+  badgeElement.style.animation = "badgeExit 0.2s forwards";
+  setTimeout(() => {
+    switch (badge) {
+      case 0:
+        badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> account_circle </span>PLAYER`;
+        badgeElement.style.backgroundColor = "rgb(128, 170, 212)";
+        break;
+      case 1:
+        badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> poker_chip </span>DEALER`;
+        badgeElement.style.backgroundColor = "rgb(255, 206, 108)";
+        break;
+      case 2:
+        badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> tablet </span>TABLE`;
+        badgeElement.style.backgroundColor = "rgb(186, 139, 215)";
+        break;
+      case 3:
+        badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> no_accounts </span>SPECTATOR`;
+        badgeElement.style.backgroundColor = "rgb(201, 201, 201)";
+        break;
+    }
+    badgeElement.style.animation = "badgeEntrance 0.5s forwards";
+  }, 200);
 }

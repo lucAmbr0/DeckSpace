@@ -241,20 +241,21 @@ h4 {
 .gameScene {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 40px 1fr 50px;
+    grid-template-rows: 50px 1fr 50px;
     background-color: rgb(45, 45, 45);
     width: 100vw;
     height: 100vh;
     background-color: rgb(137, 192, 137);
+    position: relative; /* Nuovo contesto di impilamento */
+    z-index: 1; /* Imposta un valore inferiore rispetto alle carte */
 }
 
-.bottomBar,
-.topBar {
+.topBar, .bottomBar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 5px;
-    /* background-color: rgba(0, 0, 0, 0.2); */
+    padding: 0 10px;
+    z-index: 0; /* Mantieni il topBar sotto le carte */
 }
 
 .bottomBar div {
@@ -295,10 +296,15 @@ h4 {
     border: 0;
     background-color: rgba(222, 222, 222, 0.5);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    opacity: 0.7;
     margin: 1.5px;
     width: 30px;
     height: 30px;
     transition: 0.2s ease scale;
+}
+
+.actionsContainer button span {
+    color: #151515;
 }
 
 .actionsContainer button:active {
@@ -319,7 +325,8 @@ h4 {
     padding: 1px 2px;
     border-radius: 10px;
     border: solid 2px black;
-    font-size: 30px;
+    color: #151515;
+    font-size: 38px;
     line-height: 1;
     margin: auto 2px;
 }
@@ -340,17 +347,19 @@ h4 {
     background-color: rgba(255, 255, 255, 0.3);
     color: #151515;
     text-align: center;
-    padding: 4px 8px;
+    padding: 3px 9px;
     border-radius: 100px;
-    font-size: 28px;
+    font-size: 36px;
     line-height: 1;
     margin: 0;
 }
 
 .amountTxt {
-    margin-left: 3px;
+    margin-left: 0px;
     border-radius: 20px 0 0 20px;
     line-height: 1;
+    padding: 10px 10px;
+    font-size: 20px;
     transition: 0.2s color ease-out;
 }
 
@@ -358,34 +367,37 @@ h4 {
 
 .cardsTable {
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
     border: none;
     flex-wrap: nowrap;
-    padding: 0 10px;
     margin: 0 20px;
-    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: visible; /* Mantieni visibile il contenuto sopra */
+    z-index: 2; /* Maggiore rispetto a .gameScene */
+    padding-left: calc((100vh - 115px)/4);
     height: 100%;
+    scroll-behavior: smooth;
 }
 
 .gameScene div.card {
     display: flex;
-    height: calc(100vh - 120px);
-    aspect-ratio: 2 / 3;
-    margin: 0 calc((-100vh - 120px)/3);
-    object-fit: contain;
+    height: calc(100vh - 115px);
+    aspect-ratio: 2 / 3; 
+    margin: 0 calc(((100vh - 115px) / 3 * -4/3)/2);
     border-radius: 6vh;
-    background-color: rgb(204, 204, 204);
+    background-color: lightgray;
     box-shadow: 0 0 1vh rgba(0, 0, 0, 0.3);
-    z-index: 1;
-    overflow: scroll;
+    z-index: 10; /* Valore molto più alto per sovrapporre sopra topBar */
+    overflow: visible;
     transition: all 0.2s ease;
 }
 
-.gameScene div.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.3);
+.card:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 0 0px 1000px rgba(0, 0, 0, 0.3);
+    z-index: 15; /* Ancora più alto durante l'hover per forzare la sovrapposizione */
 }
 
 /* -------------------- BUTTONS --------------------*/
@@ -418,7 +430,7 @@ h4 {
     flex-direction: row;
     position: relative;
     height: 30px;
-    padding: 5px 2.5px;
+    padding: 5px 3px;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 2;
     border-radius: 0 20px 20px 0;
@@ -449,6 +461,10 @@ h4 {
     height: 30px;
     transition: 0.2s ease scale;
     opacity: 0;
+}
+
+.balanceControlsUI button span {
+    color: #151515;
 }
 
 .balanceControlsUI button:active {

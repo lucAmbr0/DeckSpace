@@ -88,6 +88,7 @@ function openBalanceBar() {
   // Open bar
   balanceControls.classList.remove("controlsHIDDEN");
   userBalanceAmountContainer.style.animation = barAnimation;
+  userBalanceAmountContainer.classList.remove("semiTransp");
   userBalanceBtn.classList.add("userBalanceBtnACTIVE");
   // Buttons animation
   balanceButtons.forEach((button, index) => {
@@ -103,12 +104,14 @@ function closeBalanceBar() {
   balanceControls.classList.add("controlsHIDDEN");
   userBalanceBtn.classList.remove("userBalanceBtnACTIVE");
   userBalanceAmountContainer.style.animation = "none";
+  userBalanceAmountContainer.classList.add("semiTransp");
 }
 
 function openBetBar() {
   // Open bar
   betControls.classList.remove("controlsHIDDEN");
   userBetAmountContainer.style.animation = barAnimation;
+  userBetAmountContainer.classList.remove("semiTransp");
   userBetBtn.classList.add("userBalanceBtnACTIVE");
   // Buttons animation
   betButtons.forEach((button, index) => {
@@ -124,4 +127,5 @@ function closeBetBar() {
   betControls.classList.add("controlsHIDDEN");
   userBetBtn.classList.remove("userBalanceBtnACTIVE");
   userBetAmountContainer.style.animation = "none";
+  userBetAmountContainer.classList.add("semiTransp");
 }

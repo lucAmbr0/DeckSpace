@@ -24,7 +24,7 @@ function serviceWorker() {
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-const startAnimation = true;
+const startAnimation = false;
 
 
 // ---------------  SPLASHSCREEN ANIMATION  ---------------
@@ -128,4 +128,35 @@ function closeBetBar() {
   userBetBtn.classList.remove("userBalanceBtnACTIVE");
   userBetAmountContainer.style.animation = "none";
   userBetAmountContainer.classList.add("semiTransp");
+}
+
+// --------------- BADGE SWITCHER ---------------
+
+let badge = 0;
+const badgeElement = document.getElementById("badgeElement");
+
+// Badges: PLAYER / DEALER / TABLE / SPECTATOR
+function switchBadge() {
+  badge++
+  if (badge >= 4) {
+    badge = 0;
+  }
+  switch (badge) {
+    case 0:
+      badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> account_circle </span>PLAYER`;
+      badgeElement.style.backgroundColor = "rgb(128, 170, 212)";
+      break;
+    case 1:
+      badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> poker_chip </span>DEALER`;
+      badgeElement.style.backgroundColor = "rgb(255, 206, 108)";
+      break;
+    case 2:
+      badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> tablet </span>TABLE`;
+      badgeElement.style.backgroundColor = "rgb(186, 139, 215)";
+      break;
+    case 3:
+      badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> no_accounts </span>SPECTATOR`;
+      badgeElement.style.backgroundColor = "rgb(201, 201, 201)";
+      break;
+  }
 }

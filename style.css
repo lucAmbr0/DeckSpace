@@ -320,7 +320,7 @@ h4 {
     scale: 0.9;
 }
 
-.dealerContainer {
+.badgeContainer {
     /* background-color: blueviolet; */
     display: flex;
     justify-content: flex-start;
@@ -328,11 +328,11 @@ h4 {
     height: 100%;
 }
 
-.dealerBadge {
+.badge {
     display: flex;
     align-items: center;
     font-family: var(--HeadingFont);
-    background-color: rgb(213, 158, 48);
+    background-color: rgb(128, 170, 212);
     text-align: center;
     padding: 2px 4px;
     border-radius: 10px;
@@ -346,13 +346,13 @@ h4 {
         .2s ease-in-out opacity;
 }
 
-.dealerBadge:active {
+.badge:active {
     scale: 0.9;
     opacity: 0.5;
 }
 
-.dealerBadge span {
-    margin-right: 2px;
+.badgeContainer span {
+    margin-right: 5px;
     font-size: 38px;
     line-height: 1;
 }

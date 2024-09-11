@@ -246,16 +246,20 @@ h4 {
     width: 100vw;
     height: 100vh;
     background-color: rgb(137, 192, 137);
-    position: relative; /* Nuovo contesto di impilamento */
-    z-index: 1; /* Imposta un valore inferiore rispetto alle carte */
+    position: relative;
+    /* Nuovo contesto di impilamento */
+    z-index: 1;
+    /* Imposta un valore inferiore rispetto alle carte */
 }
 
-.topBar, .bottomBar {
+.topBar,
+.bottomBar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 0 10px;
-    z-index: 0; /* Mantieni il topBar sotto le carte */
+    z-index: 0;
+    /* Mantieni il topBar sotto le carte */
 }
 
 .bottomBar div {
@@ -315,20 +319,37 @@ h4 {
     /* background-color: blueviolet; */
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     height: 100%;
 }
 
 .dealerBadge {
+    display: flex;
+    align-items: center;
     font-family: var(--HeadingFont);
     background-color: rgb(213, 158, 48);
     text-align: center;
-    padding: 1px 2px;
+    padding: 1px 4px;
     border-radius: 10px;
     border: solid 2px black;
     color: #151515;
     font-size: 38px;
     line-height: 1;
     margin: auto 2px;
+    transition:
+        .2s ease-in-out scale,
+        .2s ease-in-out opacity;
+}
+
+.dealerBadge:active {
+    scale: 0.9;
+    opacity: 0.5;
+}
+
+.dealerBadge span {
+    margin-right: 2px;
+    font-size: 34px;
+    line-height: 1;
 }
 
 .mirroredBalanceContainer {
@@ -374,8 +395,10 @@ h4 {
     flex-wrap: nowrap;
     margin: 0 20px;
     overflow-x: scroll;
-    overflow-y: visible; /* Mantieni visibile il contenuto sopra */
-    z-index: 2; /* Maggiore rispetto a .gameScene */
+    overflow-y: visible;
+    /* Mantieni visibile il contenuto sopra */
+    z-index: 2;
+    /* Maggiore rispetto a .gameScene */
     padding-left: calc((100vh - 115px)/4);
     height: 100%;
     scroll-behavior: smooth;
@@ -384,12 +407,13 @@ h4 {
 .gameScene div.card {
     display: flex;
     height: calc(100vh - 115px);
-    aspect-ratio: 2 / 3; 
+    aspect-ratio: 2 / 3;
     margin: 0 calc(((100vh - 115px) / 3 * -4/3)/2);
     border-radius: 6vh;
     background-color: lightgray;
     box-shadow: 0 0 1vh rgba(0, 0, 0, 0.3);
-    z-index: 10; /* Valore molto più alto per sovrapporre sopra topBar */
+    z-index: 10;
+    /* Valore molto più alto per sovrapporre sopra topBar */
     overflow: visible;
     transition: all 0.2s ease;
 }
@@ -397,7 +421,8 @@ h4 {
 .card:hover {
     transform: translateY(-10px) rotate(1deg);
     box-shadow: 0 0px 1000px rgba(0, 0, 0, 0.3);
-    z-index: 15; /* Ancora più alto durante l'hover per forzare la sovrapposizione */
+    z-index: 15;
+    /* Ancora più alto durante l'hover per forzare la sovrapposizione */
 }
 
 /* -------------------- BUTTONS --------------------*/

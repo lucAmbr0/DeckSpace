@@ -77,14 +77,21 @@
 }
 
 @keyframes balanceControlsEntrance {
-        0% {
-            opacity: 1;
-            clip-path: inset(0 100% 0 0 round 50px); 
-        }
-        100% {
-            opacity: 1;
-            clip-path: inset(0 0 0 0 round 50px);
-        }
+    0% {
+        opacity: 0;
+        scale: 0.7;
+        clip-path: inset(0 100% 0 0 round 50px);
+    }
+
+    70% {
+        scale: 1.05;
+    }
+
+    100% {
+        opacity: 1;
+        scale: 1;
+        clip-path: inset(0 0 0 0 round 50px);
+    }
 }
 
 @keyframes logoZoomIn {
@@ -102,6 +109,29 @@
     100% {
         transform: rotate(0deg);
         scale: 1;
+        opacity: 1;
+    }
+}
+
+@keyframes buttonsZoomIn {
+    0% {
+        scale: 0.8;
+        opacity: 0;
+        transform: rotate(-20deg);
+    }
+
+    50% {
+        scale: 1.1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(0deg);
+        scale: 1;
+        opacity: 1;
     }
 }
 
@@ -380,11 +410,10 @@ h4 {
     background-color: rgba(255, 255, 255, 0.6);
 }
 
-
-
 /* -------------------- BALANCE CONTROLS --------------------*/
 
-.balanceAmountContainer .balanceControlsUI, .betAmountContainer .balanceControlsUI {
+.balanceAmountContainer .balanceControlsUI,
+.betAmountContainer .balanceControlsUI {
     display: flex;
     flex-direction: row;
     position: relative;
@@ -396,7 +425,6 @@ h4 {
     visibility: visible;
     margin: auto 0;
     align-items: center;
-    transition: max-width 0.5s ease;  /* Ensure smooth transitions */
 }
 
 .controlsHIDDEN {
@@ -420,6 +448,7 @@ h4 {
     width: 30px;
     height: 30px;
     transition: 0.2s ease scale;
+    opacity: 0;
 }
 
 .balanceControlsUI button:active {

@@ -24,7 +24,7 @@ function serviceWorker() {
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-const startAnimation = false;
+const startAnimation = true;
 
 
 // ---------------  SPLASHSCREEN ANIMATION  ---------------
@@ -161,6 +161,6 @@ function switchBadge() {
         badgeElement.style.backgroundColor = "rgb(201, 201, 201)";
         break;
     }
-    badgeElement.style.animation = "badgeEntrance 0.5s forwards";
+    badgeElement.style.animation = "badgeEntrance 0.4s forwards";
   }, 200);
 }

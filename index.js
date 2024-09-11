@@ -24,7 +24,7 @@ function serviceWorker() {
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-const startAnimation = false;
+const startAnimation = true;
 
 
 // ---------------  SPLASHSCREEN ANIMATION  ---------------

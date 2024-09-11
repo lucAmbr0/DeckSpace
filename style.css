@@ -245,12 +245,13 @@ h4 {
 .gameScene {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 50px 1fr 50px;
+    grid-template-rows: 50px 1fr 40px;
     background-color: rgb(45, 45, 45);
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 10px);
     background-color: rgb(137, 192, 137);
     position: relative;
+    padding: 5px 0;
     /* Nuovo contesto di impilamento */
     z-index: 1;
     /* Imposta un valore inferiore rispetto alle carte */
@@ -292,7 +293,7 @@ h4 {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    padding: 0 10px;
+    padding: 0;
     align-items: center;
 }
 
@@ -333,11 +334,11 @@ h4 {
     font-family: var(--HeadingFont);
     background-color: rgb(213, 158, 48);
     text-align: center;
-    padding: 1px 4px;
+    padding: 2px 4px;
     border-radius: 10px;
     border: solid 2px black;
     color: #151515;
-    font-size: 38px;
+    font-size: 41px;
     line-height: 1;
     margin: auto 2px;
     transition:
@@ -352,7 +353,7 @@ h4 {
 
 .dealerBadge span {
     margin-right: 2px;
-    font-size: 34px;
+    font-size: 38px;
     line-height: 1;
 }
 
@@ -360,11 +361,13 @@ h4 {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     width: fit-content;
+    padding: 0;
 }
 
 .mirroredBalanceContainer div {
-    margin: auto 4px auto 0;
+    margin: auto 0 auto 5px;
 }
 
 .mirroredBalanceContainer h2 {
@@ -372,9 +375,9 @@ h4 {
     background-color: rgba(255, 255, 255, 0.3);
     color: #151515;
     text-align: center;
-    padding: 3px 9px;
+    padding: 5px 10px;
     border-radius: 100px;
-    font-size: 36px;
+    font-size: 37px;
     line-height: 1;
     margin: 0;
 }
@@ -401,33 +404,30 @@ h4 {
     margin: 0 20px;
     overflow-x: scroll;
     overflow-y: visible;
-    /* Mantieni visibile il contenuto sopra */
     z-index: 2;
-    /* Maggiore rispetto a .gameScene */
-    padding-left: calc((100vh - 115px)/4);
-    height: 100%;
+    padding-left: calc((100vh - 130px)/4);
+    height: calc(100vh - 105px);
+    transform: translateY(5px);
     scroll-behavior: smooth;
 }
 
 .gameScene div.card {
     display: flex;
-    height: calc(100vh - 115px);
+    height: calc(100vh - 130px);
     aspect-ratio: 2 / 3;
-    margin: 0 calc(((100vh - 115px) / 3 * -4/3)/2);
+    margin: 0 calc(((100vh - 130px) / 3 * -4/3)/2);
     border-radius: 6vh;
     background-color: lightgray;
-    box-shadow: 0 0 1vh rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     z-index: 10;
-    /* Valore molto più alto per sovrapporre sopra topBar */
     overflow: visible;
     transition: all 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px) rotate(1deg);
-    box-shadow: 0 0px 1000px rgba(0, 0, 0, 0.3);
+    transform: translateY(-10px);
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
     z-index: 15;
-    /* Ancora più alto durante l'hover per forzare la sovrapposizione */
 }
 
 /* -------------------- BUTTONS --------------------*/

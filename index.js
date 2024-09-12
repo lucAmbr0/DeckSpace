@@ -260,7 +260,7 @@ function switchBadge() {
   if (badge >= 4) {
     badge = 0;
   }
-  badgeElement.style.animation = "badgeExit 0.2s forwards";
+  badgeElement.style.animation = "badgeExit 0.15s forwards";
   setTimeout(() => {
     switch (badge) {
       case 0:
@@ -280,6 +280,6 @@ function switchBadge() {
         badgeElement.style.backgroundColor = "rgb(201, 201, 201)";
         break;
     }
-    badgeElement.style.animation = "badgeEntrance 0.2s forwards";
-  }, 200);
+    badgeElement.style.animation = "badgeEntrance 0.1s forwards";
+  }, 150);
 }

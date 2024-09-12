@@ -199,7 +199,7 @@ function balanceChange(change) {
   if (balance + change > maxBalance || balance + change < minBalance) {
     shakeElement(userBalanceBtn);
   }
-  else if (balance + change > 0 || allowNegativeBalance) {
+  else if (balance + change >= 0 || allowNegativeBalance) {
     balance += change;
     writeBalance(parseInt(userBalanceBtn.textContent) + change);
   }

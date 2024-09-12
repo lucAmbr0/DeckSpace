@@ -384,6 +384,7 @@ function switchBadge() {
       case 0:
         badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> account_circle </span>PLAYER`;
         badgeElement.style.backgroundColor = "rgb(128, 170, 212)";
+        document.getElementById("actionsContainer").style.visibility = "visible";
         break;
       case 1:
         badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> poker_chip </span>DEALER`;
@@ -392,10 +393,13 @@ function switchBadge() {
       case 2:
         badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> tablet </span>TABLE`;
         badgeElement.style.backgroundColor = "rgb(186, 139, 215)";
+        document.querySelectorAll(".amountTxt").forEach((e) => e.style.visibility = "hidden");
         break;
       case 3:
         badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> no_accounts </span>SPECTATOR`;
         badgeElement.style.backgroundColor = "rgb(201, 201, 201)";
+        document.querySelectorAll(".amountTxt").forEach((e) => e.style.visibility = "visible");
+        document.getElementById("actionsContainer").style.visibility = "hidden";
         break;
     }
     badgeElement.style.animation = "badgeEntrance 0.1s forwards";

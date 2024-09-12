@@ -65,7 +65,7 @@ const userBetAmountContainer = document.getElementById("userBetAmountContainer")
 const betButtons = betControls.querySelectorAll('button');
 
 // ANIMATIONS VARIABLES
-const barAnimation = "balanceControlsEntrance forwards ease-in-out .3s";
+const barAnimation = "balanceControlsEntrance forwards ease-in-out .2s";
 const buttonsAnimation = "buttonsZoomIn 0.2s ease-in-out forwards";
 
 function toggleBalanceControls() {
@@ -95,7 +95,7 @@ function openBalanceBar() {
   // Buttons animation
   balanceButtons.forEach((button, index) => {
     button.style.animation = buttonsAnimation;
-    button.style.animationDelay = `${(1 + index) * 0.07}s`;
+    button.style.animationDelay = `${(0.8 + index) * 0.05}s`;
   });
 }
 
@@ -118,7 +118,7 @@ function openBetBar() {
   // Buttons animation
   betButtons.forEach((button, index) => {
     button.style.animation = buttonsAnimation;
-    button.style.animationDelay = `${(1 + index) * 0.07}s`;
+    button.style.animationDelay = `${(0.8 + index) * 0.05}s`;
   });
 }
 
@@ -137,8 +137,11 @@ function closeBetBar() {
 
 // Variables
 let balance = 0;
+let allowNegativeBalance = false;
 let defaultBalanceRemove = 10;
 let defaultBalanceAdd = 10;
+let maxBalance = 99999;
+let minBalance = -99999;
 
 // 0 = delete
 // 1 = remove
@@ -171,41 +174,58 @@ function balanceDelete() {
     writeBalance(0);
   }
   else
-    userBalanceBtn.style.animation = "shakeHorizontal 0.2s forwards";
+    shakeElement(userBalanceBtn)
+}
+
+function shakeElement(element) {
+  element.style.animation = "shakeHorizontal 0.2s forwards";
   setTimeout(() => {
-    userBalanceBtn.style.animation = "none";
+    element.style.animation = "none";
   }, 300);
 }
 
 function balanceRemove(amount) {
-  balanceChange(0 - amount);
+  if (!isNaN(amount))
+    balanceChange(0 - amount);
+  else console.error(amount + " is NaN");
 }
 function balanceAdd(amount) {
-  balanceChange(amount);
+  if (!isNaN(amount))
+    balanceChange(amount);
+  else console.error(amount + " is NaN");
 }
 
 function balanceChange(change) {
-  balance += change;
-  writeBalance(parseInt(userBalanceBtn.textContent) + change);
+  if (balance + change > maxBalance || balance + change < minBalance) {
+    shakeElement(userBalanceBtn);
+  }
+  else if (balance + change > 0 || allowNegativeBalance) {
+    balance += change;
+    writeBalance(parseInt(userBalanceBtn.textContent) + change);
+  }
+  else if (balance + change < 0 && !allowNegativeBalance) {
+    balance = 0;
+    shakeElement(userBalanceBtn);
+  }
 }
 
 function writeBalance(newBalance) {
   const oldBalance = userBalanceBtn.textContent;
   if (newBalance > oldBalance) {
-    userBalanceBtn.style.animation = "cashUpExit 0.2s forwards";
+    userBalanceBtn.style.animation = "cashUpExit 0.1s forwards";
     setTimeout(() => {
       userBalanceBtn.textContent = newBalance;
       mirroredBalanceTxt.textContent = newBalance;
       userBalanceBtn.style.animation = "cashUpEntrance 0.2s forwards";
-    }, 200);
+    }, 100);
   }
   else {
-    userBalanceBtn.style.animation = "cashDownExit 0.2s forwards";
+    userBalanceBtn.style.animation = "cashDownExit 0.1s forwards";
     setTimeout(() => {
       userBalanceBtn.textContent = newBalance;
       mirroredBalanceTxt.textContent = newBalance;
       userBalanceBtn.style.animation = "cashDownEntrance 0.2s forwards";
-    }, 200);
+    }, 100);
   }
 }
 
@@ -245,6 +265,6 @@ function switchBadge() {
         badgeElement.style.backgroundColor = "rgb(201, 201, 201)";
         break;
     }
-    badgeElement.style.animation = "badgeEntrance 0.4s forwards";
+    badgeElement.style.animation = "badgeEntrance 0.2s forwards";
   }, 200);
 }

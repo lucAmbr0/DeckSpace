@@ -65,7 +65,7 @@ const userBetAmountContainer = document.getElementById("userBetAmountContainer")
 const betButtons = betControls.querySelectorAll('button');
 
 // ANIMATIONS VARIABLES
-const barAnimation = "balanceControlsEntrance forwards ease-in-out .3s";
+const barAnimation = "balanceControlsEntrance forwards ease-in-out .2s";
 const buttonsAnimation = "buttonsZoomIn 0.2s ease-in-out forwards";
 
 function toggleBalanceControls() {
@@ -95,7 +95,7 @@ function openBalanceBar() {
   // Buttons animation
   balanceButtons.forEach((button, index) => {
     button.style.animation = buttonsAnimation;
-    button.style.animationDelay = `${(1 + index) * 0.07}s`;
+    button.style.animationDelay = `${(0.8 + index) * 0.05}s`;
   });
 }
 
@@ -118,7 +118,7 @@ function openBetBar() {
   // Buttons animation
   betButtons.forEach((button, index) => {
     button.style.animation = buttonsAnimation;
-    button.style.animationDelay = `${(1 + index) * 0.07}s`;
+    button.style.animationDelay = `${(0.8 + index) * 0.05}s`;
   });
 }
 
@@ -137,6 +137,7 @@ function closeBetBar() {
 
 // Variables
 let balance = 0;
+let allowNegativeBalance = false;
 let defaultBalanceRemove = 10;
 let defaultBalanceAdd = 10;
 
@@ -171,9 +172,13 @@ function balanceDelete() {
     writeBalance(0);
   }
   else
-    userBalanceBtn.style.animation = "shakeHorizontal 0.2s forwards";
+    shakeElement(userBalanceBtn)
+}
+
+function shakeElement(element) {
+  element.style.animation = "shakeHorizontal 0.2s forwards";
   setTimeout(() => {
-    userBalanceBtn.style.animation = "none";
+    element.style.animation = "none";
   }, 300);
 }
 
@@ -185,27 +190,33 @@ function balanceAdd(amount) {
 }
 
 function balanceChange(change) {
-  balance += change;
-  writeBalance(parseInt(userBalanceBtn.textContent) + change);
+  if (balance + change < 0 && !allowNegativeBalance) {
+    balance = 0;
+    shakeElement(userBalanceBtn);
+  }
+  else {
+    balance += change;
+    writeBalance(parseInt(userBalanceBtn.textContent) + change);
+  }
 }
 
 function writeBalance(newBalance) {
   const oldBalance = userBalanceBtn.textContent;
   if (newBalance > oldBalance) {
-    userBalanceBtn.style.animation = "cashUpExit 0.2s forwards";
+    userBalanceBtn.style.animation = "cashUpExit 0.1s forwards";
     setTimeout(() => {
       userBalanceBtn.textContent = newBalance;
       mirroredBalanceTxt.textContent = newBalance;
       userBalanceBtn.style.animation = "cashUpEntrance 0.2s forwards";
-    }, 200);
+    }, 100);
   }
   else {
-    userBalanceBtn.style.animation = "cashDownExit 0.2s forwards";
+    userBalanceBtn.style.animation = "cashDownExit 0.1s forwards";
     setTimeout(() => {
       userBalanceBtn.textContent = newBalance;
       mirroredBalanceTxt.textContent = newBalance;
       userBalanceBtn.style.animation = "cashDownEntrance 0.2s forwards";
-    }, 200);
+    }, 100);
   }
 }
 
@@ -245,6 +256,6 @@ function switchBadge() {
         badgeElement.style.backgroundColor = "rgb(201, 201, 201)";
         break;
     }
-    badgeElement.style.animation = "badgeEntrance 0.4s forwards";
+    badgeElement.style.animation = "badgeEntrance 0.2s forwards";
   }, 200);
 }

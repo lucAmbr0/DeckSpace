@@ -245,7 +245,125 @@ function balanceWrite(newBalance) {
 }
 
 
+// --------------- BET ACTION BUTTONS ---------------
 
+// Variables
+let bet = 0;
+let appStartBet = 10;
+let defaultBetRemove = 5;
+let defaultBetAdd = 5;
+let maxBet = 99999;
+let minBet = 0;
+
+// 0 = undo bet
+// 1 = remove
+// 2 = add
+// 3 = lose bet
+// 4 = double bet
+
+function betAction(i) {
+  switch (i) {
+    case 0:
+      betDelete();
+      break;
+    case 1:
+      betRemove(defaultBetRemove);
+      break;
+    case 2:
+      betAdd(defaultBetAdd);
+      break;
+    case 3:
+      betLose();
+      break;
+    case 4:
+      betDouble();
+      break;
+    default:
+      console.error("betAction argument doesn't exist");
+      break;
+  }
+}
+
+bet = appStartBet
+betWrite(appStartBet);
+
+function betDelete() {
+  if (bet != 0) {
+    bet = 0;
+    betWrite(0);
+  }
+  else
+    shakeElement(userBetBtn);
+}
+
+function betLose() {
+  if (bet != 0) {
+    balance -= bet;
+    bet = 0;
+    betWrite(0);
+  }
+  else {
+    shakeElement(userBetBtn);
+  }
+}
+
+function betDouble() {
+  if (bet != 0) {
+    balance += (bet)
+    bet = 0;
+    betWrite(0);
+  }
+  else {
+    shakeElement(userBetBtn);
+  }
+}
+
+function betRemove(amount) {
+  if (!isNaN(amount))
+    betChange(0 - amount);
+  else console.error(amount + " is NaN");
+}
+function betAdd(amount) {
+  if (!isNaN(amount))
+    betChange(amount);
+  else console.error(amount + " is NaN");
+}
+
+function betChange(change) {
+  if (bet + change > maxBet || bet + change < 0) {
+    shakeElement(userBetBtn);
+  }
+  else if (change > balance) {
+    shakeElement(userBalanceBtn);
+  }
+  else {
+    bet += change;
+    betWrite(parseInt(userBetBtn.textContent) + change);
+  }
+}
+
+function betWrite(newBet) {
+  const oldBet = userBetBtn.textContent;
+  balance += (oldBet - newBet);
+  if (balance != parseInt(userBalanceBtn.textContent))
+    balanceWrite(balance);
+  if (newBet > oldBet) {
+    userBetBtn.style.animation = "cashUpExit 0.1s forwards";
+    setTimeout(() => {
+      userBetBtn.textContent = newBet;
+      mirroredBetTxt.textContent = newBet;
+      userBetBtn.style.animation = "cashUpEntrance 0.15s forwards";
+    }, 100);
+  }
+  else {
+    userBetBtn.style.animation = "cashDownExit 0.1s forwards";
+    setTimeout(() => {
+      userBetBtn.textContent = newBet;
+      mirroredBetTxt.textContent = newBet;
+      userBetBtn.style.animation = "cashDownEntrance 0.15s forwards";
+    }, 100);
+  }
+}
 
 
 
@@ -260,7 +378,7 @@ function switchBadge() {
   if (badge >= 4) {
     badge = 0;
   }
-  badgeElement.style.animation = "badgeExit 0.2s forwards";
+  badgeElement.style.animation = "badgeExit 0.15s forwards";
   setTimeout(() => {
     switch (badge) {
       case 0:
@@ -280,6 +398,6 @@ function switchBadge() {
         badgeElement.style.backgroundColor = "rgb(201, 201, 201)";
         break;
     }
-    badgeElement.style.animation = "badgeEntrance 0.2s forwards";
-  }, 200);
+    badgeElement.style.animation = "badgeEntrance 0.1s forwards";
+  }, 150);
 }

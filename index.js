@@ -137,6 +137,7 @@ function closeBetBar() {
 
 // Variables
 let balance = 0;
+let appStartBalance = 150;
 let allowNegativeBalance = false;
 let defaultBalanceRemove = 10;
 let defaultBalanceAdd = 10;
@@ -168,13 +169,27 @@ function balanceAction(i) {
   }
 }
 
+balance = appStartBalance
+balanceWrite(appStartBalance);
+
 function balanceDelete() {
   if (balance != 0) {
     balance = 0;
-    writeBalance(0);
+    balanceWrite(0);
   }
   else
     shakeElement(userBalanceBtn)
+}
+
+function balanceEdit() {
+  let newBalance = parseInt(window.prompt("Insert new balance value (" + minBalance + " - " + maxBalance + ")"));
+  if ((newBalance < 0 && !allowNegativeBalance) || newBalance < minBalance || newBalance > maxBalance || isNaN(newBalance)) {
+    window.alert("Invalid amount");
+  }
+  else {
+    balance = newBalance;
+    balanceWrite(newBalance);
+  }
 }
 
 function shakeElement(element) {
@@ -201,7 +216,7 @@ function balanceChange(change) {
   }
   else if (balance + change >= 0 || allowNegativeBalance) {
     balance += change;
-    writeBalance(parseInt(userBalanceBtn.textContent) + change);
+    balanceWrite(parseInt(userBalanceBtn.textContent) + change);
   }
   else if (balance + change < 0 && !allowNegativeBalance) {
     balance = 0;
@@ -209,14 +224,14 @@ function balanceChange(change) {
   }
 }
 
-function writeBalance(newBalance) {
+function balanceWrite(newBalance) {
   const oldBalance = userBalanceBtn.textContent;
   if (newBalance > oldBalance) {
     userBalanceBtn.style.animation = "cashUpExit 0.1s forwards";
     setTimeout(() => {
       userBalanceBtn.textContent = newBalance;
       mirroredBalanceTxt.textContent = newBalance;
-      userBalanceBtn.style.animation = "cashUpEntrance 0.2s forwards";
+      userBalanceBtn.style.animation = "cashUpEntrance 0.15s forwards";
     }, 100);
   }
   else {
@@ -224,7 +239,7 @@ function writeBalance(newBalance) {
     setTimeout(() => {
       userBalanceBtn.textContent = newBalance;
       mirroredBalanceTxt.textContent = newBalance;
-      userBalanceBtn.style.animation = "cashDownEntrance 0.2s forwards";
+      userBalanceBtn.style.animation = "cashDownEntrance 0.15s forwards";
     }, 100);
   }
 }

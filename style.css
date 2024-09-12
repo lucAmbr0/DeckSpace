@@ -620,6 +620,11 @@ h4 {
     align-items: center;
 }
 
+#mirroredBetTxt {
+    color: #a51e1e;
+    opacity: 0.8;
+}
+
 .controlsHIDDEN {
     max-width: 0 !important;
     visibility: hidden !important;

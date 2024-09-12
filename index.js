@@ -183,20 +183,27 @@ function shakeElement(element) {
 }
 
 function balanceRemove(amount) {
-  balanceChange(0 - amount);
+  if (!isNaN(amount))
+    balanceChange(0 - amount);
+  else console.error(amount + " is NaN");
 }
 function balanceAdd(amount) {
-  balanceChange(amount);
+  if (!isNaN(amount))
+    balanceChange(amount);
+  else console.error(amount + " is NaN");
 }
 
 function balanceChange(change) {
-  if (balance + change < 0 && !allowNegativeBalance) {
-    balance = 0;
+  if (balance + change > 99999 || balance + change < -99999) {
     shakeElement(userBalanceBtn);
   }
-  else {
+  else if (balance + change > 0 || allowNegativeBalance) {
     balance += change;
     writeBalance(parseInt(userBalanceBtn.textContent) + change);
+  }
+  else if (balance + change < 0 && !allowNegativeBalance) {
+    balance = 0;
+    shakeElement(userBalanceBtn);
   }
 }
 

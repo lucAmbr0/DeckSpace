@@ -338,6 +338,7 @@ h4 {
 }
 
 .actionsContainer button {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -370,6 +371,7 @@ h4 {
 
 .badge {
     display: flex;
+    cursor: pointer;
     align-items: center;
     font-family: var(--HeadingFont);
     background-color: rgb(128, 170, 212);
@@ -403,6 +405,7 @@ h4 {
 }
 
 .mirroredBalanceContainer h2 {
+    cursor: pointer;
     font-family: var(--StandardTextFont);
     background-color: rgba(255, 255, 255, 0.3);
     color: #151515;
@@ -415,6 +418,7 @@ h4 {
 }
 
 .amountTxt {
+    cursor: pointer;
     margin-left: 0px;
     border-radius: 20px 0 0 20px;
     line-height: 1;
@@ -444,6 +448,7 @@ h4 {
 }
 
 .gameScene div.card {
+    cursor: pointer;
     display: flex;
     height: calc(100vh - 130px);
     aspect-ratio: 2 / 3;
@@ -512,6 +517,7 @@ h4 {
 }
 
 .balanceControlsUI button {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;

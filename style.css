@@ -636,6 +636,7 @@ h4 {
 
 .userBalanceBtnACTIVE h2 {
     color: whitesmoke !important;
+    text-shadow: 0 0 2px black;
 }
 
 .balanceControlsUI button {

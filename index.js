@@ -345,7 +345,8 @@ function betChange(change) {
 function betWrite(newBet) {
   const oldBet = userBetBtn.textContent;
   balance += (oldBet - newBet);
-  balanceWrite(balance);
+  if (balance != parseInt(userBalanceBtn.textContent))
+    balanceWrite(balance);
   if (newBet > oldBet) {
     userBetBtn.style.animation = "cashUpExit 0.1s forwards";
     setTimeout(() => {

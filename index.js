@@ -170,12 +170,12 @@ function balanceAction(i) {
 }
 
 balance = appStartBalance
-writeBalance(appStartBalance);
+balanceWrite(appStartBalance);
 
 function balanceDelete() {
   if (balance != 0) {
     balance = 0;
-    writeBalance(0);
+    balanceWrite(0);
   }
   else
     shakeElement(userBalanceBtn)
@@ -187,7 +187,7 @@ function balanceEdit() {
     window.alert("Invalid amount");
   }
   else {
-    writeBalance(newBalance);
+    balanceWrite(newBalance);
   }
 }
 
@@ -215,7 +215,7 @@ function balanceChange(change) {
   }
   else if (balance + change >= 0 || allowNegativeBalance) {
     balance += change;
-    writeBalance(parseInt(userBalanceBtn.textContent) + change);
+    balanceWrite(parseInt(userBalanceBtn.textContent) + change);
   }
   else if (balance + change < 0 && !allowNegativeBalance) {
     balance = 0;
@@ -223,7 +223,7 @@ function balanceChange(change) {
   }
 }
 
-function writeBalance(newBalance) {
+function balanceWrite(newBalance) {
   const oldBalance = userBalanceBtn.textContent;
   if (newBalance > oldBalance) {
     userBalanceBtn.style.animation = "cashUpExit 0.1s forwards";

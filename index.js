@@ -24,7 +24,7 @@ function serviceWorker() {
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-const startAnimation = false;
+const startAnimation = true;
 
 
 // ---------------  SPLASHSCREEN ANIMATION  ---------------
@@ -249,30 +249,34 @@ function balanceWrite(newBalance) {
 
 // Variables
 let bet = 0;
-let appStartBet = 150;
-let defaultBetRemove = 10;
-let defaultBetAdd = 10;
+let appStartBet = 10;
+let defaultBetRemove = 5;
+let defaultBetAdd = 5;
 let maxBet = 99999;
 let minBet = 0;
 
-// 0 = lose bet
-// 1 = double bet
-// 2 = undo bet
-// 3 = remove
-// 3 = add
+// 0 = undo bet
+// 1 = remove
+// 2 = add
+// 3 = lose bet
+// 4 = double bet
 
 function betAction(i) {
   switch (i) {
     case 0:
-
+      betDelete();
       break;
     case 1:
+      betRemove(defaultBetRemove);
       break;
     case 2:
+      betAdd(defaultBetAdd);
       break;
     case 3:
+      betLose();
       break;
     case 4:
+      betDouble();
       break;
     default:
       console.error("betAction argument doesn't exist");
@@ -280,13 +284,73 @@ function betAction(i) {
   }
 }
 
+bet = appStartBet
+betWrite(appStartBet);
+
+function betDelete() {
+  if (bet != 0) {
+    bet = 0;
+    betWrite(0);
+  }
+  else
+    shakeElement(userBetBtn);
+}
+
+function betLose() {
+  if (bet != 0) {
+    balance -= bet;
+    bet = 0;
+    betWrite(0);
+  }
+  else {
+    shakeElement(userBetBtn);
+  }
+}
+
+function betDouble() {
+  if (bet != 0) {
+    balance += (bet)
+    bet = 0;
+    betWrite(0);
+  }
+  else {
+    shakeElement(userBetBtn);
+  }
+}
+
+function betRemove(amount) {
+  if (!isNaN(amount))
+    betChange(0 - amount);
+  else console.error(amount + " is NaN");
+}
+function betAdd(amount) {
+  if (!isNaN(amount))
+    betChange(amount);
+  else console.error(amount + " is NaN");
+}
+
+function betChange(change) {
+  if (bet + change > maxBet || bet + change < 0) {
+    shakeElement(userBetBtn);
+  }
+  else if (change > balance) {
+    shakeElement(userBalanceBtn);
+  }
+  else {
+    bet += change;
+    betWrite(parseInt(userBetBtn.textContent) + change);
+  }
+}
+
 function betWrite(newBet) {
   const oldBet = userBetBtn.textContent;
+  balance += (oldBet - newBet);
+  balanceWrite(balance);
   if (newBet > oldBet) {
     userBetBtn.style.animation = "cashUpExit 0.1s forwards";
     setTimeout(() => {
       userBetBtn.textContent = newBet;
-      mirroredBalanceTxt.textContent = newBet;
+      mirroredBetTxt.textContent = newBet;
       userBetBtn.style.animation = "cashUpEntrance 0.15s forwards";
     }, 100);
   }
@@ -294,7 +358,7 @@ function betWrite(newBet) {
     userBetBtn.style.animation = "cashDownExit 0.1s forwards";
     setTimeout(() => {
       userBetBtn.textContent = newBet;
-      mirroredBalanceTxt.textContent = newBet;
+      mirroredBetTxt.textContent = newBet;
       userBetBtn.style.animation = "cashDownEntrance 0.15s forwards";
     }, 100);
   }

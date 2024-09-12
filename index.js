@@ -183,7 +183,7 @@ function balanceDelete() {
 
 function balanceEdit() {
   let newBalance = parseInt(window.prompt("Insert new balance value (" + minBalance + " - " + maxBalance + ")"));
-  if ((newBalance < 0 && !allowNegativeBalance) || newBalance < minBalance || newBalance > maxBalance) {
+  if ((newBalance < 0 && !allowNegativeBalance) || newBalance < minBalance || newBalance > maxBalance || isNaN(newBalance)) {
     window.alert("Invalid amount");
   }
   else {
@@ -230,7 +230,7 @@ function balanceWrite(newBalance) {
     setTimeout(() => {
       userBalanceBtn.textContent = newBalance;
       mirroredBalanceTxt.textContent = newBalance;
-      userBalanceBtn.style.animation = "cashUpEntrance 0.2s forwards";
+      userBalanceBtn.style.animation = "cashUpEntrance 0.15s forwards";
     }, 100);
   }
   else {
@@ -238,7 +238,7 @@ function balanceWrite(newBalance) {
     setTimeout(() => {
       userBalanceBtn.textContent = newBalance;
       mirroredBalanceTxt.textContent = newBalance;
-      userBalanceBtn.style.animation = "cashDownEntrance 0.2s forwards";
+      userBalanceBtn.style.animation = "cashDownEntrance 0.15s forwards";
     }, 100);
   }
 }

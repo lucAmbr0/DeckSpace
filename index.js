@@ -24,7 +24,7 @@ function serviceWorker() {
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-const startAnimation = true;
+const startAnimation = false;
 
 
 // ---------------  SPLASHSCREEN ANIMATION  ---------------
@@ -264,7 +264,7 @@ let minBet = 0;
 function betAction(i) {
   switch (i) {
     case 0:
-      // balanceDelete();
+
       break;
     case 1:
       break;
@@ -277,6 +277,26 @@ function betAction(i) {
     default:
       console.error("betAction argument doesn't exist");
       break;
+  }
+}
+
+function betWrite(newBet) {
+  const oldBet = userBetBtn.textContent;
+  if (newBet > oldBet) {
+    userBetBtn.style.animation = "cashUpExit 0.1s forwards";
+    setTimeout(() => {
+      userBetBtn.textContent = newBet;
+      mirroredBalanceTxt.textContent = newBet;
+      userBetBtn.style.animation = "cashUpEntrance 0.15s forwards";
+    }, 100);
+  }
+  else {
+    userBetBtn.style.animation = "cashDownExit 0.1s forwards";
+    setTimeout(() => {
+      userBetBtn.textContent = newBet;
+      mirroredBalanceTxt.textContent = newBet;
+      userBetBtn.style.animation = "cashDownEntrance 0.15s forwards";
+    }, 100);
   }
 }
 

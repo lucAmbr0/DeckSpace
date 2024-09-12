@@ -584,19 +584,19 @@ h4 {
 /* -------------------- BUTTONS --------------------*/
 
 .redBtn {
-    background-color: rgba(165, 30, 30, 0.8);
+    background-color: rgba(234, 122, 119, 0.8);
 }
 
 .orangeBtn {
-    background-color: rgba(208, 147, 33, 0.8);
+    background-color: rgba(228, 190, 119, 0.8);
 }
 
 .yellowBtn {
-    background-color: rgba(231, 212, 42, 0.8);
+    background-color: rgba(255, 247, 171, 0.8);
 }
 
 .greenBtn {
-    background-color: rgba(33, 116, 33, 0.8);
+    background-color: rgba(142, 204, 142, 0.8);
 }
 
 .whiteBtn {

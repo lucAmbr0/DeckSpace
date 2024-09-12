@@ -53,12 +53,14 @@ function splashscreen() {
 // BALANCE BAR VARIABLES
 const balanceControls = document.getElementById("balanceControlsContainer");
 const userBalanceBtn = document.getElementById("userBalanceBtn");
+const mirroredBalanceTxt = document.getElementById("mirroredBalanceTxt");
 const userBalanceAmountContainer = document.getElementById("userBalanceAmountContainer");
 const balanceButtons = balanceControls.querySelectorAll('button');
 
 // BET BAR VARIABLES
 const betControls = document.getElementById("betControlsContainer");
 const userBetBtn = document.getElementById("userBetBtn");
+const mirroredBetTxt = document.getElementById("mirroredBetTxt");
 const userBetAmountContainer = document.getElementById("userBetAmountContainer");
 const betButtons = betControls.querySelectorAll('button');
 
@@ -89,7 +91,7 @@ function openBalanceBar() {
   balanceControls.classList.remove("controlsHIDDEN");
   userBalanceAmountContainer.style.animation = barAnimation;
   userBalanceAmountContainer.classList.remove("semiTransp");
-  userBalanceBtn.classList.add("userBalanceBtnACTIVE");
+  userBalanceBtn.parentElement.classList.add("userBalanceBtnACTIVE");
   // Buttons animation
   balanceButtons.forEach((button, index) => {
     button.style.animation = buttonsAnimation;
@@ -102,7 +104,7 @@ function closeBalanceBar() {
     button.style.animation = "none";
   });
   balanceControls.classList.add("controlsHIDDEN");
-  userBalanceBtn.classList.remove("userBalanceBtnACTIVE");
+  userBalanceBtn.parentElement.classList.remove("userBalanceBtnACTIVE");
   userBalanceAmountContainer.style.animation = "none";
   userBalanceAmountContainer.classList.add("semiTransp");
 }
@@ -112,7 +114,7 @@ function openBetBar() {
   betControls.classList.remove("controlsHIDDEN");
   userBetAmountContainer.style.animation = barAnimation;
   userBetAmountContainer.classList.remove("semiTransp");
-  userBetBtn.classList.add("userBalanceBtnACTIVE");
+  userBetBtn.parentElement.classList.add("userBalanceBtnACTIVE");
   // Buttons animation
   betButtons.forEach((button, index) => {
     button.style.animation = buttonsAnimation;
@@ -125,10 +127,92 @@ function closeBetBar() {
     button.style.animation = "none";
   });
   betControls.classList.add("controlsHIDDEN");
-  userBetBtn.classList.remove("userBalanceBtnACTIVE");
+  userBetBtn.parentElement.classList.remove("userBalanceBtnACTIVE");
   userBetAmountContainer.style.animation = "none";
   userBetAmountContainer.classList.add("semiTransp");
 }
+
+
+// --------------- BALANCE ACTION BUTTONS ---------------
+
+// Variables
+let balance = 0;
+let defaultBalanceRemove = 10;
+let defaultBalanceAdd = 10;
+
+// 0 = delete
+// 1 = remove
+// 2 = add
+// 3 = edit
+
+function balanceAction(i) {
+  switch (i) {
+    case 0:
+      balanceDelete();
+      break;
+    case 1:
+      balanceRemove(defaultBalanceRemove);
+      break;
+    case 2:
+      balanceAdd(defaultBalanceAdd);
+      break;
+    case 3:
+      balanceEdit();
+      break;
+    default:
+      console.error("balanceAction argument doesn't exist");
+      break;
+  }
+}
+
+function balanceDelete() {
+  if (balance != 0) {
+    balance = 0;
+    writeBalance(0);
+  }
+  else
+    userBalanceBtn.style.animation = "shakeHorizontal 0.2s forwards";
+  setTimeout(() => {
+    userBalanceBtn.style.animation = "none";
+  }, 300);
+}
+
+function balanceRemove(amount) {
+  balanceChange(0 - amount);
+}
+function balanceAdd(amount) {
+  balanceChange(amount);
+}
+
+function balanceChange(change) {
+  balance += change;
+  writeBalance(parseInt(userBalanceBtn.textContent) + change);
+}
+
+function writeBalance(newBalance) {
+  const oldBalance = userBalanceBtn.textContent;
+  if (newBalance > oldBalance) {
+    userBalanceBtn.style.animation = "cashUpExit 0.2s forwards";
+    setTimeout(() => {
+      userBalanceBtn.textContent = newBalance;
+      mirroredBalanceTxt.textContent = newBalance;
+      userBalanceBtn.style.animation = "cashUpEntrance 0.2s forwards";
+    }, 200);
+  }
+  else {
+    userBalanceBtn.style.animation = "cashDownExit 0.2s forwards";
+    setTimeout(() => {
+      userBalanceBtn.textContent = newBalance;
+      mirroredBalanceTxt.textContent = newBalance;
+      userBalanceBtn.style.animation = "cashDownEntrance 0.2s forwards";
+    }, 200);
+  }
+}
+
+
+
+
+
 
 // --------------- BADGE SWITCHER ---------------
 

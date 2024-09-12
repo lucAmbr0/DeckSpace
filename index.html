@@ -76,21 +76,21 @@
                 <h2 class="amountTxt" id="userBetBtn" onclick="toggleBetControls()">0</h2>
               </div>
               <div class="balanceControlsUI controlsHIDDEN" id="betControlsContainer">
-                <button class="redBtn">
-                  <span class="material-symbols-outlined"> close </span>
-                </button>
-                <button class="greenBtn">
-                  <span class="material-symbols-outlined"> speed_2x </span>
-                </button>
-                <div style="margin-left: 10px;"></div>
-                <button class="yellowBtn">
+                <button class="yellowBtn" onclick="balanceAction(2)">
                   <span class="material-symbols-outlined"> undo </span>
                 </button>
-                <button class="orangeBtn">
+                <button class="orangeBtn" onclick="balanceAction(3)">
                   <span class="material-symbols-outlined"> remove </span>
                 </button>
-                <button class="greenBtn">
+                <button class="greenBtn" onclick="balanceAction(4)">
                   <span class="material-symbols-outlined"> add </span>
+                </button>
+                <div style="margin-left: 10px;"></div>
+                <button class="redBtn" onclick="balanceAction(0)">
+                  <span class="material-symbols-outlined"> close </span>
+                </button>
+                <button class="greenBtn" onclick="balanceAction(1)">
+                  <span class="material-symbols-outlined"> speed_2x </span>
                 </button>
               </div>
             </div>

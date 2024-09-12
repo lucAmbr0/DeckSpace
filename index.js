@@ -245,7 +245,40 @@ function balanceWrite(newBalance) {
 }
 
 
+// --------------- BET ACTION BUTTONS ---------------
 
+// Variables
+let bet = 0;
+let appStartBet = 150;
+let defaultBetRemove = 10;
+let defaultBetAdd = 10;
+let maxBet = 99999;
+let minBet = 0;
+
+// 0 = lose bet
+// 1 = double bet
+// 2 = undo bet
+// 3 = remove
+// 3 = add
+
+function betAction(i) {
+  switch (i) {
+    case 0:
+      // balanceDelete();
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    default:
+      console.error("betAction argument doesn't exist");
+      break;
+  }
+}
 
 
 

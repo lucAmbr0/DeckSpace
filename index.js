@@ -187,6 +187,7 @@ function balanceEdit() {
     window.alert("Invalid amount");
   }
   else {
+    balance = newBalance;
     balanceWrite(newBalance);
   }
 }

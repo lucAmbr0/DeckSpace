@@ -137,6 +137,7 @@ function closeBetBar() {
 
 // Variables
 let balance = 0;
+let appStartBalance = 150;
 let allowNegativeBalance = false;
 let defaultBalanceRemove = 10;
 let defaultBalanceAdd = 10;
@@ -168,6 +169,9 @@ function balanceAction(i) {
   }
 }
 
+balance = appStartBalance
+writeBalance(appStartBalance);
+
 function balanceDelete() {
   if (balance != 0) {
     balance = 0;
@@ -175,6 +179,16 @@ function balanceDelete() {
   }
   else
     shakeElement(userBalanceBtn)
+}
+
+function balanceEdit() {
+  let newBalance = parseInt(window.prompt("Insert new balance value (" + minBalance + " - " + maxBalance + ")"));
+  if ((newBalance < 0 && !allowNegativeBalance) || newBalance < minBalance || newBalance > maxBalance) {
+    window.alert("Invalid amount");
+  }
+  else {
+    writeBalance(newBalance);
+  }
 }
 
 function shakeElement(element) {

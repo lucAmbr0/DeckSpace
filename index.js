@@ -140,6 +140,8 @@ let balance = 0;
 let allowNegativeBalance = false;
 let defaultBalanceRemove = 10;
 let defaultBalanceAdd = 10;
+let maxBalance = 99999;
+let minBalance = -99999;
 
 // 0 = delete
 // 1 = remove
@@ -194,7 +196,7 @@ function balanceAdd(amount) {
 }
 
 function balanceChange(change) {
-  if (balance + change > 99999 || balance + change < -99999) {
+  if (balance + change > maxBalance || balance + change < minBalance) {
     shakeElement(userBalanceBtn);
   }
   else if (balance + change > 0 || allowNegativeBalance) {

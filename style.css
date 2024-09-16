@@ -299,6 +299,17 @@
     }
 }
 
+@keyframes cardDraw {
+    0% {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* -------------------- RULES --------------------*/
 
 html {
@@ -570,6 +581,7 @@ h4 {
     margin: 0 calc(((100vh - 130px) / 3 * -4/3)/2);
     /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); */
     z-index: 10;
+    animation: cardDraw 0.2s ease-in-out forwards;
     overflow: visible;
     transition: all 0.2s ease;
 }
@@ -582,11 +594,11 @@ h4 {
     background-repeat: no-repeat;
     image-rendering: pixelated; /* Preserve pixel sharpness */
     image-rendering: crisp-edges; /* Fallback for older browsers */
+    transition: all 0.2s ease;
 }
 
-.card:hover {
+.gameScene div.card img:hover {
     transform: translateY(-10px);
-    z-index: 15;
 }
 
 /* -------------------- BUTTONS --------------------*/

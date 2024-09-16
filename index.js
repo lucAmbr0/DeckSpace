@@ -409,6 +409,45 @@ function switchBadge() {
 
 // --------------- CARDS ---------------
 
-let cards = document.querySelectorAll(".card");
+let totalCards = 54;
+let useJokers = true;
 
-// cards[6].style.backgroundImage = "url(assets/deck1/2.2.png)";
+
+// F Clubs
+// Q Diamonds
+// C Hearts
+// P Spades
+const seeds = [0, 1, 2, 3];
+
+// Ace
+// 2,3,4,5,6,7,8,9,10
+// J, Q, K
+const values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
+const cardMatrix = {};
+values.forEach(value => {
+  cardMatrix[value] = {};
+  seeds.forEach(seed => {
+    cardMatrix[value][seeds] = false;
+  });
+});
+
+
+let cards = document.querySelectorAll(".card");
+const cardsTable = document.getElementById("cardsTable");
+
+
+function addCard(value, seed, alt = "") {
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.innerHTML = `<img src="assets/deck1/${value}.${seed}.png" alt="${alt}">`;
+  cardsTable.appendChild(card);
+}
+
+
+function drawRandomCard() {
+    const randomSeed = seeds[Math.floor(Math.random() * seeds.length)]; // Random suit
+    const randomValue = values[Math.floor(Math.random() * values.length)]; // Random value
+  cardMatrix[randomValue][randomSeed] = true;
+  addCard(randomValue, randomSeed);
+}

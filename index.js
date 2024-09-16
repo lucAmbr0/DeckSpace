@@ -405,3 +405,10 @@ function switchBadge() {
     badgeElement.style.animation = "badgeEntrance 0.1s forwards";
   }, 150);
 }
+
+
+// --------------- CARDS ---------------
+
+let cards = document.querySelectorAll(".card");
+
+// cards[6].style.backgroundImage = "url(assets/deck1/2.2.png)";

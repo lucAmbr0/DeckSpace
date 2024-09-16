@@ -446,8 +446,8 @@ function addCard(value, seed, alt = "") {
 
 
 function drawRandomCard() {
-    const randomSeed = seeds[Math.floor(Math.random() * seeds.length)]; // Random suit
-    const randomValue = values[Math.floor(Math.random() * values.length)]; // Random value
+  const randomSeed = Math.floor(Math.random() * 4); 
+  const randomValue = Math.floor(Math.random() * 13 + 1);
   cardMatrix[randomValue][randomSeed] = true;
   addCard(randomValue, randomSeed);
 }

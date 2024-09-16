@@ -564,21 +564,28 @@ h4 {
 
 .gameScene div.card {
     cursor: pointer;
-    display: flex;
+    display: inline-block;
     height: calc(100vh - 130px);
     aspect-ratio: 2 / 3;
     margin: 0 calc(((100vh - 130px) / 3 * -4/3)/2);
-    border-radius: 6vh;
-    background-color: lightgray;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); */
     z-index: 10;
     overflow: visible;
     transition: all 0.2s ease;
 }
 
+.gameScene div.card img {
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Makes sure the SVG covers the whole div */
+    background-position: center; /* Centers the background */
+    background-repeat: no-repeat;
+    image-rendering: pixelated; /* Preserve pixel sharpness */
+    image-rendering: crisp-edges; /* Fallback for older browsers */
+}
+
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
     z-index: 15;
 }
 

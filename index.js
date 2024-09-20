@@ -22,6 +22,24 @@ function serviceWorker() {
   }
 }
 
+
+// ---------------  FORCE CARD ASSETS PRE-LOAD  ---------------
+
+  const cardImages = [];
+  const seedNames = ["0", "1", "2", "3"];
+  for (let value = 1; value <= 13; value++) {
+    for (let seed of seedNames) {
+      cardImages.push(`assets/deck1/${value}.${seed}.png`);
+    }
+  }
+  function preloadImages() {
+    cardImages.forEach(src => {
+      const img = new Image();
+      img.src = src;  // Triggers the image to load
+    });
+  }
+  window.onload = preloadImages;
+
 // ---------------  DEBUG VARIABLES  ---------------
 
 const startAnimation = true;

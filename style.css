@@ -597,9 +597,9 @@ h4 {
     transition: all 0.2s ease;
 }
 
-.gameScene div.card img:hover {
+/* .gameScene div.card img:hover {
     transform: translateY(-10px);
-}
+} */
 
 .cardShown {
     text-decoration: 0;

@@ -43,6 +43,11 @@ function serviceWorker() {
 // ---------------  DEBUG VARIABLES  ---------------
 
 const startAnimation = true;
+const startCards = 4;
+
+function drawStartCards() {
+  for (let i = 0; i < startCards; i++) drawRandomCard();
+}
 
 
 // ---------------  SPLASHSCREEN ANIMATION  ---------------
@@ -495,9 +500,28 @@ function showCards() {
   })
 }
 
-// Touch handling
+// Function to add a card to the table
+function addCard(value, seed, alt = "") {
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.innerHTML = `<img src="assets/deck1/${value}.${seed}.png" alt="${alt}">`;
+  card.style.width = "100px"; // Example size, adjust as needed
+  card.style.height = "150px";
+  card.style.margin = "10px";
+  card.style.cursor = "grab";
+  
+  // Append card to the cardsTable
+  document.getElementById("cardsTable").appendChild(card);
+  cards.push(card);
+
+  // Add drag functionality for touch devices
+  setupTouchEvents(card);
+}
+
+// Touch handling with smooth dragging
 function setupTouchEvents(card) {
-  let startY, currentY, isDragging = false;
+  let startY, currentY, deltaY, isDragging = false;
+
   card.addEventListener('touchstart', (e) => {
     startY = e.touches[0].clientY; // Record initial Y position on touchstart
     card.style.cursor = "grabbing";
@@ -505,27 +529,28 @@ function setupTouchEvents(card) {
     
     const onTouchMove = (e) => {
       currentY = e.touches[0].clientY; // Update current Y position while dragging
+      deltaY = currentY - startY; // Calculate how far the card has moved
       isDragging = true; // Set dragging flag
 
-      // Optionally add a visual cue during dragging, like moving the card
-      card.style.transform = `translateY(${currentY - startY}px)`;
+      // Apply gradual movement using transform: translateY
+      card.style.transform = `translateY(${deltaY}px)`;
     };
 
     const onTouchEnd = () => {
-      const deltaY = startY - currentY; // Calculate vertical movement
-      card.style.cursor = "grab";
-      card.style.transform = ""; // Reset transform
-
       if (isDragging) {
-        if (deltaY > 20) {
-          // If dragged upwards, delete the card
+        if (deltaY < -20) {
+          // If dragged upwards (negative deltaY), delete the card
           card.remove();
-        } else if (deltaY < -20) {
-          // If dragged downwards, cover the card
+        } else if (deltaY > 20) {
+          // If dragged downwards (positive deltaY), cover the card
           toggleCoverCard(card);
         }
       }
 
+      // Reset the card's position and cursor
+      card.style.transform = ""; // Reset translation
+      card.style.cursor = "grab";
+      
       // Remove touch event listeners after drag is complete
       card.removeEventListener('touchmove', onTouchMove);
       card.removeEventListener('touchend', onTouchEnd);
@@ -554,3 +579,5 @@ function drawRandomCard() {
   cardMatrix[randomValue][randomSeed] = true;
   addCard(randomValue, randomSeed);
 }
+
+drawStartCards();

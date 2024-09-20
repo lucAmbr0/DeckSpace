@@ -500,24 +500,6 @@ function showCards() {
   })
 }
 
-// Function to add a card to the table
-function addCard(value, seed, alt = "") {
-  const card = document.createElement("div");
-  card.classList.add("card");
-  card.innerHTML = `<img src="assets/deck1/${value}.${seed}.png" alt="${alt}">`;
-  card.style.width = "100px"; // Example size, adjust as needed
-  card.style.height = "150px";
-  card.style.margin = "10px";
-  card.style.cursor = "grab";
-  
-  // Append card to the cardsTable
-  document.getElementById("cardsTable").appendChild(card);
-  cards.push(card);
-
-  // Add drag functionality for touch devices
-  setupTouchEvents(card);
-}
-
 // Touch handling with smooth dragging
 function setupTouchEvents(card) {
   let startY, currentY, deltaY, isDragging = false;

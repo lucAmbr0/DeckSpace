@@ -411,6 +411,7 @@ function switchBadge() {
 
 let totalCards = 54;
 let useJokers = true;
+let cardsCovered = false;
 
 
 // F Clubs
@@ -436,12 +437,40 @@ values.forEach(value => {
 let cards = document.querySelectorAll(".card");
 const cardsTable = document.getElementById("cardsTable");
 
+function toggleCoverCards(button) {
+  cardsCovered = !cardsCovered;
+  if (cardsCovered) {
+    button.querySelector('span').textContent = "visibility_off";
+    coverCards();
+  } 
+  else {
+    button.querySelector('span').textContent = "visibility";
+    showCards();
+  } 
+}
+
+function coverCards() {
+  cards = document.querySelectorAll(".card");
+  cards.forEach(card => {
+    card.firstChild.src = "assets/covered/back2.png";
+  })
+}
+
+function showCards() {
+  cards = document.querySelectorAll(".card");
+  cards.forEach(card => {
+    const src = card.firstChild.alt;
+    card.firstChild.src = `assets/deck1/${src}.png`;
+  })
+}
 
 function addCard(value, seed, alt = "") {
   const card = document.createElement("div");
   card.classList.add("card");
-  card.innerHTML = `<img src="assets/deck1/${value}.${seed}.png" alt="${alt}">`;
+  card.classList.add(`card_${value}.${seed}`);
+  card.innerHTML = `<img src="assets/deck1/${value}.${seed}.png" alt="${value}.${seed}" class="${value}.${seed}">`;
   cardsTable.appendChild(card);
+  if (cardsCovered) coverCards();
 }
 
 

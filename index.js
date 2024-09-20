@@ -471,7 +471,19 @@ function coverCards() {
   cards = document.querySelectorAll(".card");
   cards.forEach(card => {
     card.firstChild.src = "assets/covered/back2.png";
+    card.classList.remove("cardShown");
   })
+}
+
+function toggleCoverCard(card) {
+  if (card.classList.contains("cardShown")) {
+    card.firstChild.src = "assets/covered/back2.png";
+    card.classList.remove("cardShown");
+  }
+  else {
+    card.firstChild.src = `assets/deck1/${card.firstChild.alt}.png`;
+    card.classList.add("cardShown");
+  }
 }
 
 function showCards() {
@@ -479,15 +491,59 @@ function showCards() {
   cards.forEach(card => {
     const src = card.firstChild.alt;
     card.firstChild.src = `assets/deck1/${src}.png`;
+    card.classList.add("cardShown");
   })
 }
 
-function addCard(value, seed, alt = "") {
+// Touch handling
+function setupTouchEvents(card) {
+  let startY, currentY, isDragging = false;
+  card.addEventListener('touchstart', (e) => {
+    startY = e.touches[0].clientY; // Record initial Y position on touchstart
+    card.style.cursor = "grabbing";
+    isDragging = false; // Reset dragging flag
+    
+    const onTouchMove = (e) => {
+      currentY = e.touches[0].clientY; // Update current Y position while dragging
+      isDragging = true; // Set dragging flag
+
+      // Optionally add a visual cue during dragging, like moving the card
+      card.style.transform = `translateY(${currentY - startY}px)`;
+    };
+
+    const onTouchEnd = () => {
+      const deltaY = startY - currentY; // Calculate vertical movement
+      card.style.cursor = "grab";
+      card.style.transform = ""; // Reset transform
+
+      if (isDragging) {
+        if (deltaY > 20) {
+          // If dragged upwards, delete the card
+          card.remove();
+        } else if (deltaY < -20) {
+          // If dragged downwards, cover the card
+          toggleCoverCard(card);
+        }
+      }
+
+      // Remove touch event listeners after drag is complete
+      card.removeEventListener('touchmove', onTouchMove);
+      card.removeEventListener('touchend', onTouchEnd);
+    };
+
+    card.addEventListener('touchmove', onTouchMove, { passive: true });
+    card.addEventListener('touchend', onTouchEnd, { passive: true });
+  });
+}
+
+function addCard(value, seed) {
   const card = document.createElement("div");
   card.classList.add("card");
+  card.classList.add("cardShown");
   card.classList.add(`card_${value}.${seed}`);
   card.innerHTML = `<img src="assets/deck1/${value}.${seed}.png" alt="${value}.${seed}" class="${value}.${seed}">`;
   cardsTable.appendChild(card);
+  setupTouchEvents(card);
   if (cardsCovered) coverCards();
 }
 

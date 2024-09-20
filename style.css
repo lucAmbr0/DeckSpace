@@ -601,6 +601,11 @@ h4 {
     transform: translateY(-10px);
 }
 
+.cardShown {
+    text-decoration: 0;
+    /* only for javascript clear/covered feature */
+}
+
 /* -------------------- BUTTONS --------------------*/
 
 .redBtn {

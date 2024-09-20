@@ -38,7 +38,7 @@ function serviceWorker() {
       img.src = src;  // Triggers the image to load
     });
   }
-  window.onload = preloadImages;
+  window.onload = preloadImages();
 
 // ---------------  DEBUG VARIABLES  ---------------
 

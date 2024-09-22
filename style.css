@@ -345,6 +345,74 @@
     }
 }
 
+@keyframes disappearMoveRightR {
+    0% {
+        transform: translateX(0%);
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(33%);
+    }
+}
+
+@keyframes disappearMoveLeftR {
+    0% {
+        transform: translateX(0%);
+    }
+    50% {
+        /* opacity: 0; */
+    }
+    100% {
+        transform: translateX(-33%);
+    }
+}
+@keyframes opacityInR {
+    0% {
+        transform: translateX(5%);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes disappearMoveRightL {
+    0% {
+        transform: translateX(0%);
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(33%);
+    }
+}
+
+@keyframes disappearMoveLeftL {
+    0% {
+        transform: translateX(0%);
+    }
+    50% {
+        /* opacity: 0; */
+    }
+    100% {
+        transform: translateX(-33%);
+    }
+}
+@keyframes opacityInL {
+    0% {
+        transform: translateX(5%);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 /* -------------------- RULES --------------------*/
 
 html {

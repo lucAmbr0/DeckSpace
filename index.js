@@ -566,10 +566,10 @@ function setupTouchEvents(card) {
 
     const onTouchEnd = () => {
       if (isDragging) {
-        if (deltaY < -20) {
+        if (deltaY < -100) {
           // If dragged upwards (negative deltaY), delete the card
           removeCard(card);
-        } else if (deltaY > 20) {
+        } else if (deltaY > 100) {
           // If dragged downwards (positive deltaY), cover the card
           toggleCoverCard(card);
         }
@@ -589,6 +589,64 @@ function setupTouchEvents(card) {
   });
 }
 
+function setupHorizontalSwipe(card) {
+  let startX = 0, currentX = 0, deltaX = 0;
+
+  card.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX; // Record initial X position on touchstart
+  });
+
+  card.addEventListener('touchmove', (e) => {
+    currentX = e.touches[0].clientX; // Get current X position
+    deltaX = currentX - startX; // Calculate how far the card has moved horizontally
+  });
+
+  card.addEventListener('touchend', () => {
+    card.style.transition = 'transform 0.3s ease-out'; // Re-enable transitions
+
+    if (deltaX > 50) {
+      // Swiped to the right: move the card to the next position
+      moveCardRight(card);
+    } else if (deltaX < -50) {
+      // Swiped to the left: move the card to the previous position
+      moveCardLeft(card);
+    }
+  });
+
+}
+
+// Move the card to the next position in the DOM (swipe right)
+function moveCardRight(card) {
+  const nextSibling = card.nextElementSibling;
+
+  if (nextSibling) {
+    card.style.animation = "disappearMoveRightR .18s ease-in forwards";
+    nextSibling.style.animation = "disappearMoveLeftR .18s ease-in forwards";
+    
+    setTimeout(() => {
+      card.style.animation = "opacityInR .1s ease forwards";
+      nextSibling.style.animation = "none";
+      card.parentElement.insertBefore(nextSibling, card); // Move card after next sibling
+      }, 180);
+  }
+}
+
+// Move the card to the previous position in the DOM (swipe left)
+function moveCardLeft(card) {
+  const prevSibling = card.previousElementSibling;
+  if (prevSibling) {
+    card.style.animation = "disappearMoveLeftL .18s ease-in forwards";
+    prevSibling.style.animation = "disappearMoveRightL .18s ease-in forwards";
+    
+    setTimeout(() => {
+      prevSibling.style.animation = "opacityInL .1s ease forwards";
+      card.style.animation = "none";
+      card.parentElement.insertBefore(card, prevSibling); // Move card after next sibling
+    }, 180);
+  }
+}
+
+
 function addCard(value, seed) {
   const card = document.createElement("div");
   card.classList.add("card");
@@ -604,7 +662,11 @@ function addCard(value, seed) {
     card.classList.add("cardShown");
     cardsTable.appendChild(card);
   }
+  setTimeout(() => {
+    card.style.animation = "none";
+  }, 200);
   setupTouchEvents(card);
+  setupHorizontalSwipe(card)
 }
 
 

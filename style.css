@@ -339,9 +339,9 @@
         scale: 1;
     }
     100% {
-        transform: translateY(-50%) translateX(-15%) rotate(45deg);
+        transform: translateY(-60%) translateX(-15%) rotate(30deg);
         opacity: 0;
-        scale: 0.9;
+        scale: 0.7;
     }
 }
 

@@ -323,7 +323,7 @@
 
 @keyframes uncoverCard {
     0% {
-        transform: translateY(10%);
+        transform: translateY(5%);
         opacity: 0;
     }
     100% {

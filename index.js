@@ -620,11 +620,11 @@ function moveCardRight(card) {
   const nextSibling = card.nextElementSibling;
 
   if (nextSibling) {
-    card.style.animation = "disappearMoveRightR .18s ease-in forwards";
-    nextSibling.style.animation = "disappearMoveLeftR .18s ease-in forwards";
+    card.style.animation = "disappearMoveRight .18s ease-in forwards";
+    nextSibling.style.animation = "disappearMoveLeft .18s ease-in forwards";
     
     setTimeout(() => {
-      card.style.animation = "opacityInR .1s ease forwards";
+      card.style.animation = "opacityIn .1s ease forwards";
       nextSibling.style.animation = "none";
       card.parentElement.insertBefore(nextSibling, card); // Move card after next sibling
       }, 180);
@@ -635,11 +635,11 @@ function moveCardRight(card) {
 function moveCardLeft(card) {
   const prevSibling = card.previousElementSibling;
   if (prevSibling) {
-    card.style.animation = "disappearMoveLeftL .18s ease-in forwards";
-    prevSibling.style.animation = "disappearMoveRightL .18s ease-in forwards";
+    card.style.animation = "disappearMoveLeft .18s ease-in forwards";
+    prevSibling.style.animation = "disappearMoveRight .18s ease-in forwards";
     
     setTimeout(() => {
-      prevSibling.style.animation = "opacityInL .1s ease forwards";
+      prevSibling.style.animation = "opacityIn .1s ease forwards";
       card.style.animation = "none";
       card.parentElement.insertBefore(card, prevSibling); // Move card after next sibling
     }, 180);

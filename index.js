@@ -42,8 +42,8 @@ window.onload = preloadImages();
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-const startAnimation = false;
-const startCards = 4;
+const startAnimation = true;
+const startCards = 6;
 
 function drawStartCards() {
   for (let i = 0; i < startCards; i++) drawRandomCard();
@@ -490,7 +490,7 @@ function coverCards() {
     }, 150 + (c * 120));
     setTimeout(() => {
       card.style.animation = "none";
-    }, 300 + 2 * (c * 120));
+    }, 2 * (150 + (c * 120)));
     c++;
     card.classList.remove("cardShown");
   })
@@ -534,7 +534,7 @@ function showCards() {
     }, 150 + (c * 120));
     setTimeout(() => {
       card.style.animation = "none";
-    }, 300 + 2 * (c * 120));
+    }, 2 * (150 + (c * 120)));
     c++;
   })
 }
@@ -622,12 +622,12 @@ function moveCardRight(card) {
   if (nextSibling) {
     card.style.animation = "disappearMoveRight .18s ease-in forwards";
     nextSibling.style.animation = "disappearMoveLeft .18s ease-in forwards";
-    
+
     setTimeout(() => {
       card.style.animation = "opacityIn .1s ease forwards";
       nextSibling.style.animation = "none";
       card.parentElement.insertBefore(nextSibling, card); // Move card after next sibling
-      }, 180);
+    }, 180);
   }
 }
 
@@ -637,7 +637,7 @@ function moveCardLeft(card) {
   if (prevSibling) {
     card.style.animation = "disappearMoveLeft .18s ease-in forwards";
     prevSibling.style.animation = "disappearMoveRight .18s ease-in forwards";
-    
+
     setTimeout(() => {
       prevSibling.style.animation = "opacityIn .1s ease forwards";
       card.style.animation = "none";

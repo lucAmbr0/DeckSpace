@@ -42,7 +42,7 @@ function serviceWorker() {
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-const startAnimation = true;
+const startAnimation = false;
 const startCards = 4;
 
 function drawStartCards() {
@@ -482,11 +482,25 @@ function coverCards() {
 
 function toggleCoverCard(card) {
   if (card.classList.contains("cardShown")) {
-    card.firstChild.src = "assets/covered/back2.png";
     card.classList.remove("cardShown");
+    card.style.animation = "coverCard 0.15s forwards ease-out";
+    setTimeout(() => {
+      card.firstChild.src = "assets/covered/back2.png";
+      card.style.animation = "uncoverCard 0.15s forwards ease-out";
+    }, 150);
+    setTimeout(() => {
+      card.style.animation = "none";
+    }, 300);
   }
   else {
-    card.firstChild.src = `assets/deck1/${card.firstChild.alt}.png`;
+    card.style.animation = "coverCard 0.15s forwards ease-out";
+    setTimeout(() => {
+      card.firstChild.src = `assets/deck1/${card.firstChild.alt}.png`;
+      card.style.animation = "uncoverCard 0.15s forwards ease-out";
+    }, 150);
+    setTimeout(() => {
+      card.style.animation = "none";
+    }, 300);
     card.classList.add("cardShown");
   }
 }
@@ -515,7 +529,7 @@ function setupTouchEvents(card) {
       isDragging = true; // Set dragging flag
 
       // Apply gradual movement using transform: translateY
-      card.style.transform = `translateY(${deltaY}px)`;
+      // card.style.transform = `translateY(${deltaY}px)`;
     };
 
     const onTouchEnd = () => {

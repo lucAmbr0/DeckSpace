@@ -310,11 +310,33 @@
     }
 }
 
+@keyframes coverCard {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(10%);
+        opacity: 0;
+    }
+}
+
+@keyframes uncoverCard {
+    0% {
+        transform: translateY(10%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 /* -------------------- RULES --------------------*/
 
 html {
     scroll-behavior: smooth;
-    overscroll-behavior: contain;
+    overscroll-behavior: none;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;

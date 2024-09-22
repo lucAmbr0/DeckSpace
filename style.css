@@ -314,6 +314,7 @@
 
 html {
     scroll-behavior: smooth;
+    overscroll-behavior: contain;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -329,6 +330,7 @@ html {
 }
 
 body {
+    overscroll-behavior: contain;
     display: flex;
     width: 100vw;
     height: 100vh;

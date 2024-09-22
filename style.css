@@ -304,6 +304,7 @@
         opacity: 0;
         transform: translateY(-10%);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -315,6 +316,7 @@
         transform: translateY(0);
         opacity: 1;
     }
+
     100% {
         transform: translateY(10%);
         opacity: 0;
@@ -326,6 +328,7 @@
         transform: translateY(5%);
         opacity: 0;
     }
+
     100% {
         transform: translateY(0);
         opacity: 1;
@@ -338,6 +341,7 @@
         opacity: 1;
         scale: 1;
     }
+
     100% {
         transform: translateY(-60%) translateX(-15%) rotate(30deg);
         opacity: 0;
@@ -349,9 +353,11 @@
     0% {
         transform: translateX(0%);
     }
+
     50% {
         opacity: 0;
     }
+
     100% {
         transform: translateX(33%);
     }
@@ -361,18 +367,22 @@
     0% {
         transform: translateX(0%);
     }
+
     50% {
         /* opacity: 0; */
     }
+
     100% {
         transform: translateX(-33%);
     }
 }
+
 @keyframes opacityIn {
     0% {
         transform: translateX(5%);
         opacity: 0.4;
     }
+
     100% {
         transform: translateX(0);
         opacity: 1;
@@ -486,11 +496,11 @@ h4 {
     width: 100vw;
     height: calc(100vh - 10px);
     background-color: rgb(137, 192, 137);
+    background-color: rgb(4, 60, 68);
+    background-color: rgb(7, 65, 51);
     position: relative;
     padding: 5px 0;
-    /* Nuovo contesto di impilamento */
     z-index: 1;
-    /* Imposta un valore inferiore rispetto alle carte */
 }
 
 .topBar,
@@ -660,11 +670,15 @@ h4 {
 .gameScene div.card img {
     width: 100%;
     height: 100%;
-    background-size: cover; /* Makes sure the SVG covers the whole div */
-    background-position: center; /* Centers the background */
+    background-size: cover;
+    /* Makes sure the SVG covers the whole div */
+    background-position: center;
+    /* Centers the background */
     background-repeat: no-repeat;
-    image-rendering: pixelated; /* Preserve pixel sharpness */
-    image-rendering: crisp-edges; /* Fallback for older browsers */
+    image-rendering: pixelated;
+    /* Preserve pixel sharpness */
+    image-rendering: crisp-edges;
+    /* Fallback for older browsers */
     transition: all 0.2s ease;
 }
 

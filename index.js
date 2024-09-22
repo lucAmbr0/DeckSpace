@@ -514,6 +514,13 @@ function showCards() {
   })
 }
 
+function removeCard(card) {
+  card.style.animation = "removeCard 0.2s forwards ease";
+  setTimeout(() => {
+    card.remove();
+  }, 200);
+}
+
 // Touch handling with smooth dragging
 function setupTouchEvents(card) {
   let startY, currentY, deltaY, isDragging = false;
@@ -536,7 +543,7 @@ function setupTouchEvents(card) {
       if (isDragging) {
         if (deltaY < -20) {
           // If dragged upwards (negative deltaY), delete the card
-          card.remove();
+          removeCard(card);
         } else if (deltaY > 20) {
           // If dragged downwards (positive deltaY), cover the card
           toggleCoverCard(card);

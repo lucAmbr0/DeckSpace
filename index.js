@@ -25,20 +25,20 @@ function serviceWorker() {
 
 // ---------------  FORCE CARD ASSETS PRE-LOAD  ---------------
 
-  const cardImages = [];
-  const seedNames = ["0", "1", "2", "3"];
-  for (let value = 1; value <= 13; value++) {
-    for (let seed of seedNames) {
-      cardImages.push(`assets/deck1/${value}.${seed}.png`);
-    }
+const cardImages = [];
+const seedNames = ["0", "1", "2", "3"];
+for (let value = 1; value <= 13; value++) {
+  for (let seed of seedNames) {
+    cardImages.push(`assets/deck1/${value}.${seed}.png`);
   }
-  function preloadImages() {
-    cardImages.forEach(src => {
-      const img = new Image();
-      img.src = src;  // Triggers the image to load
-    });
-  }
-  window.onload = preloadImages();
+}
+function preloadImages() {
+  cardImages.forEach(src => {
+    const img = new Image();
+    img.src = src;  // Triggers the image to load
+  });
+}
+window.onload = preloadImages();
 
 // ---------------  DEBUG VARIABLES  ---------------
 
@@ -436,6 +436,8 @@ let totalCards = 54;
 let useJokers = true;
 let cardsCovered = false;
 
+let coverBtnDisabled = false;
+
 
 // F Clubs
 // Q Diamonds
@@ -461,21 +463,35 @@ let cards = document.querySelectorAll(".card");
 const cardsTable = document.getElementById("cardsTable");
 
 function toggleCoverCards(button) {
+  if (coverBtnDisabled) return;
+  coverBtnDisabled = true;
   cardsCovered = !cardsCovered;
   if (cardsCovered) {
     button.querySelector('span').textContent = "visibility_off";
     coverCards();
-  } 
+  }
   else {
     button.querySelector('span').textContent = "visibility";
     showCards();
-  } 
+  }
+  setTimeout(() => {
+    coverBtnDisabled = false;
+  }, 1500);
 }
 
 function coverCards() {
   cards = document.querySelectorAll(".card");
+  let c = 0;
   cards.forEach(card => {
-    card.firstChild.src = "assets/covered/back2.png";
+    card.style.animation = "coverCard 0.15s forwards ease-out";
+    setTimeout(() => {
+      card.firstChild.src = "assets/covered/back2.png";
+      card.style.animation = "uncoverCard 0.15s forwards ease-out";
+    }, 150 + (c * 120));
+    setTimeout(() => {
+      card.style.animation = "none";
+    }, 300 + 2 * (c * 120));
+    c++;
     card.classList.remove("cardShown");
   })
 }
@@ -507,10 +523,19 @@ function toggleCoverCard(card) {
 
 function showCards() {
   cards = document.querySelectorAll(".card");
+  let c = 0;
   cards.forEach(card => {
-    const src = card.firstChild.alt;
-    card.firstChild.src = `assets/deck1/${src}.png`;
-    card.classList.add("cardShown");
+    card.style.animation = "coverCard 0.15s forwards ease-out";
+    setTimeout(() => {
+      const src = card.firstChild.alt;
+      card.firstChild.src = `assets/deck1/${src}.png`;
+      card.classList.add("cardShown");
+      card.style.animation = "uncoverCard 0.15s forwards ease-out";
+    }, 150 + (c * 120));
+    setTimeout(() => {
+      card.style.animation = "none";
+    }, 300 + 2 * (c * 120));
+    c++;
   })
 }
 
@@ -529,7 +554,7 @@ function setupTouchEvents(card) {
     startY = e.touches[0].clientY; // Record initial Y position on touchstart
     card.style.cursor = "grabbing";
     isDragging = false; // Reset dragging flag
-    
+
     const onTouchMove = (e) => {
       currentY = e.touches[0].clientY; // Update current Y position while dragging
       deltaY = currentY - startY; // Calculate how far the card has moved
@@ -553,7 +578,7 @@ function setupTouchEvents(card) {
       // Reset the card's position and cursor
       card.style.transform = ""; // Reset translation
       card.style.cursor = "grab";
-      
+
       // Remove touch event listeners after drag is complete
       card.removeEventListener('touchmove', onTouchMove);
       card.removeEventListener('touchend', onTouchEnd);
@@ -567,17 +592,24 @@ function setupTouchEvents(card) {
 function addCard(value, seed) {
   const card = document.createElement("div");
   card.classList.add("card");
-  card.classList.add("cardShown");
   card.classList.add(`card_${value}.${seed}`);
-  card.innerHTML = `<img src="assets/deck1/${value}.${seed}.png" alt="${value}.${seed}" class="${value}.${seed}">`;
-  cardsTable.appendChild(card);
+  card.innerHTML = `<img src="" alt="${value}.${seed}" class="${value}.${seed}">`;
+  if (cardsCovered) {
+    card.innerHTML = `<img src="assets/covered/back2.png" alt="${value}.${seed}" class="${value}.${seed}">`;
+    card.classList.remove("cardShown");
+    cardsTable.appendChild(card);
+  }
+  else {
+    card.innerHTML = `<img src="assets/deck1/${value}.${seed}.png" alt="${value}.${seed}" class="${value}.${seed}">`;
+    card.classList.add("cardShown");
+    cardsTable.appendChild(card);
+  }
   setupTouchEvents(card);
-  if (cardsCovered) coverCards();
 }
 
 
 function drawRandomCard() {
-  const randomSeed = Math.floor(Math.random() * 4); 
+  const randomSeed = Math.floor(Math.random() * 4);
   const randomValue = Math.floor(Math.random() * 13 + 1);
   cardMatrix[randomValue][randomSeed] = true;
   addCard(randomValue, randomSeed);

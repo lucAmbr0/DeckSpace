@@ -42,7 +42,12 @@ function serviceWorker() {
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-const startAnimation = true;
+const startAnimation = false;
+const startCards = 4;
+
+function drawStartCards() {
+  for (let i = 0; i < startCards; i++) drawRandomCard();
+}
 
 
 // ---------------  SPLASHSCREEN ANIMATION  ---------------
@@ -477,11 +482,25 @@ function coverCards() {
 
 function toggleCoverCard(card) {
   if (card.classList.contains("cardShown")) {
-    card.firstChild.src = "assets/covered/back2.png";
     card.classList.remove("cardShown");
+    card.style.animation = "coverCard 0.15s forwards ease-out";
+    setTimeout(() => {
+      card.firstChild.src = "assets/covered/back2.png";
+      card.style.animation = "uncoverCard 0.15s forwards ease-out";
+    }, 150);
+    setTimeout(() => {
+      card.style.animation = "none";
+    }, 300);
   }
   else {
-    card.firstChild.src = `assets/deck1/${card.firstChild.alt}.png`;
+    card.style.animation = "coverCard 0.15s forwards ease-out";
+    setTimeout(() => {
+      card.firstChild.src = `assets/deck1/${card.firstChild.alt}.png`;
+      card.style.animation = "uncoverCard 0.15s forwards ease-out";
+    }, 150);
+    setTimeout(() => {
+      card.style.animation = "none";
+    }, 300);
     card.classList.add("cardShown");
   }
 }
@@ -495,9 +514,10 @@ function showCards() {
   })
 }
 
-// Touch handling
+// Touch handling with smooth dragging
 function setupTouchEvents(card) {
-  let startY, currentY, isDragging = false;
+  let startY, currentY, deltaY, isDragging = false;
+
   card.addEventListener('touchstart', (e) => {
     startY = e.touches[0].clientY; // Record initial Y position on touchstart
     card.style.cursor = "grabbing";
@@ -505,27 +525,28 @@ function setupTouchEvents(card) {
     
     const onTouchMove = (e) => {
       currentY = e.touches[0].clientY; // Update current Y position while dragging
+      deltaY = currentY - startY; // Calculate how far the card has moved
       isDragging = true; // Set dragging flag
 
-      // Optionally add a visual cue during dragging, like moving the card
-      card.style.transform = `translateY(${currentY - startY}px)`;
+      // Apply gradual movement using transform: translateY
+      // card.style.transform = `translateY(${deltaY}px)`;
     };
 
     const onTouchEnd = () => {
-      const deltaY = startY - currentY; // Calculate vertical movement
-      card.style.cursor = "grab";
-      card.style.transform = ""; // Reset transform
-
       if (isDragging) {
-        if (deltaY > 20) {
-          // If dragged upwards, delete the card
+        if (deltaY < -20) {
+          // If dragged upwards (negative deltaY), delete the card
           card.remove();
-        } else if (deltaY < -20) {
-          // If dragged downwards, cover the card
+        } else if (deltaY > 20) {
+          // If dragged downwards (positive deltaY), cover the card
           toggleCoverCard(card);
         }
       }
 
+      // Reset the card's position and cursor
+      card.style.transform = ""; // Reset translation
+      card.style.cursor = "grab";
+      
       // Remove touch event listeners after drag is complete
       card.removeEventListener('touchmove', onTouchMove);
       card.removeEventListener('touchend', onTouchEnd);
@@ -554,3 +575,5 @@ function drawRandomCard() {
   cardMatrix[randomValue][randomSeed] = true;
   addCard(randomValue, randomSeed);
 }
+
+drawStartCards();

@@ -310,10 +310,33 @@
     }
 }
 
+@keyframes coverCard {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(10%);
+        opacity: 0;
+    }
+}
+
+@keyframes uncoverCard {
+    0% {
+        transform: translateY(10%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 /* -------------------- RULES --------------------*/
 
 html {
     scroll-behavior: smooth;
+    overscroll-behavior: none;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -329,6 +352,7 @@ html {
 }
 
 body {
+    overscroll-behavior: contain;
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -597,14 +621,9 @@ h4 {
     transition: all 0.2s ease;
 }
 
-.gameScene div.card img:hover {
+/* .gameScene div.card img:hover {
     transform: translateY(-10px);
-}
-
-.cardShown {
-    text-decoration: 0;
-    /* only for javascript clear/covered feature */
-}
+} */
 
 /* -------------------- BUTTONS --------------------*/
 

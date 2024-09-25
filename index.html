@@ -41,7 +41,7 @@
       <div id="splashScreenAppInfo">
         <h1>DeckSpace</h1>
         <h3>by lucAmbr0</h2>
-        <h4>v1.49.141</h4>
+        <h4>v1.50.143</h4>
       </div>
     </div>
     <div class="HIDDEN" id="darkOverlay"></div>
@@ -76,7 +76,29 @@
           </button>
         </div>
         <div class="preferencesDetailsContainer">
-          <div class="nothingToShow">
+          <div class="categoryDetailsContainer HIDDEN">
+              <div class="switch-container">
+                <div class="switch-label">Balance/bets</div>
+                <div class="switch">
+                  <input
+                    type="checkbox"
+                    id="balanceBetsSwtich"
+                    class="switch-input"
+                    onchange=""
+                  />
+                  <label for="balanceBetsSwtich" class="switch-toggle"></label>
+                </div>
+                <div class="switch-label">Balance at app start</div>
+                <div class="switch">
+                  <input type="number" class="numberInput" value="150">
+                </div>
+                <div class="switch-label">Default bet</div>
+                <div class="switch">
+                  <input type="number" class="numberInput" value="10">
+                </div>
+            </div>
+          </div>
+          <div id="emptySettingsPlaceholder" class="nothingToShow">
             <h2>
               Preferences will be displayed here.
             </h2>

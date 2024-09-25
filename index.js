@@ -42,8 +42,8 @@ window.onload = preloadImages();
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-const startAnimation = true;
-const openSettingsAtStart = false;
+const startAnimation = false;
+const openSettingsAtStart = true;
 const startCards = 6;
 
 function drawStartCards() {
@@ -690,6 +690,9 @@ drawStartCards();
 
 // --------------- SETTINGS ---------------
 
+const emptySettingsPlaceholder = document.getElementById("emptySettingsPlaceholder");
+const categoryDetailsContainer = document.querySelectorAll(".categoryDetailsContainer");
+
 function openSettings() {
   settingsContainer.classList.remove("HIDDEN");
   darkOverlay.classList.remove("HIDDEN");
@@ -701,7 +704,9 @@ function closeSettings() {
   setTimeout(() => {
     settingsContainer.classList.add("HIDDEN");
     darkOverlay.classList.add("HIDDEN");
-    settingsCategory.forEach(e => e.classList.remove("categoryActive"));
+    settingsCategory.forEach(e => e.classList.remove("categoryActive"));  
+    emptySettingsPlaceholder.classList.remove("HIDDEN");
+    categoryDetailsContainer.forEach(e => e.classList.add("HIDDEN"))
     settingsContainer.style.animation = "settingsIn .3s ease forwards";
     darkOverlay.style.animation = "settingsIn .3s ease forwards";
   }, 300);
@@ -710,5 +715,8 @@ function closeSettings() {
 settingsCategory = document.querySelectorAll(".settingCategoryBtn");
 function selectSettingsCategory(idx) {
   settingsCategory.forEach(e => e.classList.remove("categoryActive"));
+  categoryDetailsContainer.forEach(e => e.classList.add("HIDDEN"))
   settingsCategory[idx].classList.add("categoryActive");
+  emptySettingsPlaceholder.classList.add("HIDDEN");
+  categoryDetailsContainer[idx].classList.remove("HIDDEN");
 }

@@ -955,3 +955,94 @@ h4 {
     background-color: rgb(0,0,0,0.3);
     z-index: 15;
 }
+
+/* -------------------- SETTINGS DETAILS --------------------*/
+
+.categoryDetailsContainer {
+    animation: uncoverCard 0.2s ease forwards;
+}
+
+.switch-container {
+    display: grid;
+    margin-top: 10px;
+    grid-template-columns: 1fr 85px;
+    height: fit-content !important;
+    align-items: center;
+}
+
+.switch-container button {
+    margin-left: auto !important;
+}
+
+.switch-container input,
+.switch-container label,
+.switch-container button {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.switch-label {
+    display: flex;
+    grid-column: 1;
+    font-family: var(--StandardTextFont);
+    text-align: left;
+    font-weight: 400;
+    align-items: center;
+    padding: 0px 20px;
+    color: rgb(240, 240, 240);
+    font-size: 20px;
+    line-height: 1;
+}
+
+.switch {
+    grid-column: 2;
+    margin-right: 20px;
+}
+
+.switch-input {
+    display: none !important;
+}
+
+.switch-toggle {
+    position: relative;
+    display: inline-block;
+    width: 65px;
+    height: 40px;
+    background-color: rgb(139, 175, 207);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.2s background-color ease;
+}
+
+.switch-toggle:before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.switch-input:checked+.switch-toggle {
+    background-color: rgb(54, 125, 187);
+}
+
+.switch-input:checked+.switch-toggle:before {
+    transform: translateX(25px);
+}
+
+.numberInput {
+    width: 65px;
+    background-color: #dfdfdf;
+    margin: 5px 0;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 15px;
+    border: none;
+    padding: 0;
+}

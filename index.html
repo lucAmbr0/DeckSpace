@@ -41,7 +41,23 @@
       <div id="splashScreenAppInfo">
         <h1>DeckSpace</h1>
         <h3>by lucAmbr0</h2>
-        <h4>v1.46.135</h4>
+        <h4>v1.47.137</h4>
+      </div>
+    </div>
+    <div class="settingsContainer HIDDEN" id="settingsContainer">
+      <div class="settingsHeader">
+        <h2>Settings</h2>
+        <button class="" onclick="closeSettings()">
+          <span class="material-symbols-outlined"> close </span>
+        </button>
+      </div>
+      <div class="embeddedSettingsSectionsContainer">
+        <div class="preferencesListContainer">
+
+        </div>
+        <div class="preferencesDetailsContainer">
+
+        </div>
       </div>
     </div>
     <div>
@@ -109,7 +125,7 @@
             </div>
           </div>
           <div class="actionsContainer" id="actionsContainer">
-            <button>
+            <button onclick="openSettings()">
               <span class="material-symbols-outlined"> settings </span>
             </button>
             <button onclick="toggleCoverCards(this)">

@@ -389,6 +389,40 @@
     }
 }
 
+@keyframes settingsIn {
+    0% {
+        opacity: 0;
+        scale: 0.95;
+        transform: translateX(5%) translateY(10%);
+        width: 80vw;
+        height: 80vh;
+    }
+    100% {
+        opacity: 1;
+        scale: 1;
+        transform: translateX(0%) translateY(0%);
+        width: 95vw;
+        height: 95vh;
+    }
+}
+
+@keyframes settingsOut {
+    0% {
+        opacity: 1;
+        scale: 1;
+        transform: translateX(0%) translateY(0%);
+        width: 95vw;
+        height: 95vh;
+    }
+    100% {
+        opacity: 0;
+        scale: 0.95;
+        transform: translateX(5%) translateY(10%);
+        width: 80vw;
+        height: 80vh;
+    }
+}
+
 /* -------------------- RULES --------------------*/
 
 html {
@@ -765,4 +799,86 @@ h4 {
 
 .balanceControlsUI button:active {
     scale: 0.9;
+}
+
+/* -------------------- SETTINGS TAB --------------------*/
+
+.HIDDEN {
+    display: none !important;
+}
+
+.settingsContainer {
+    z-index: 20;
+    position: absolute;
+    width: 95vw;
+    height: 95vh;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    bottom: 2.5vh;
+    right: 2.5vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: solid 1px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(25px);
+    border-radius: 35px;
+    animation: settingsIn 0.3s ease forwards;
+}
+
+.settingsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.settingsHeader h2 {
+    display: flex;
+    font-family: var(--HeadingFont);
+    color: rgb(230, 230, 230);
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.settingsHeader button {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    background-color: rgba(230,230,230);
+    border-radius: 20px;
+    border: none;
+    transition: .2s ease scale;
+}
+
+.settingsHeader button:active {
+    scale: 0.9;
+}
+
+.settingsHeader button span {
+    margin: auto;
+    font-size: 25px;
+}
+
+.embeddedSettingsSectionsContainer {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    height: calc(95vh - 50px);
+    padding: 0 10px 10px 10px;
+    gap: 10px;
+}
+
+.embeddedSettingsSectionsContainer div {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+}
+
+.preferencesListContainer {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.preferencesDetailsContainer {
+    background-color: rgba(0, 0, 0, 0.4);
 }

@@ -676,5 +676,21 @@ function drawRandomCard() {
   cardMatrix[randomValue][randomSeed] = true;
   addCard(randomValue, randomSeed);
 }
-
 drawStartCards();
+
+
+// --------------- SETTINGS ---------------
+
+const settingsContainer = document.getElementById("settingsContainer");
+
+function openSettings() {
+  settingsContainer.classList.remove("HIDDEN");
+}
+
+function closeSettings() {
+  settingsContainer.style.animation = "settingsOut 0.3s ease forwards";
+  setTimeout(() => {
+    settingsContainer.classList.add("HIDDEN");
+    settingsContainer.style.animation = "settingsIn 0.2s ease forwards";
+  }, 300);
+}

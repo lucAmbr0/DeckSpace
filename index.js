@@ -42,8 +42,8 @@ window.onload = preloadImages();
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-const startAnimation = false;
-const openSettingsAtStart = true;
+const startAnimation = true;
+const openSettingsAtStart = false;
 const startCards = 6;
 
 function drawStartCards() {

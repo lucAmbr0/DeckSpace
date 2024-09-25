@@ -701,8 +701,14 @@ function closeSettings() {
   setTimeout(() => {
     settingsContainer.classList.add("HIDDEN");
     darkOverlay.classList.add("HIDDEN");
+    settingsCategory.forEach(e => e.classList.remove("categoryActive"));
     settingsContainer.style.animation = "settingsIn .3s ease forwards";
     darkOverlay.style.animation = "settingsIn .3s ease forwards";
   }, 300);
 }
 
+settingsCategory = document.querySelectorAll(".settingCategoryBtn");
+function selectSettingsCategory(idx) {
+  settingsCategory.forEach(e => e.classList.remove("categoryActive"));
+  settingsCategory[idx].classList.add("categoryActive");
+}

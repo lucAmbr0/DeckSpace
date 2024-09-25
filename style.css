@@ -887,6 +887,15 @@ h4 {
     height: fit-content;
     border: none;
     background-color: rgba(0, 0, 0, 0.4);
+    transition: 0.2s ease background-color;
+}
+
+.settingCategoryBtn:active {
+    background-color: rgba(20,20,20,1);
+}
+
+.categoryActive {
+    background-color: rgba(20,20,20,1);
 }
 
 .settingCategoryBtn:first-of-type {

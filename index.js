@@ -74,6 +74,7 @@ function splashscreen() {
 // --------------- SETTINGS OPEN AT APP START ---------------
 
 const settingsContainer = document.getElementById("settingsContainer");
+const darkOverlay = document.getElementById("darkOverlay");
 if (openSettingsAtStart) openSettings();
 
 
@@ -691,13 +692,17 @@ drawStartCards();
 
 function openSettings() {
   settingsContainer.classList.remove("HIDDEN");
+  darkOverlay.classList.remove("HIDDEN");
 }
 
 function closeSettings() {
-  settingsContainer.style.animation = "settingsOut 0.3s ease forwards";
+  settingsContainer.style.animation = "settingsOut .3s ease forwards";
+  darkOverlay.style.animation = "settingsOut .3s ease forwards";
   setTimeout(() => {
     settingsContainer.classList.add("HIDDEN");
-    settingsContainer.style.animation = "settingsIn 0.3s ease forwards";
+    darkOverlay.classList.add("HIDDEN");
+    settingsContainer.style.animation = "settingsIn .3s ease forwards";
+    darkOverlay.style.animation = "settingsIn .3s ease forwards";
   }, 300);
 }
 

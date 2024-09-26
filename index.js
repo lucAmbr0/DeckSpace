@@ -42,25 +42,40 @@ window.onload = preloadImages();
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-let appData = {
-  useBalance: true,
-  appStartBalance: 150,
-  defaultBet: 10,
-  startCards: 6,
-  balance: 100,
-  allowNegativeBalance: false,
-  defaultBalanceAdd: 10,
-  defaultBalanceRemove: 10,
-  maxBalance: 99999,
-  minBalance: -99999,
-  bet: 0,
-  appStartBet: 10,
-  defaultBetRemove: 5,
-  defaultBetAdd: 5,
-  maxBet: 99999,
-  minBet: 0,
+let appData = {};
+
+function recoverAppData() {
+  const storedData = localStorage.getItem('appData');
+
+  if (storedData) {
+    appData = JSON.parse(storedData);
+  } else {
+    appData = {
+      useBalance: true,
+      appStartBalance: 150,
+      defaultBet: 10,
+      startCards: 6,
+      balance: 100,
+      allowNegativeBalance: false,
+      defaultBalanceAdd: 10,
+      defaultBalanceRemove: 10,
+      maxBalance: 99999,
+      minBalance: -99999,
+      bet: 0,
+      appStartBet: 10,
+      defaultBetRemove: 5,
+      defaultBetAdd: 5,
+      maxBet: 99999,
+      minBet: 0,
+    };
+  }
+  saveAppData();
 }
 
+function saveAppData() {
+  localStorage.setItem('appData', JSON.stringify(appData)); // Save data as a string
+}
+recoverAppData();
 
 const startAnimation = false;
 const openSettingsAtStart = false;

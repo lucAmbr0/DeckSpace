@@ -95,7 +95,7 @@ function saveAppData() {
 recoverAppData();
 
 const startAnimation = false;
-const openSettingsAtStart = false;
+const openSettingsAtStart = true;
 appData.startCards = 6;
 
 function drawStartCards() {
@@ -801,6 +801,19 @@ function changeDefaultBet() {
 }
 
 
+const defaultBalanceIncreaseInput = document.getElementById("defaultBalanceIncreaseInput");
+
+function changeBalanceIncrease() {
+  const enteredData = parseFloat(defaultBalanceIncreaseInput.value);
+  if (!isNaN(enteredData) && enteredData > 0 && enteredData < appData.maxBalance / 2)
+    appData.defaultBalanceAdd = enteredData;
+  else {
+    appData.defaultBalanceAdd = 10;
+    defaultBalanceIncreaseInput.value = 10;
+  }
+  saveAppData();
+}
+
 // --------------- CHANGE HTML ELEMENTS STATE TO LAST SET PREFERENCES IN LOCALSTORAGE ---------------
 
 function recoverSettingsState() {
@@ -817,12 +830,20 @@ function recoverSettingsState() {
     appData.appStartBalance = 150;
   balanceAtAppStartInput.value = appData.appStartBalance;
   // END appData.appStartBalance
-  
+
   // START appData.appStartBet
   if (isNaN(appData.appStartBet))
     appData.appStartBet = 0;
   defaultBetInput.value = appData.appStartBet;
   // END appData.appStartBet
+
+  // START appData.defaultBalanceAdd
+  if (isNaN(appData.defaultBalanceAdd))
+    appData.defaultBalanceAdd = 10;
+  defaultBalanceIncreaseInput.value = appData.defaultBalanceAdd;
+  // END appData.defaultBalanceAdd
+
+
 
   saveAppData();
 }

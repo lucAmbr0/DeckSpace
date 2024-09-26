@@ -41,7 +41,7 @@
       <div id="splashScreenAppInfo">
         <h1>DeckSpace</h1>
         <h3>by lucAmbr0</h2>
-        <h4>v1.56.160</h4>
+        <h4>v1.57.165</h4>
       </div>
     </div>
     <div class="HIDDEN" id="darkOverlay"></div>
@@ -78,6 +78,17 @@
         <div class="preferencesDetailsContainer">
           <div class="categoryDetailsContainer HIDDEN">
               <div class="switch-container">
+                <div class="switch-label">Show role badge</div>
+                <div class="switch">
+                  <input
+                    type="checkbox"
+                    id="showRoleBadgeSwitch"
+                    class="switch-input"
+                    onchange="toggleShowRoleBadge()"
+                    checked
+                  />
+                  <label for="showRoleBadgeSwitch" class="switch-toggle"></label>
+                </div>
                 <div class="switch-label">Play with bets</div>
                 <div class="switch">
                   <input
@@ -109,6 +120,7 @@
                 <input type="number" class="numberInput" value="10" id="defaultBalanceDecreaseInput" onchange="changeBalanceDecrease()" />
               </div>
             </div>
+            <div style="height: 10px;"></div>
           </div>
           <div id="emptySettingsPlaceholder" class="nothingToShow">
             <h2>

@@ -42,7 +42,24 @@ window.onload = preloadImages();
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-let appData = {};
+let appData = {
+  useBalance: undefined,
+  appStartBalance: undefined,
+  defaultBet: undefined,
+  startCards: undefined,
+  balance: undefined,
+  allowNegativeBalance: undefined,
+  defaultBalanceAdd: undefined,
+  defaultBalanceRemove: undefined,
+  maxBalance: undefined,
+  minBalance: undefined,
+  bet: undefined,
+  appStartBet: undefined,
+  defaultBetRemove: undefined,
+  defaultBetAdd: undefined,
+  maxBet: undefined,
+  minBet: undefined,
+};
 
 function recoverAppData() {
   const storedData = localStorage.getItem('appData');
@@ -77,7 +94,7 @@ function saveAppData() {
 }
 recoverAppData();
 
-const startAnimation = true;
+const startAnimation = false;
 const openSettingsAtStart = false;
 appData.startCards = 6;
 
@@ -738,3 +755,34 @@ function selectSettingsCategory(idx) {
   emptySettingsPlaceholder.classList.add("HIDDEN");
   categoryDetailsContainer[idx].classList.remove("HIDDEN");
 }
+
+const mirroredBalanceContainer = document.getElementById("mirroredBalanceContainer");
+const balanceBetsControlsContainer = document.getElementById("balanceBetsControlsContainer");
+const balanceBetsSwitch = document.getElementById("balanceBetsSwitch");
+const balanceBetsControlsPlaceholder = document.getElementById("balanceBetsControlsPlaceholder");
+
+function toggleBalanceAndBetsFeatures() {
+  if (balanceBetsSwitch.checked) {
+    balanceBetsControlsContainer.classList.remove("HIDDEN");
+    mirroredBalanceContainer.classList.remove("HIDDEN");
+    balanceBetsControlsPlaceholder.classList.add("HIDDEN");
+    appData.useBalance = true;
+  }
+  else {
+    mirroredBalanceContainer.classList.add("HIDDEN");
+    balanceBetsControlsContainer.classList.add("HIDDEN");
+    balanceBetsControlsPlaceholder.classList.remove("HIDDEN");
+    appData.useBalance = false;
+  }
+  saveAppData();
+}
+
+function recoverSettingsState() {
+  if (appData.useBalance)
+    balanceBetsSwitch.checked = true;
+  else
+    balanceBetsSwitch.checked = false;
+  toggleBalanceAndBetsFeatures();
+}
+
+recoverSettingsState();

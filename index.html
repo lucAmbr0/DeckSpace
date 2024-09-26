@@ -78,15 +78,16 @@
         <div class="preferencesDetailsContainer">
           <div class="categoryDetailsContainer HIDDEN">
               <div class="switch-container">
-                <div class="switch-label">Balance/bets</div>
+                <div class="switch-label">Play with bets</div>
                 <div class="switch">
                   <input
                     type="checkbox"
-                    id="balanceBetsSwtich"
+                    id="balanceBetsSwitch"
                     class="switch-input"
-                    onchange=""
+                    onchange="toggleBalanceAndBetsFeatures()"
+                    checked
                   />
-                  <label for="balanceBetsSwtich" class="switch-toggle"></label>
+                  <label for="balanceBetsSwitch" class="switch-toggle"></label>
                 </div>
                 <div class="switch-label">Balance at app start</div>
                 <div class="switch">
@@ -114,7 +115,7 @@
               <span class="material-symbols-outlined" id="badgeIcon"> account_circle </span>PLAYER
             </h2>
           </div>
-          <div class="mirroredBalanceContainer">
+          <div class="mirroredBalanceContainer" id="mirroredBalanceContainer">
             <div class="balanceAmountContainer upsideDown">
               <h2 class="amountTxt" id="mirroredBalanceTxt">0</h2>
             </div>
@@ -126,7 +127,7 @@
         <div class="cardsTable" id="cardsTable">
         </div>
         <div class="bottomBar">
-          <div class="balanceContainer">
+          <div id="balanceBetsControlsContainer" class="balanceContainer">
             <div class="betAmountContainer semiTransp" id="userBetAmountContainer">
               <div>
                 <h2 class="amountTxt" id="userBetBtn" onclick="toggleBetControls()">0</h2>
@@ -170,6 +171,7 @@
               </div>
             </div>
           </div>
+          <div id="balanceBetsControlsPlaceholder" class="HIDDEN"></div>
           <div class="actionsContainer" id="actionsContainer">
             <button onclick="openSettings()">
               <span class="material-symbols-outlined"> settings </span>

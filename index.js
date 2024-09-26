@@ -77,7 +77,7 @@ function saveAppData() {
 }
 recoverAppData();
 
-const startAnimation = false;
+const startAnimation = true;
 const openSettingsAtStart = false;
 appData.startCards = 6;
 

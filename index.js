@@ -42,7 +42,24 @@ window.onload = preloadImages();
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-let appData = {};
+let appData = {
+  useBalance: undefined,
+  appStartBalance: undefined,
+  appStartBet: undefined,
+  startCards: undefined,
+  balance: undefined,
+  allowNegativeBalance: undefined,
+  defaultBalanceAdd: undefined,
+  defaultBalanceRemove: undefined,
+  maxBalance: undefined,
+  minBalance: undefined,
+  bet: undefined,
+  appStartBet: undefined,
+  defaultBetRemove: undefined,
+  defaultBetAdd: undefined,
+  maxBet: undefined,
+  minBet: undefined,
+};
 
 function recoverAppData() {
   const storedData = localStorage.getItem('appData');
@@ -53,16 +70,15 @@ function recoverAppData() {
     appData = {
       useBalance: true,
       appStartBalance: 150,
-      defaultBet: 10,
       startCards: 6,
-      balance: 100,
+      balance: 150,
       allowNegativeBalance: false,
       defaultBalanceAdd: 10,
       defaultBalanceRemove: 10,
       maxBalance: 99999,
       minBalance: -99999,
       bet: 0,
-      appStartBet: 10,
+      appStartBet: 0,
       defaultBetRemove: 5,
       defaultBetAdd: 5,
       maxBet: 99999,
@@ -73,7 +89,8 @@ function recoverAppData() {
 }
 
 function saveAppData() {
-  localStorage.setItem('appData', JSON.stringify(appData)); // Save data as a string
+  if (JSON.stringify(localStorage.getItem('appData')) != JSON.stringify(appData))
+    localStorage.setItem('appData', JSON.stringify(appData)); // Save data as a string
 }
 recoverAppData();
 
@@ -738,3 +755,75 @@ function selectSettingsCategory(idx) {
   emptySettingsPlaceholder.classList.add("HIDDEN");
   categoryDetailsContainer[idx].classList.remove("HIDDEN");
 }
+
+const mirroredBalanceContainer = document.getElementById("mirroredBalanceContainer");
+const balanceBetsControlsContainer = document.getElementById("balanceBetsControlsContainer");
+const balanceBetsSwitch = document.getElementById("balanceBetsSwitch");
+const balanceBetsControlsPlaceholder = document.getElementById("balanceBetsControlsPlaceholder");
+
+function toggleBalanceAndBetsFeatures() {
+  if (balanceBetsSwitch.checked) {
+    balanceBetsControlsContainer.classList.remove("HIDDEN");
+    mirroredBalanceContainer.classList.remove("HIDDEN");
+    balanceBetsControlsPlaceholder.classList.add("HIDDEN");
+    appData.useBalance = true;
+  }
+  else {
+    mirroredBalanceContainer.classList.add("HIDDEN");
+    balanceBetsControlsContainer.classList.add("HIDDEN");
+    balanceBetsControlsPlaceholder.classList.remove("HIDDEN");
+    appData.useBalance = false;
+  }
+  saveAppData();
+}
+
+
+const balanceAtAppStartInput = document.getElementById("balanceAtAppStartInput");
+
+function changeBalanceAtAppStart() {
+  const enteredData = parseFloat(balanceAtAppStartInput.value);
+  if (!isNaN(enteredData)) appData.appStartBalance = enteredData;
+  saveAppData();
+}
+
+
+const defaultBetInput = document.getElementById("defaultBetInput");
+
+function changeDefaultBet() {
+  const enteredData = parseFloat(defaultBetInput.value);
+  if (!isNaN(enteredData) && appData.appStartBet >= 0 && appData.appStartBet <= appData.appStartBalance)
+    appData.appStartBet = enteredData;
+  else {
+    appData.appStartBet = 0;
+    defaultBetInput.value = 0;
+  }
+  saveAppData();
+}
+
+
+// --------------- CHANGE HTML ELEMENTS STATE TO LAST SET PREFERENCES IN LOCALSTORAGE ---------------
+
+function recoverSettingsState() {
+  // START appData.useBalance
+  if (appData.useBalance)
+    balanceBetsSwitch.checked = true;
+  else
+    balanceBetsSwitch.checked = false;
+  toggleBalanceAndBetsFeatures();
+  // END appData.useBalance
+
+  // START appData.appStartBalance
+  if (isNaN(appData.appStartBalance))
+    appData.appStartBalance = 150;
+  balanceAtAppStartInput.value = appData.appStartBalance;
+  // END appData.appStartBalance
+  
+  // START appData.appStartBet
+  if (isNaN(appData.appStartBet))
+    appData.appStartBet = 0;
+  defaultBetInput.value = appData.appStartBet;
+  // END appData.appStartBet
+
+  saveAppData();
+}
+recoverSettingsState();

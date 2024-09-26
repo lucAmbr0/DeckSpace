@@ -42,12 +42,32 @@ window.onload = preloadImages();
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-const startAnimation = true;
+let appData = {
+  useBalance: true,
+  appStartBalance: 150,
+  defaultBet: 10,
+  startCards: 6,
+  balance: 100,
+  allowNegativeBalance: false,
+  defaultBalanceAdd: 10,
+  defaultBalanceRemove: 10,
+  maxBalance: 99999,
+  minBalance: -99999,
+  bet: 0,
+  appStartBet: 10,
+  defaultBetRemove: 5,
+  defaultBetAdd: 5,
+  maxBet: 99999,
+  minBet: 0,
+}
+
+
+const startAnimation = false;
 const openSettingsAtStart = false;
-const startCards = 6;
+appData.startCards = 6;
 
 function drawStartCards() {
-  for (let i = 0; i < startCards; i++) drawRandomCard();
+  for (let i = 0; i < appData.startCards; i++) drawRandomCard();
 }
 
 
@@ -167,15 +187,6 @@ function closeBetBar() {
 
 // --------------- BALANCE ACTION BUTTONS ---------------
 
-// Variables
-let balance = 0;
-let appStartBalance = 150;
-let allowNegativeBalance = false;
-let defaultBalanceRemove = 10;
-let defaultBalanceAdd = 10;
-let maxBalance = 99999;
-let minBalance = -99999;
-
 // 0 = delete
 // 1 = remove
 // 2 = add
@@ -187,10 +198,10 @@ function balanceAction(i) {
       balanceDelete();
       break;
     case 1:
-      balanceRemove(defaultBalanceRemove);
+      balanceRemove(appData.defaultBalanceRemove);
       break;
     case 2:
-      balanceAdd(defaultBalanceAdd);
+      balanceAdd(appData.defaultBalanceAdd);
       break;
     case 3:
       balanceEdit();
@@ -201,12 +212,12 @@ function balanceAction(i) {
   }
 }
 
-balance = appStartBalance
-balanceWrite(appStartBalance);
+appData.balance = appData.appStartBalance
+balanceWrite(appData.appStartBalance);
 
 function balanceDelete() {
-  if (balance != 0) {
-    balance = 0;
+  if (appData.balance != 0) {
+    appData.balance = 0;
     balanceWrite(0);
   }
   else
@@ -214,12 +225,12 @@ function balanceDelete() {
 }
 
 function balanceEdit() {
-  let newBalance = parseInt(window.prompt("Insert new balance value (" + minBalance + " - " + maxBalance + ")"));
-  if ((newBalance < 0 && !allowNegativeBalance) || newBalance < minBalance || newBalance > maxBalance || isNaN(newBalance)) {
+  let newBalance = parseInt(window.prompt("Insert new balance value (" + appData.minBalance + " - " + appData.maxBalance + ")"));
+  if ((newBalance < 0 && !appData.allowNegativeBalance) || newBalance < appData.minBalance || newBalance > appData.maxBalance || isNaN(newBalance)) {
     window.alert("Invalid amount");
   }
   else {
-    balance = newBalance;
+    appData.balance = newBalance;
     balanceWrite(newBalance);
   }
 }
@@ -243,15 +254,15 @@ function balanceAdd(amount) {
 }
 
 function balanceChange(change) {
-  if (balance + change > maxBalance || balance + change < minBalance) {
+  if (appData.balance + change > appData.maxBalance || appData.balance + change < appData.minBalance) {
     shakeElement(userBalanceBtn);
   }
-  else if (balance + change >= 0 || allowNegativeBalance) {
-    balance += change;
+  else if (appData.balance + change >= 0 || appData.allowNegativeBalance) {
+    appData.balance += change;
     balanceWrite(parseInt(userBalanceBtn.textContent) + change);
   }
-  else if (balance + change < 0 && !allowNegativeBalance) {
-    balance = 0;
+  else if (appData.balance + change < 0 && !appData.allowNegativeBalance) {
+    appData.balance = 0;
     shakeElement(userBalanceBtn);
   }
 }
@@ -279,14 +290,6 @@ function balanceWrite(newBalance) {
 
 // --------------- BET ACTION BUTTONS ---------------
 
-// Variables
-let bet = 0;
-let appStartBet = 10;
-let defaultBetRemove = 5;
-let defaultBetAdd = 5;
-let maxBet = 99999;
-let minBet = 0;
-
 // 0 = undo bet
 // 1 = remove
 // 2 = add
@@ -299,10 +302,10 @@ function betAction(i) {
       betDelete();
       break;
     case 1:
-      betRemove(defaultBetRemove);
+      betRemove(appData.defaultBetRemove);
       break;
     case 2:
-      betAdd(defaultBetAdd);
+      betAdd(appData.defaultBetAdd);
       break;
     case 3:
       betLose();
@@ -316,12 +319,12 @@ function betAction(i) {
   }
 }
 
-bet = appStartBet
-betWrite(appStartBet);
+appData.bet = appData.appStartBet
+betWrite(appData.appStartBet);
 
 function betDelete() {
-  if (bet != 0) {
-    bet = 0;
+  if (appData.bet != 0) {
+    appData.bet = 0;
     betWrite(0);
   }
   else
@@ -329,9 +332,9 @@ function betDelete() {
 }
 
 function betLose() {
-  if (bet != 0) {
-    balance -= bet;
-    bet = 0;
+  if (appData.bet != 0) {
+    appData.balance -= appData.bet;
+    appData.bet = 0;
     betWrite(0);
   }
   else {
@@ -340,9 +343,9 @@ function betLose() {
 }
 
 function betDouble() {
-  if (bet != 0) {
-    balance += (bet)
-    bet = 0;
+  if (appData.bet != 0) {
+    appData.balance += (appData.bet)
+    appData.bet = 0;
     betWrite(0);
   }
   else {
@@ -362,23 +365,23 @@ function betAdd(amount) {
 }
 
 function betChange(change) {
-  if (bet + change > maxBet || bet + change < 0) {
+  if (appData.bet + change > appData.maxBet || appData.bet + change < 0) {
     shakeElement(userBetBtn);
   }
-  else if (change > balance) {
+  else if (change > appData.balance) {
     shakeElement(userBalanceBtn);
   }
   else {
-    bet += change;
+    appData.bet += change;
     betWrite(parseInt(userBetBtn.textContent) + change);
   }
 }
 
 function betWrite(newBet) {
   const oldBet = userBetBtn.textContent;
-  balance += (oldBet - newBet);
-  if (balance != parseInt(userBalanceBtn.textContent))
-    balanceWrite(balance);
+  appData.balance += (oldBet - newBet);
+  if (appData.balance != parseInt(userBalanceBtn.textContent))
+    balanceWrite(appData.balance);
   if (newBet > oldBet) {
     userBetBtn.style.animation = "cashUpExit 0.1s forwards";
     setTimeout(() => {
@@ -704,7 +707,7 @@ function closeSettings() {
   setTimeout(() => {
     settingsContainer.classList.add("HIDDEN");
     darkOverlay.classList.add("HIDDEN");
-    settingsCategory.forEach(e => e.classList.remove("categoryActive"));  
+    settingsCategory.forEach(e => e.classList.remove("categoryActive"));
     emptySettingsPlaceholder.classList.remove("HIDDEN");
     categoryDetailsContainer.forEach(e => e.classList.add("HIDDEN"))
     settingsContainer.style.animation = "settingsIn .3s ease forwards";

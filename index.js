@@ -90,7 +90,8 @@ function recoverAppData() {
 }
 
 function saveAppData() {
-  localStorage.setItem('appData', JSON.stringify(appData)); // Save data as a string
+  if (JSON.stringify(localStorage.getItem('appData')) != JSON.stringify(appData))
+    localStorage.setItem('appData', JSON.stringify(appData)); // Save data as a string
 }
 recoverAppData();
 
@@ -777,12 +778,32 @@ function toggleBalanceAndBetsFeatures() {
   saveAppData();
 }
 
+
+const balanceAtAppStartInput = document.getElementById("balanceAtAppStartInput");
+
+function changeBalanceAtAppStart() {
+  const enteredData = parseFloat(balanceAtAppStartInput.value);
+  if (!isNaN(enteredData)) appData.appStartBalance = enteredData;
+  saveAppData();
+}
+
+
+// --------------- CHANGE HTML ELEMENTS STATE TO LAST SET PREFERENCES IN LOCALSTORAGE ---------------
+
 function recoverSettingsState() {
+  // START appData.useBalance
   if (appData.useBalance)
     balanceBetsSwitch.checked = true;
   else
     balanceBetsSwitch.checked = false;
   toggleBalanceAndBetsFeatures();
-}
+  // END appData.useBalance
+  // START appData.appStartBalance
+  if (isNaN(appData.appStartBalance))
+    appData.appStartBalance = 150;
+  balanceAtAppStartInput.value = appData.appStartBalance;
+  // END appData.appStartBalance
 
+  saveAppData();
+}
 recoverSettingsState();

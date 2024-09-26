@@ -818,6 +818,20 @@ function changeBalanceIncrease() {
   saveAppData();
 }
 
+
+const defaultBalanceDecreaseInput = document.getElementById("defaultBalanceDecreaseInput");
+
+function changeBalanceDecrease() {
+  const enteredData = parseFloat(defaultBalanceDecreaseInput.value);
+  if (!isNaN(enteredData) && enteredData > 0 && enteredData < appData.maxBalance / 2)
+    appData.defaultBalanceRemove = enteredData;
+  else {
+    appData.defaultBalanceRemove = 10;
+    defaultBalanceDecreaseInput.value = 10;
+  }
+  saveAppData();
+}
+
 // --------------- CHANGE HTML ELEMENTS STATE TO LAST SET PREFERENCES IN LOCALSTORAGE ---------------
 
 function recoverSettingsState() {
@@ -847,7 +861,11 @@ function recoverSettingsState() {
   defaultBalanceIncreaseInput.value = appData.defaultBalanceAdd;
   // END appData.defaultBalanceAdd
 
-
+  // START appData.defaultBalanceRemove
+  if (isNaN(appData.defaultBalanceRemove))
+    appData.defaultBalanceRemove = 10;
+  defaultBalanceDecreaseInput.value = appData.defaultBalanceRemove;
+  // END appData.defaultBalanceRemove
 
   saveAppData();
 }

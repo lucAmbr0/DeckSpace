@@ -782,7 +782,7 @@ const balanceAtAppStartInput = document.getElementById("balanceAtAppStartInput")
 
 function changeBalanceAtAppStart() {
   const enteredData = parseFloat(balanceAtAppStartInput.value);
-  if (!isNaN(enteredData) && enteredData >= 0) appData.appStartBalance = enteredData;
+  if (!isNaN(enteredData) && enteredData >= 0 && enteredData > maxBalance) appData.appStartBalance = enteredData;
   else {
     appData.appStartBalance = 150;
     balanceAtAppStartInput.value = 150;

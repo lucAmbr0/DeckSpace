@@ -47,6 +47,7 @@ let appData = {
   appStartBalance: undefined,
   appStartBet: undefined,
   startCards: undefined,
+  useBadges: undefined,
   balance: undefined,
   allowNegativeBalance: undefined,
   defaultBalanceAdd: undefined,
@@ -71,6 +72,7 @@ function recoverAppData() {
       useBalance: true,
       appStartBalance: 150,
       startCards: 6,
+      useBadges: true,
       balance: 150,
       allowNegativeBalance: false,
       defaultBalanceAdd: 10,
@@ -94,8 +96,8 @@ function saveAppData() {
 }
 recoverAppData();
 
-const startAnimation = false;
-const openSettingsAtStart = true;
+const startAnimation = true;
+const openSettingsAtStart = false;
 appData.startCards = 6;
 
 function drawStartCards() {
@@ -452,6 +454,7 @@ function switchBadge() {
         badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> account_circle </span>PLAYER`;
         badgeElement.style.backgroundColor = "rgb(128, 170, 212)";
         document.getElementById("actionsContainer").style.visibility = "visible";
+        document.querySelectorAll(".amountTxt").forEach((e) => e.style.visibility = "visible");
         break;
       case 1:
         badgeElement.innerHTML = `<span class="material-symbols-outlined" id="badgeIcon"> poker_chip </span>DEALER`;
@@ -778,6 +781,23 @@ function toggleBalanceAndBetsFeatures() {
 }
 
 
+const showRoleBadgeSwitch = document.getElementById("showRoleBadgeSwitch");
+
+function toggleShowRoleBadge() {
+  if (showRoleBadgeSwitch.checked) {
+    badgeElement.classList.remove("HIDDEN");
+    appData.useBadges = true;
+  }
+  else {
+    badge = 4;
+    switchBadge();
+    badgeElement.classList.add("HIDDEN");
+    appData.useBadges = false;
+  }
+  saveAppData();
+}
+
+
 const balanceAtAppStartInput = document.getElementById("balanceAtAppStartInput");
 
 function changeBalanceAtAppStart() {
@@ -835,6 +855,14 @@ function changeBalanceDecrease() {
 // --------------- CHANGE HTML ELEMENTS STATE TO LAST SET PREFERENCES IN LOCALSTORAGE ---------------
 
 function recoverSettingsState() {
+  // START appData.useBadges
+  if (appData.useBadges)
+    showRoleBadgeSwitch.checked = true;
+  else
+    showRoleBadgeSwitch.checked = false;
+  toggleShowRoleBadge();
+  // END appData.useBadges
+
   // START appData.useBalance
   if (appData.useBalance)
     balanceBetsSwitch.checked = true;

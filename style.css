@@ -801,6 +801,15 @@ h4 {
     display: none !important;
 }
 
+.preferencesDetailsContainer div.horizontalSeparator {
+    display: flex;
+    width: 95% !important;
+    margin: 10px auto 0 auto;
+    height: 2px !important;
+    border-radius: 1px;
+    background-color: rgba(230, 230, 230, 0.5);
+}
+
 .settingsContainer {
     z-index: 20;
     position: fixed;
@@ -929,6 +938,9 @@ h4 {
 
 .preferencesDetailsContainer {
     background-color: rgba(0, 0, 0, 0.4);
+    height: calc(95vh - 70px) !important;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .nothingToShow {

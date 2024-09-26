@@ -45,7 +45,7 @@ window.onload = preloadImages();
 let appData = {
   useBalance: undefined,
   appStartBalance: undefined,
-  defaultBet: undefined,
+  appStartBet: undefined,
   startCards: undefined,
   balance: undefined,
   allowNegativeBalance: undefined,
@@ -70,16 +70,15 @@ function recoverAppData() {
     appData = {
       useBalance: true,
       appStartBalance: 150,
-      defaultBet: 10,
       startCards: 6,
-      balance: 100,
+      balance: 150,
       allowNegativeBalance: false,
       defaultBalanceAdd: 10,
       defaultBalanceRemove: 10,
       maxBalance: 99999,
       minBalance: -99999,
       bet: 0,
-      appStartBet: 10,
+      appStartBet: 0,
       defaultBetRemove: 5,
       defaultBetAdd: 5,
       maxBet: 99999,
@@ -788,6 +787,20 @@ function changeBalanceAtAppStart() {
 }
 
 
+const defaultBetInput = document.getElementById("defaultBetInput");
+
+function changeDefaultBet() {
+  const enteredData = parseFloat(defaultBetInput.value);
+  if (!isNaN(enteredData) && appData.appStartBet >= 0 && appData.appStartBet <= appData.appStartBalance)
+    appData.appStartBet = enteredData;
+  else {
+    appData.appStartBet = 0;
+    defaultBetInput.value = 0;
+  }
+  saveAppData();
+}
+
+
 // --------------- CHANGE HTML ELEMENTS STATE TO LAST SET PREFERENCES IN LOCALSTORAGE ---------------
 
 function recoverSettingsState() {
@@ -798,11 +811,18 @@ function recoverSettingsState() {
     balanceBetsSwitch.checked = false;
   toggleBalanceAndBetsFeatures();
   // END appData.useBalance
+
   // START appData.appStartBalance
   if (isNaN(appData.appStartBalance))
     appData.appStartBalance = 150;
   balanceAtAppStartInput.value = appData.appStartBalance;
   // END appData.appStartBalance
+  
+  // START appData.appStartBet
+  if (isNaN(appData.appStartBet))
+    appData.appStartBet = 0;
+  defaultBetInput.value = appData.appStartBet;
+  // END appData.appStartBet
 
   saveAppData();
 }

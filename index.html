@@ -41,7 +41,7 @@
       <div id="splashScreenAppInfo">
         <h1>DeckSpace</h1>
         <h3>by lucAmbr0</h2>
-        <h4>v1.57.165</h4>
+        <h4>v1.59.169</h4>
       </div>
     </div>
     <div class="HIDDEN" id="darkOverlay"></div>
@@ -100,27 +100,85 @@
                   />
                   <label for="balanceBetsSwitch" class="switch-toggle"></label>
                 </div>
+              </div>
+              <div class="horizontalSeparator"></div>
+              <div class="switch-container">
                 <div class="switch-label">Balance at app start</div>
                 <div class="switch">
                   <input type="number" class="numberInput" value="150" id="balanceAtAppStartInput" onchange="changeBalanceAtAppStart()">
                 </div>
-                <div class="switch-label">Default bet</div>
+                <div class="switch-label">Balance increase amount</div>
                 <div class="switch">
-                  <input type="number" class="numberInput" value="0" id="defaultBetInput" onchange="changeDefaultBet()">
+                  <input type="number" class="numberInput" value="10" id="defaultBalanceIncreaseInput" onchange="changeBalanceIncrease()" />
                 </div>
-            </div>
-            <div class="horizontalSeparator"></div>
-            <div class="switch-container">
-              <div class="switch-label">Balance increase amount</div>
-              <div class="switch">
-                <input type="number" class="numberInput" value="10" id="defaultBalanceIncreaseInput" onchange="changeBalanceIncrease()" />
+                <div class="switch-label">Balance decrease amount</div>
+                <div class="switch">
+                  <input type="number" class="numberInput" value="10" id="defaultBalanceDecreaseInput" onchange="changeBalanceDecrease()" />
+                </div>
               </div>
-              <div class="switch-label">Balance decrease amount</div>
+              <div class="horizontalSeparator"></div>
+              <div class="switch-container">
+              <div class="switch-label">Bet at app start</div>
               <div class="switch">
-                <input type="number" class="numberInput" value="10" id="defaultBalanceDecreaseInput" onchange="changeBalanceDecrease()" />
+                <input type="number" class="numberInput" value="0" id="defaultBetInput" onchange="changeDefaultBet()">
+              </div>
+              <div class="switch-label">Bet increase amount</div>
+              <div class="switch">
+                <input type="number" class="numberInput" value="5" id="defaultBetIncreaseInput" onchange="changeBetIncrease()" />
+              </div>
+              <div class="switch-label">Bet decrease amount</div>
+              <div class="switch">
+                <input type="number" class="numberInput" value="5" id="defaultBetDecreaseInput" onchange="changeBetDecrease()" />
               </div>
             </div>
             <div style="height: 10px;"></div>
+          </div>
+          <div class="categoryDetailsContainer HIDDEN"></div>
+          <div class="categoryDetailsContainer HIDDEN"></div>
+          <div class="categoryDetailsContainer HIDDEN"></div>
+          <div class="categoryDetailsContainer HIDDEN">
+            <div class="scrollContainer">
+            <div class="appInfoBox">
+              <div class="appInfoHeader">
+                <img src="icons/icon-any-512x512.png" alt="App Icon" class="logo appLogo">
+                <h1>App Information</h1>
+              </div>
+              <div class="grid">
+                <p>PWA Name</p>
+                <p class="alignRight">DeckSpace</p>
+                <p>App Version</p>
+                <p class="alignRight">1.59.169</p>
+                <p>License</p>
+                <p class="alignRight">MIT License</p>
+              </div>
+              <a
+              href="https://wakatime.com/@lucAmbr0/projects/rlnpzzkvcj?start=2024-02-18&end=2024-02-23"
+              class="nerdLinks"
+              ><img
+                src="https://wakatime.com/badge/user/018d849f-dec6-4519-8001-9879fc3b773b/project/018dbc83-41ce-44c7-adea-992cb7776d69.svg?style=flat"
+                class="roundedWakaBadge"
+                alt="wakatime"
+            /></a>
+            </div>
+            <div class="developerCreditsContainer">
+              <div class="developerTitleContainer">
+                <img src="assets/github-mark.svg" alt="GitHub logo" class="logo">
+                <p>github.com/lucAmbr0</p>
+              </div>
+              <div class="nerdLinksContainer">
+                <a
+                class="nerdLinks"
+                href="https://github.com/lucAmbr0/DeckSpace/commits/master/"
+                >Changelog</a
+              >
+              <a
+                class="nerdLinks"
+                href="https://github.com/lucAmbr0/DeckSpace/archive/refs/heads/master.zip"
+                >Source code</a
+              >
+              </div>
+            </div>
+          </div>
           </div>
           <div id="emptySettingsPlaceholder" class="nothingToShow">
             <h2>

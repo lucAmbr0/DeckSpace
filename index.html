@@ -100,24 +100,35 @@
                   />
                   <label for="balanceBetsSwitch" class="switch-toggle"></label>
                 </div>
+              </div>
+              <div class="horizontalSeparator"></div>
+              <div class="switch-container">
                 <div class="switch-label">Balance at app start</div>
                 <div class="switch">
                   <input type="number" class="numberInput" value="150" id="balanceAtAppStartInput" onchange="changeBalanceAtAppStart()">
                 </div>
-                <div class="switch-label">Default bet</div>
+                <div class="switch-label">Balance increase amount</div>
                 <div class="switch">
-                  <input type="number" class="numberInput" value="0" id="defaultBetInput" onchange="changeDefaultBet()">
+                  <input type="number" class="numberInput" value="10" id="defaultBalanceIncreaseInput" onchange="changeBalanceIncrease()" />
                 </div>
-            </div>
-            <div class="horizontalSeparator"></div>
-            <div class="switch-container">
-              <div class="switch-label">Balance increase amount</div>
-              <div class="switch">
-                <input type="number" class="numberInput" value="10" id="defaultBalanceIncreaseInput" onchange="changeBalanceIncrease()" />
+                <div class="switch-label">Balance decrease amount</div>
+                <div class="switch">
+                  <input type="number" class="numberInput" value="10" id="defaultBalanceDecreaseInput" onchange="changeBalanceDecrease()" />
+                </div>
               </div>
-              <div class="switch-label">Balance decrease amount</div>
+              <div class="horizontalSeparator"></div>
+              <div class="switch-container">
+              <div class="switch-label">Bet at app start</div>
               <div class="switch">
-                <input type="number" class="numberInput" value="10" id="defaultBalanceDecreaseInput" onchange="changeBalanceDecrease()" />
+                <input type="number" class="numberInput" value="0" id="defaultBetInput" onchange="changeDefaultBet()">
+              </div>
+              <div class="switch-label">Bet increase amount</div>
+              <div class="switch">
+                <input type="number" class="numberInput" value="5" id="defaultBetIncreaseInput" onchange="changeBetIncrease()" />
+              </div>
+              <div class="switch-label">Bet decrease amount</div>
+              <div class="switch">
+                <input type="number" class="numberInput" value="5" id="defaultBetDecreaseInput" onchange="changeBetDecrease()" />
               </div>
             </div>
             <div style="height: 10px;"></div>

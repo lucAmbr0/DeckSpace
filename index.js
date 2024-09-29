@@ -129,8 +129,9 @@ function splashscreen() {
 
 const settingsContainer = document.getElementById("settingsContainer");
 const darkOverlay = document.getElementById("darkOverlay");
-if (openSettingsAtStart) openSettings();
-
+if (openSettingsAtStart) {
+  openSettings();
+}
 
 
 // --------------- BALANCE / BETS - CONTROL BARS ---------------
@@ -852,6 +853,34 @@ function changeBalanceDecrease() {
   saveAppData();
 }
 
+
+const defaultBetIncreaseInput = document.getElementById("defaultBetIncreaseInput");
+
+function changeBetIncrease() {
+  const enteredData = parseFloat(defaultBetIncreaseInput.value);
+  if (!isNaN(enteredData) && enteredData > 0 && enteredData < appData.maxBet / 2)
+    appData.defaultBetAdd = enteredData;
+  else {
+    appData.defaultBetAdd = 10;
+    defaultBetIncreaseInput.value = 10;
+  }
+  saveAppData();
+}
+
+
+const defaultBetDecreaseInput = document.getElementById("defaultBetDecreaseInput");
+
+function changeBetDecrease() {
+  const enteredData = parseFloat(defaultBetDecreaseInput.value);
+  if (!isNaN(enteredData) && enteredData > 0 && enteredData < appData.maxBet / 2)
+    appData.defaultBetRemove = enteredData;
+  else {
+    appData.defaultBetRemove = 10;
+    defaultBetDecreaseInput.value = 10;
+  }
+  saveAppData();
+}
+
 // --------------- CHANGE HTML ELEMENTS STATE TO LAST SET PREFERENCES IN LOCALSTORAGE ---------------
 
 function recoverSettingsState() {
@@ -894,6 +923,18 @@ function recoverSettingsState() {
     appData.defaultBalanceRemove = 10;
   defaultBalanceDecreaseInput.value = appData.defaultBalanceRemove;
   // END appData.defaultBalanceRemove
+
+  // START appData.defaultBetAdd
+  if (isNaN(appData.defaultBetAdd))
+    appData.defaultBetAdd = 5;
+  defaultBetIncreaseInput.value = appData.defaultBetAdd;
+  // END appData.defaultBetAdd
+
+  // START appData.defaultBetRemove
+  if (isNaN(appData.defaultBetRemove))
+    appData.defaultBetRemove = 5;
+  defaultBetDecreaseInput.value = appData.defaultBetRemove;
+  // END appData.defaultBetRemove
 
   saveAppData();
 }

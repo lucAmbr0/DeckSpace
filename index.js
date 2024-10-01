@@ -96,9 +96,8 @@ function saveAppData() {
 }
 recoverAppData();
 
-const startAnimation = true;
-const openSettingsAtStart = false;
-appData.startCards = 6;
+const startAnimation = false;
+const openSettingsAtStart = true;
 
 function drawStartCards() {
   for (let i = 0; i < appData.startCards; i++) drawRandomCard();
@@ -881,6 +880,22 @@ function changeBetDecrease() {
   saveAppData();
 }
 
+
+const cardsDrawnAtAppStartInput = document.getElementById("cardsDrawnAtAppStartInput");
+
+function changeCardsDrawnAtAppStart() {
+  const enteredData = parseInt(cardsDrawnAtAppStartInput.value);
+  if (!isNaN(enteredData) && enteredData >= 0 && enteredData <= 15) {
+    appData.startCards = enteredData;
+  }
+  else {
+    appData.startCards = 6;
+    cardsDrawnAtAppStartInput.value = 6;
+  }
+  saveAppData();
+}
+
+
 // --------------- CHANGE HTML ELEMENTS STATE TO LAST SET PREFERENCES IN LOCALSTORAGE ---------------
 
 function recoverSettingsState() {
@@ -935,7 +950,14 @@ function recoverSettingsState() {
     appData.defaultBetRemove = 5;
   defaultBetDecreaseInput.value = appData.defaultBetRemove;
   // END appData.defaultBetRemove
+  
+  // START appData.startCards
+  if (isNaN(appData.startCards))
+    appData.startCards = 6;
+  cardsDrawnAtAppStartInput.value = appData.startCards;
+  // END appData.startCards
 
+  selectSettingsCategory(1);
   saveAppData();
 }
 recoverSettingsState();

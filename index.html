@@ -41,7 +41,7 @@
       <div id="splashScreenAppInfo">
         <h1>DeckSpace</h1>
         <h3>by lucAmbr0</h2>
-        <h4>v1.59.169</h4>
+        <h4>v1.60.172</h4>
       </div>
     </div>
     <div class="HIDDEN" id="darkOverlay"></div>
@@ -55,12 +55,12 @@
       <div class="embeddedSettingsSectionsContainer">
         <div class="preferencesListContainer">
           <button onclick="selectSettingsCategory(0)" class="settingCategoryBtn">
-            <h1>Default rules</h1>
+            <h1>Balance & Bets</h1>
             <p>Default balance, default bet, increase/decrease</p>
           </button>
           <button onclick="selectSettingsCategory(1)" class="settingCategoryBtn">
-            <h1>Customize cards</h1>
-            <p>Card skins, covered card skins, deck settings</p>
+            <h1>Cards Preferences</h1>
+            <p>Card rules, Card skins, deck settings</p>
           </button>
           <button onclick="selectSettingsCategory(2)" class="settingCategoryBtn">
             <h1>Performance</h1>
@@ -133,7 +133,41 @@
             </div>
             <div style="height: 10px;"></div>
           </div>
-          <div class="categoryDetailsContainer HIDDEN"></div>
+          <div class="categoryDetailsContainer HIDDEN">
+            <div class="cardsPreviewContainer">
+                <h1>Cards customization</h1>
+              <div class="cardsPreviewContainerHeader">
+                <div>
+                  <h2>Front</h2>
+                  <select>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+                <div>
+                  <h2>Back</h2>
+                  <select>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+              </div>
+              <div class="cardsPreviewContainerBody">
+                <img src="assets/deck1/10.3.png" alt="10.3" class="10.3 cardPreview">
+                <img src="assets/covered/back1.png" alt="coveredCard" class="10.3 cardPreview">
+              </div>
+            </div>
+            <div class="switch-container">
+              <div class="switch-label">Cards drawn at app start</div>
+                <div class="switch">
+                  <input type="number" class="numberInput" value="6" id="cardsDrawnAtAppStartInput" onchange="changeCardsDrawnAtAppStart()">
+              </div>
+            </div>
+          </div>
           <div class="categoryDetailsContainer HIDDEN"></div>
           <div class="categoryDetailsContainer HIDDEN"></div>
           <div class="categoryDetailsContainer HIDDEN">

@@ -699,14 +699,10 @@ h4 {
     width: 100%;
     height: 100%;
     background-size: cover;
-    /* Makes sure the SVG covers the whole div */
     background-position: center;
-    /* Centers the background */
     background-repeat: no-repeat;
     image-rendering: pixelated;
-    /* Preserve pixel sharpness */
     image-rendering: crisp-edges;
-    /* Fallback for older browsers */
     transition: all 0.2s ease;
 }
 
@@ -868,7 +864,7 @@ h4 {
 
 .embeddedSettingsSectionsContainer {
     display: grid;
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 3fr 4fr;
     height: calc(95vh - 70px);
     padding: 0 10px;
     gap: 10px;
@@ -1057,6 +1053,71 @@ h4 {
     border-radius: 15px;
     border: none;
     padding: 0;
+}
+
+.cardsPreviewContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    width: 92% !important;
+    height: fit-content !important;
+    margin: 15px auto;
+    background-color: transparent;
+    border: solid 2px gray;
+}
+
+.cardsPreviewContainer h1 {
+    font-family: var(--HeadingFont);
+    font-size: 35px;
+    color: rgb(240,240,240);
+    font-weight: 700;
+    text-align: center;
+    border-radius: 0 !important;
+    border-bottom: solid 2px gray;
+    margin: 0;
+    padding: 5px 0;
+}
+
+.cardsPreviewContainerHeader, .cardsPreviewContainerBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.cardsPreviewContainerHeader div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    height: fit-content !important;
+}
+
+.cardsPreviewContainerHeader select {
+    height: 35px;
+    margin: 5px 0 0 10px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: rgb(245,245,245);
+    border: solid 1px gray;
+    padding: 2px;
+    font-family: var(--StandardTextFont);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.cardsPreviewContainerHeader h2 {
+    color: rgb(235, 235, 235);
+    font-family: var(--HeadingFont);
+    font-weight: 600;
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+.cardsPreviewContainer .cardPreview {
+    height: calc(95vh - 130px);
+    margin: 10px 10px 20px 10px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 
 

@@ -96,8 +96,8 @@ function saveAppData() {
 }
 recoverAppData();
 
-const startAnimation = false;
-const openSettingsAtStart = true;
+const startAnimation = true;
+const openSettingsAtStart = false;
 
 function drawStartCards() {
   for (let i = 0; i < appData.startCards; i++) drawRandomCard();
@@ -957,7 +957,6 @@ function recoverSettingsState() {
   cardsDrawnAtAppStartInput.value = appData.startCards;
   // END appData.startCards
 
-  selectSettingsCategory(1);
   saveAppData();
 }
 recoverSettingsState();

@@ -1061,7 +1061,7 @@ h4 {
     padding: 0;
     width: 92% !important;
     height: fit-content !important;
-    margin: 15px auto;
+    margin: 15px auto 0 auto;
     background-color: transparent;
     border: solid 2px gray;
 }
@@ -1109,6 +1109,7 @@ h4 {
     color: rgb(235, 235, 235);
     font-family: var(--HeadingFont);
     font-weight: 600;
+    font-size: 28px;
     margin: 5px 0 0 0;
     padding: 0;
 }

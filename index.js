@@ -32,6 +32,8 @@ for (let value = 1; value <= 13; value++) {
     cardImages.push(`assets/deck1/${value}.${seed}.png`);
   }
 }
+for (let i = 0; i < 8; i++)
+  cardImages.push(`assets/covered/back${i}.png`);
 function preloadImages() {
   cardImages.forEach(src => {
     const img = new Image();

@@ -79,7 +79,7 @@ const cardImages = [];
 const seedNames = ["0", "1", "2", "3"];
 for (let value = 1; value <= 13; value++) {
   for (let seed of seedNames) {
-    cardImages.push(`assets/deck${appData.frontSkin | 1}/${value}.${seed}.png`);
+    cardImages.push(`assets/deck${appData.frontSkin || 1}/${value}.${seed}.png`);
   }
 }
 for (let i = 1; i < 8; i++)
@@ -548,7 +548,7 @@ function toggleCoverCard(card) {
   else {
     card.style.animation = "coverCard 0.15s forwards ease-out";
     setTimeout(() => {
-      card.firstChild.src = `assets/deck${appData.frontSkin | 1}/${card.firstChild.alt}.png`;
+      card.firstChild.src = `assets/deck${appData.frontSkin || 1}/${card.firstChild.alt}.png`;
       card.style.animation = "uncoverCard 0.15s forwards ease-out";
     }, 150);
     setTimeout(() => {
@@ -565,7 +565,7 @@ function showCards() {
     card.style.animation = "coverCard 0.15s forwards ease-out";
     setTimeout(() => {
       const src = card.firstChild.alt;
-      card.firstChild.src = `assets/deck${appData.frontSkin | 1}/${src}.png`;
+      card.firstChild.src = `assets/deck${appData.frontSkin || 1}/${src}.png`;
       card.classList.add("cardShown");
       card.style.animation = "uncoverCard 0.15s forwards ease-out";
     }, 150 + (c * 120));
@@ -695,7 +695,7 @@ function addCard(value, seed) {
     cardsTable.appendChild(card);
   }
   else {
-    card.innerHTML = `<img src="assets/deck${appData.frontSkin | 1}/${value}.${seed}.png" alt="${value}.${seed}" class="${value}.${seed}">`;
+    card.innerHTML = `<img src="assets/deck${appData.frontSkin || 1}/${value}.${seed}.png" alt="${value}.${seed}" class="${value}.${seed}">`;
     card.classList.add("cardShown");
     cardsTable.appendChild(card);
   }
@@ -985,6 +985,17 @@ function changeCardsDrawnAtAppStart() {
   saveAppData();
 }
 
+const frontSkinSelect = document.getElementById("frontSkinSelect");
+const previewFrontCard = document.getElementById("previewFrontCard");
+
+function changeFrontSkin() {
+  appData.frontSkin = parseInt(frontSkinSelect.value);
+  shufflePreviewCard();
+  refreshCardPath();
+  saveAppData();
+}
+
+
 const backCoverSelect = document.getElementById("backCoverSelect");
 const coveredCardPreview = document.getElementById("coveredCardPreview");
 
@@ -1008,7 +1019,6 @@ let previewShuffleCooldown = false;
 function shufflePreviewCard() {
   if (previewShuffleCooldown) return;
   previewShuffleCooldown = true;
-  const previewFrontCard = document.getElementById("previewFrontCard");
   previewFrontCard.style.animation = "coverCard 0.15s ease forwards";
   const randomSeed = Math.floor(Math.random() * 4);
   let randomValue = 0;
@@ -1115,6 +1125,12 @@ function recoverSettingsState() {
   coveredCardPreview.src = `assets/covered/back${appData.backCover}.png`;
   backCoverSelect.value = appData.backCover;
   // END appData.backCover
+  
+  // START appData.frontSkin
+  if (isNaN(appData.frontSkin))
+    appData.frontSkin = 1;
+  frontSkinSelect.value = appData.frontSkin;
+  // END appData.frontSkin
 
   // START appData.coverFirstCardsDrawn
   if (appData.coverFirstCardsDrawn)
@@ -1123,7 +1139,7 @@ function recoverSettingsState() {
     toggleCoverFirstCardsSwitch.checked = false;
   // END appData.coverFirstCardsDrawn
 
-  // selectSettingsCategory(4);
+  // selectSettingsCategory(1);
   saveAppData();
 }
 recoverSettingsState();

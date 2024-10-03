@@ -26,12 +26,19 @@ This repository houses a web application designed to facilitate interactive expl
 ## :zap: Usage
 Key features include:
 
-Customizable Interface: Personalize the UI/UX to create a clean and tailored experience that fits your gameplay style.
-Card Management: Add, remove, and organize cards effortlessly with a minimalistic interface. The mirrored display ensures that cards are easy to read from all sides of the table.
-Chip/Betting System: Optional currency mode enables players to track bets and manage chips with full-screen animations, adding transparency to gameplay.
-Offline & Flexible: DeckSpace is completely offline, letting players decide the rules of the game, which cards to use, and how to play.
-Shareable Settings: Save and share your custom settings as a simple code string so all players can quickly sync their configuration for the game.
-DeckSpace is ideal for card enthusiasts who want a sleek, digital card-playing experience without the limitations of specific card games or complicated setups.
+The app’s main page is designed to leave plenty of space for the cards, ensuring readability not only for you but also for other players around you, each with their own instance of the app running on their devices.
+
+Important information, such as your role (Player, Dealer, Table, or Spectator), your total balance, and the amount bet for the current hand, is displayed mirrored so that other players can read it easily, and vice versa for you. By tapping the "Player" badge, you can switch to Dealer mode, which doesn’t change any technical settings. Switching to Table mode removes the balance and betting indicators and controls, making it perfect for displaying the cards centrally for everyone at the table. Lastly, Spectator mode is mainly intended for games like blackjack or poker, where you might sit out a turn.
+
+In the bottom left corner, you’ll find your total balance and the current bet amount. Tapping the balance allows you to quickly increase, decrease, reset it, or set it with the keyboard. Similarly, tapping the bet amount lets you adjust it, lose it with the "X" button, or double it with the "2x" button. These changes are shared in real-time in the mirrored display for full transparency to the other players.
+
+The table cards are interactive with swipe commands. Swipe down on a card to cover it, swipe up to discard it, and swipe left or right to swap its position with the next or previous card.
+
+In the bottom right, the action buttons let you draw a specific card (useful for adding a card from the table to your hand), draw a random card, hide or reveal all cards, and access the settings.
+
+The settings are extensive and well-organized into categories for easy navigation. You can customize every aspect of the game to fit your preferences, and you can export your settings as text to share with friends, making it quick to set up a game with synchronized rules across multiple screens.
+
+At the bottom of the app, you’ll find some extra information, including credits for resources and the developer.
 
 ###  :electric_plug: Installation
 You can get this app in many ways.

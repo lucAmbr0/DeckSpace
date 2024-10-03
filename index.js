@@ -923,6 +923,19 @@ function changeBackCover() {
 }
 
 
+function shufflePreviewCard() {
+  const previewFrontCard = document.getElementById("previewFrontCard");
+  const randomSeed = Math.floor(Math.random() * 4);
+  let randomValue = 0;
+  do {
+    randomValue = Math.floor(Math.random() * 13 + 1);
+  } // prevents from drawing the same card as before
+  while (String(previewFrontCard.src).includes(`/${randomValue}.`));
+  previewFrontCard.src = `assets/deck${appData.frontSkin}/${randomValue}.${randomSeed}.png`;
+  previewFrontCard.alt = `${randomValue}.${randomSeed}-PREVIEW`;
+}
+shufflePreviewCard();
+
 const toggleCoverFirstCardsSwitch = document.getElementById("toggleCoverFirstCardsSwitch");
 
 function toggleCoverFirstCards() {
@@ -932,7 +945,6 @@ function toggleCoverFirstCards() {
     appData.coverFirstCardsDrawn = false;
   saveAppData();
 }
-
 
 function refreshCardPath() {
   cards = document.querySelectorAll(".card");

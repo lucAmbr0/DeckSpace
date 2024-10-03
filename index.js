@@ -25,25 +25,24 @@ function serviceWorker() {
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-let appData = {
-  useBalance: undefined,
-  appStartBalance: undefined,
-  appStartBet: undefined,
-  startCards: undefined,
+let appDataDefaults = {
+  useBalance: true,
+  appStartBalance: 150,
+  appStartBet: 0,
+  startCards: 6,
   coverFirstCardsDrawn: undefined,
-  useBadges: undefined,
-  balance: undefined,
-  allowNegativeBalance: undefined,
-  defaultBalanceAdd: undefined,
-  defaultBalanceRemove: undefined,
-  maxBalance: undefined,
-  minBalance: undefined,
-  bet: undefined,
-  appStartBet: undefined,
-  defaultBetRemove: undefined,
-  defaultBetAdd: undefined,
-  maxBet: undefined,
-  minBet: undefined,
+  useBadges: true,
+  balance: 150,
+  allowNegativeBalance: false,
+  defaultBalanceAdd: 10,
+  defaultBalanceRemove: 10,
+  maxBalance: 99999,
+  minBalance: -99999,
+  bet: 0,
+  defaultBetRemove: 5,
+  defaultBetAdd: 5,
+  maxBet: 99999,
+  minBet: 0,
   frontSkin: 1,
   backCover: 1
 };
@@ -53,36 +52,22 @@ function recoverAppData() {
 
   if (storedData) {
     appData = JSON.parse(storedData);
+
+    // Aggiungi solo le proprietà mancanti da appDataDefaults
+    appData = { ...appDataDefaults, ...appData };
   } else {
-    appData = {
-      useBalance: true,
-      appStartBalance: 150,
-      startCards: 6,
-      coverFirstCardsDrawn: undefined,
-      useBadges: true,
-      balance: 150,
-      allowNegativeBalance: false,
-      defaultBalanceAdd: 10,
-      defaultBalanceRemove: 10,
-      maxBalance: 99999,
-      minBalance: -99999,
-      bet: 0,
-      appStartBet: 0,
-      defaultBetRemove: 5,
-      defaultBetAdd: 5,
-      maxBet: 99999,
-      minBet: 0,
-      frontSkin: 1,
-      backCover: 1
-    };
+    appData = { ...appDataDefaults };
   }
+  
   saveAppData();
 }
 
 function saveAppData() {
-  if (JSON.stringify(localStorage.getItem('appData')) != JSON.stringify(appData))
+  if (JSON.stringify(localStorage.getItem('appData')) != JSON.stringify(appData)) {
     localStorage.setItem('appData', JSON.stringify(appData)); // Save data as a string
+  }
 }
+
 recoverAppData();
 
 const startAnimation = true;

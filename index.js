@@ -25,10 +25,9 @@ function serviceWorker() {
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-let appDataDefaults = {
+let defaultAppData = {
   useBalance: true,
   appStartBalance: 150,
-  appStartBet: 0,
   startCards: 6,
   coverFirstCardsDrawn: undefined,
   useBadges: true,
@@ -39,6 +38,7 @@ let appDataDefaults = {
   maxBalance: 99999,
   minBalance: -99999,
   bet: 0,
+  appStartBet: 0,
   defaultBetRemove: 5,
   defaultBetAdd: 5,
   maxBet: 99999,
@@ -51,24 +51,24 @@ function recoverAppData() {
   const storedData = localStorage.getItem('appData');
 
   if (storedData) {
-    appData = JSON.parse(storedData);
+    const parsedData = JSON.parse(storedData);
 
-    // Aggiungi solo le proprietà mancanti da appDataDefaults
-    appData = { ...appDataDefaults, ...appData };
+    // Unisci l'oggetto salvato con l'oggetto di default
+    appData = { ...defaultAppData, ...parsedData };
   } else {
-    appData = { ...appDataDefaults };
+    appData = defaultAppData;
   }
-  
+
   saveAppData();
 }
 
 function saveAppData() {
-  if (JSON.stringify(localStorage.getItem('appData')) != JSON.stringify(appData)) {
+  if (JSON.stringify(localStorage.getItem('appData')) != JSON.stringify(appData))
     localStorage.setItem('appData', JSON.stringify(appData)); // Save data as a string
-  }
 }
 
 recoverAppData();
+
 
 const startAnimation = true;
 const openSettingsAtStart = false;

@@ -25,25 +25,24 @@ function serviceWorker() {
 
 // ---------------  DEBUG VARIABLES  ---------------
 
-let appData = {
-  useBalance: undefined,
-  appStartBalance: undefined,
-  appStartBet: undefined,
-  startCards: undefined,
+let defaultAppData = {
+  useBalance: true,
+  appStartBalance: 150,
+  startCards: 6,
   coverFirstCardsDrawn: undefined,
-  useBadges: undefined,
-  balance: undefined,
-  allowNegativeBalance: undefined,
-  defaultBalanceAdd: undefined,
-  defaultBalanceRemove: undefined,
-  maxBalance: undefined,
-  minBalance: undefined,
-  bet: undefined,
-  appStartBet: undefined,
-  defaultBetRemove: undefined,
-  defaultBetAdd: undefined,
-  maxBet: undefined,
-  minBet: undefined,
+  useBadges: true,
+  balance: 150,
+  allowNegativeBalance: false,
+  defaultBalanceAdd: 10,
+  defaultBalanceRemove: 10,
+  maxBalance: 99999,
+  minBalance: -99999,
+  bet: 0,
+  appStartBet: 0,
+  defaultBetRemove: 5,
+  defaultBetAdd: 5,
+  maxBet: 99999,
+  minBet: 0,
   frontSkin: 1,
   backCover: 1
 };
@@ -52,30 +51,14 @@ function recoverAppData() {
   const storedData = localStorage.getItem('appData');
 
   if (storedData) {
-    appData = JSON.parse(storedData);
+    const parsedData = JSON.parse(storedData);
+
+    // Unisci l'oggetto salvato con l'oggetto di default
+    appData = { ...defaultAppData, ...parsedData };
   } else {
-    appData = {
-      useBalance: true,
-      appStartBalance: 150,
-      startCards: 6,
-      coverFirstCardsDrawn: undefined,
-      useBadges: true,
-      balance: 150,
-      allowNegativeBalance: false,
-      defaultBalanceAdd: 10,
-      defaultBalanceRemove: 10,
-      maxBalance: 99999,
-      minBalance: -99999,
-      bet: 0,
-      appStartBet: 0,
-      defaultBetRemove: 5,
-      defaultBetAdd: 5,
-      maxBet: 99999,
-      minBet: 0,
-      frontSkin: 1,
-      backCover: 1
-    };
+    appData = defaultAppData;
   }
+
   saveAppData();
 }
 
@@ -83,7 +66,9 @@ function saveAppData() {
   if (JSON.stringify(localStorage.getItem('appData')) != JSON.stringify(appData))
     localStorage.setItem('appData', JSON.stringify(appData)); // Save data as a string
 }
+
 recoverAppData();
+
 
 const startAnimation = true;
 const openSettingsAtStart = false;
@@ -910,10 +895,10 @@ const coveredCardPreview = document.getElementById("coveredCardPreview");
 function changeBackCover() {
   appData.backCover = parseInt(backCoverSelect.value);
   coveredCardPreview.classList.remove("cardShown");
-  coveredCardPreview.style.animation = "coverCard 0.15s forwards ease-out";
+  coveredCardPreview.style.animation = "coverCard 0.15s forwards ease";
   setTimeout(() => {
     coveredCardPreview.src = `assets/covered/back${appData.backCover}.png`;
-    coveredCardPreview.style.animation = "uncoverCard 0.15s forwards ease-out";
+    coveredCardPreview.style.animation = "uncoverCard 0.15s forwards ease";
   }, 150);
   setTimeout(() => {
     coveredCardPreview.style.animation = "none";
@@ -922,17 +907,27 @@ function changeBackCover() {
   saveAppData();
 }
 
+let previewShuffleCooldown = false;
 
 function shufflePreviewCard() {
+  if (previewShuffleCooldown) return;
+  previewShuffleCooldown = true;
   const previewFrontCard = document.getElementById("previewFrontCard");
+  previewFrontCard.style.animation = "coverCard 0.15s ease forwards";
   const randomSeed = Math.floor(Math.random() * 4);
   let randomValue = 0;
   do {
     randomValue = Math.floor(Math.random() * 13 + 1);
   } // prevents from drawing the same card as before
   while (String(previewFrontCard.src).includes(`/${randomValue}.`));
-  previewFrontCard.src = `assets/deck${appData.frontSkin}/${randomValue}.${randomSeed}.png`;
-  previewFrontCard.alt = `${randomValue}.${randomSeed}-PREVIEW`;
+  setTimeout(() => {
+    previewFrontCard.src = `assets/deck${appData.frontSkin}/${randomValue}.${randomSeed}.png`;
+    previewFrontCard.alt = `${randomValue}.${randomSeed}-PREVIEW`;
+    previewFrontCard.style.animation = "uncoverCard 0.15s ease forwards";
+  }, 150);
+    setTimeout(() => {
+    previewShuffleCooldown = false;
+  }, 250);
 }
 shufflePreviewCard();
 

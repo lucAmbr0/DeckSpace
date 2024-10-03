@@ -994,6 +994,7 @@ function recoverSettingsState() {
   // START appData.backCover
   if (isNaN(appData.backCover))
     appData.backCover = 1;
+  coveredCardPreview.src = `assets/covered/back${appData.backCover}.png`;
   backCoverSelect.value = appData.backCover;
   // END appData.backCover
 

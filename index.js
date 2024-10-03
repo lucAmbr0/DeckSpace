@@ -32,7 +32,7 @@ for (let value = 1; value <= 13; value++) {
     cardImages.push(`assets/deck1/${value}.${seed}.png`);
   }
 }
-for (let i = 0; i < 8; i++)
+for (let i = 1; i < 8; i++)
   cardImages.push(`assets/covered/back${i}.png`);
 function preloadImages() {
   cardImages.forEach(src => {
@@ -102,8 +102,8 @@ function saveAppData() {
 }
 recoverAppData();
 
-const startAnimation = false;
-const openSettingsAtStart = true;
+const startAnimation = true;
+const openSettingsAtStart = false;
 
 function drawStartCards() {
   for (let i = 0; i < appData.startCards; i++) drawRandomCard();
@@ -915,9 +915,19 @@ function changeBackCover() {
   setTimeout(() => {
     coveredCardPreview.style.animation = "none";
   }, 300);
+  refreshCardPath();
   saveAppData();
 }
 
+function refreshCardPath() {
+  cards = document.querySelectorAll(".card");
+  cards.forEach(card => {
+    const pre = card.firstChild.src;
+      if (String(pre).includes("back")) {
+        card.firstChild.src = `assets/covered/back${appData.backCover}.png`;
+      }
+  })
+}
 
 
 // --------------- CHANGE HTML ELEMENTS STATE TO LAST SET PREFERENCES IN LOCALSTORAGE ---------------
@@ -987,7 +997,7 @@ function recoverSettingsState() {
   backCoverSelect.value = appData.backCover;
   // END appData.backCover
 
-  selectSettingsCategory(1);
+  // selectSettingsCategory(1);
   saveAppData();
 }
 recoverSettingsState();

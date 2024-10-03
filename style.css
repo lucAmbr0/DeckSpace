@@ -1007,7 +1007,7 @@ h4 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 15;
 }
 
@@ -1350,4 +1350,5 @@ a {
     max-width: 80%;
     max-height: 60%;
     margin-bottom: 10px;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
 }

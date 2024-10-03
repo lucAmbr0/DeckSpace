@@ -41,7 +41,7 @@
       <div id="splashScreenAppInfo">
         <h1>DeckSpace</h1>
         <h3>by lucAmbr0</h2>
-        <h4>v1.62.177</h4>
+        <h4>v1.63.186</h4>
       </div>
     </div>
     <div class="HIDDEN" id="darkOverlay"></div>
@@ -163,11 +163,22 @@
               </div>
             </div>
             <div class="switch-container">
+                <div class="switch-label">Cover first cards drawn</div>
+                <div class="switch">
+                  <input
+                    type="checkbox"
+                    id="toggleCoverFirstCardsSwitch"
+                    class="switch-input"
+                    onchange="toggleCoverFirstCards()"
+                  />
+                  <label for="toggleCoverFirstCardsSwitch" class="switch-toggle"></label>
+                </div>
               <div class="switch-label">Cards drawn at app start</div>
                 <div class="switch">
                   <input type="number" class="numberInput" value="6" id="cardsDrawnAtAppStartInput" onchange="changeCardsDrawnAtAppStart()">
               </div>
             </div>
+            <div style="height: 10px;"></div>
           </div>
           <div class="categoryDetailsContainer HIDDEN"></div>
           <div class="categoryDetailsContainer HIDDEN"></div>
@@ -182,7 +193,7 @@
                 <p>PWA Name</p>
                 <p class="alignRight">DeckSpace</p>
                 <p>App Version</p>
-                <p class="alignRight">1.62.177</p>
+                <p class="alignRight">1.63.186</p>
                 <p>License</p>
                 <p class="alignRight">MIT License</p>
               </div>
@@ -292,7 +303,7 @@
             <button onclick="openSettings()">
               <span class="material-symbols-outlined"> settings </span>
             </button>
-            <button onclick="toggleCoverCards(this)">
+            <button onclick="toggleCoverCards()" id="toggleCoverCardsBtn">
               <span class="material-symbols-outlined"> visibility </span>
             </button>
             <button onclick="drawRandomCard()">

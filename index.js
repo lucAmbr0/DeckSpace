@@ -23,25 +23,6 @@ function serviceWorker() {
 }
 
 
-// ---------------  FORCE CARD ASSETS PRE-LOAD  ---------------
-
-const cardImages = [];
-const seedNames = ["0", "1", "2", "3"];
-for (let value = 1; value <= 13; value++) {
-  for (let seed of seedNames) {
-    cardImages.push(`assets/deck1/${value}.${seed}.png`);
-  }
-}
-for (let i = 1; i < 8; i++)
-  cardImages.push(`assets/covered/back${i}.png`);
-function preloadImages() {
-  cardImages.forEach(src => {
-    const img = new Image();
-    img.src = src;  // Triggers the image to load
-  });
-}
-window.onload = preloadImages();
-
 // ---------------  DEBUG VARIABLES  ---------------
 
 let appData = {
@@ -49,6 +30,7 @@ let appData = {
   appStartBalance: undefined,
   appStartBet: undefined,
   startCards: undefined,
+  coverFirstCardsDrawn: undefined,
   useBadges: undefined,
   balance: undefined,
   allowNegativeBalance: undefined,
@@ -76,6 +58,7 @@ function recoverAppData() {
       useBalance: true,
       appStartBalance: 150,
       startCards: 6,
+      coverFirstCardsDrawn: undefined,
       useBadges: true,
       balance: 150,
       allowNegativeBalance: false,
@@ -105,10 +88,24 @@ recoverAppData();
 const startAnimation = true;
 const openSettingsAtStart = false;
 
-function drawStartCards() {
-  for (let i = 0; i < appData.startCards; i++) drawRandomCard();
-}
+// ---------------  FORCE CARD ASSETS PRE-LOAD  ---------------
 
+const cardImages = [];
+const seedNames = ["0", "1", "2", "3"];
+for (let value = 1; value <= 13; value++) {
+  for (let seed of seedNames) {
+    cardImages.push(`assets/deck${appData.frontSkin | 1}/${value}.${seed}.png`);
+  }
+}
+for (let i = 1; i < 8; i++)
+  cardImages.push(`assets/covered/back${i}.png`);
+function preloadImages() {
+  cardImages.forEach(src => {
+    const img = new Image();
+    img.src = src;  // Triggers the image to load
+  });
+}
+window.onload = preloadImages();
 
 // ---------------  SPLASHSCREEN ANIMATION  ---------------
 
@@ -515,16 +512,18 @@ values.forEach(value => {
 let cards = document.querySelectorAll(".card");
 const cardsTable = document.getElementById("cardsTable");
 
-function toggleCoverCards(button) {
+
+function toggleCoverCards() {
+  const toggleCoverCardsBtn = document.getElementById("toggleCoverCardsBtn");
   if (coverBtnDisabled) return;
   coverBtnDisabled = true;
   cardsCovered = !cardsCovered;
   if (cardsCovered) {
-    button.querySelector('span').textContent = "visibility_off";
+    toggleCoverCardsBtn.querySelector('span').textContent = "visibility_off";
     coverCards();
   }
   else {
-    button.querySelector('span').textContent = "visibility";
+    toggleCoverCardsBtn.querySelector('span').textContent = "visibility";
     showCards();
   }
   setTimeout(() => {
@@ -564,7 +563,7 @@ function toggleCoverCard(card) {
   else {
     card.style.animation = "coverCard 0.15s forwards ease-out";
     setTimeout(() => {
-      card.firstChild.src = `assets/deck1/${card.firstChild.alt}.png`;
+      card.firstChild.src = `assets/deck${appData.frontSkin | 1}/${card.firstChild.alt}.png`;
       card.style.animation = "uncoverCard 0.15s forwards ease-out";
     }, 150);
     setTimeout(() => {
@@ -581,7 +580,7 @@ function showCards() {
     card.style.animation = "coverCard 0.15s forwards ease-out";
     setTimeout(() => {
       const src = card.firstChild.alt;
-      card.firstChild.src = `assets/deck1/${src}.png`;
+      card.firstChild.src = `assets/deck${appData.frontSkin | 1}/${src}.png`;
       card.classList.add("cardShown");
       card.style.animation = "uncoverCard 0.15s forwards ease-out";
     }, 150 + (c * 120));
@@ -711,7 +710,7 @@ function addCard(value, seed) {
     cardsTable.appendChild(card);
   }
   else {
-    card.innerHTML = `<img src="assets/deck1/${value}.${seed}.png" alt="${value}.${seed}" class="${value}.${seed}">`;
+    card.innerHTML = `<img src="assets/deck${appData.frontSkin | 1}/${value}.${seed}.png" alt="${value}.${seed}" class="${value}.${seed}">`;
     card.classList.add("cardShown");
     cardsTable.appendChild(card);
   }
@@ -729,8 +728,12 @@ function drawRandomCard() {
   cardMatrix[randomValue][randomSeed] = true;
   addCard(randomValue, randomSeed);
 }
-drawStartCards();
 
+function drawStartCards() {
+  if (appData.coverFirstCardsDrawn) toggleCoverCards();
+  for (let i = 0; i < appData.startCards; i++) drawRandomCard();
+}
+drawStartCards();
 
 // --------------- SETTINGS ---------------
 
@@ -919,13 +922,25 @@ function changeBackCover() {
   saveAppData();
 }
 
+
+const toggleCoverFirstCardsSwitch = document.getElementById("toggleCoverFirstCardsSwitch");
+
+function toggleCoverFirstCards() {
+  if (toggleCoverFirstCardsSwitch.checked)
+    appData.coverFirstCardsDrawn = true;
+  else
+    appData.coverFirstCardsDrawn = false;
+  saveAppData();
+}
+
+
 function refreshCardPath() {
   cards = document.querySelectorAll(".card");
   cards.forEach(card => {
     const pre = card.firstChild.src;
-      if (String(pre).includes("back")) {
-        card.firstChild.src = `assets/covered/back${appData.backCover}.png`;
-      }
+    if (String(pre).includes("back")) {
+      card.firstChild.src = `assets/covered/back${appData.backCover}.png`;
+    }
   })
 }
 
@@ -984,18 +999,26 @@ function recoverSettingsState() {
     appData.defaultBetRemove = 5;
   defaultBetDecreaseInput.value = appData.defaultBetRemove;
   // END appData.defaultBetRemove
-  
+
   // START appData.startCards
   if (isNaN(appData.startCards))
     appData.startCards = 6;
   cardsDrawnAtAppStartInput.value = appData.startCards;
   // END appData.startCards
-  
+
   // START appData.backCover
   if (isNaN(appData.backCover))
     appData.backCover = 1;
+  coveredCardPreview.src = `assets/covered/back${appData.backCover}.png`;
   backCoverSelect.value = appData.backCover;
   // END appData.backCover
+
+  // START appData.coverFirstCardsDrawn
+  if (appData.coverFirstCardsDrawn)
+    toggleCoverFirstCardsSwitch.checked = true;
+  else
+    toggleCoverFirstCardsSwitch.checked = false;
+  // END appData.coverFirstCardsDrawn
 
   // selectSettingsCategory(1);
   saveAppData();

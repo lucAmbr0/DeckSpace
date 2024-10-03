@@ -41,7 +41,7 @@
       <div id="splashScreenAppInfo">
         <h1>DeckSpace</h1>
         <h3>by lucAmbr0</h2>
-        <h4>v1.60.172</h4>
+        <h4>v1.61.176</h4>
       </div>
     </div>
     <div class="HIDDEN" id="darkOverlay"></div>
@@ -141,24 +141,25 @@
                   <h2>Front</h2>
                   <select>
                     <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
                   </select>
                 </div>
                 <div>
                   <h2>Back</h2>
-                  <select>
+                  <select id="backCoverSelect" onchange="changeBackCover()">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
                   </select>
                 </div>
               </div>
               <div class="cardsPreviewContainerBody">
                 <img src="assets/deck1/10.3.png" alt="10.3" class="10.3 cardPreview">
-                <img src="assets/covered/back1.png" alt="coveredCard" class="10.3 cardPreview">
+                <img src="assets/covered/back1.png" id="coveredCardPreview" alt="coveredCard" class="10.3 cardPreview">
               </div>
             </div>
             <div class="switch-container">
@@ -181,7 +182,7 @@
                 <p>PWA Name</p>
                 <p class="alignRight">DeckSpace</p>
                 <p>App Version</p>
-                <p class="alignRight">1.59.169</p>
+                <p class="alignRight">1.60.176</p>
                 <p>License</p>
                 <p class="alignRight">MIT License</p>
               </div>

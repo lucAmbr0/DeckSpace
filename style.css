@@ -1114,10 +1114,16 @@ h4 {
 }
 
 .cardsPreviewContainer .cardPreview {
-    height: calc(95vh - 130px);
+    width: 50%;
     margin: 10px 10px 20px 10px;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
+    transition: 0.2s ease;
+}
+
+.cardPreview:active {
+    scale: 0.95;
+    transform: rotate(1deg);
 }
 
 

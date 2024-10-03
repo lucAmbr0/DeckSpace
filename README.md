@@ -226,7 +226,11 @@ Not ready yet :D
 
 
 ## :star2: Credit/Acknowledgment
-I'm the only one that worked on this as of now :')
+### [Deck 1 - yuidust's deck-of-cards](https://yuidust.itch.io/deck-of-cards)
+<img src="assets/deck1/overview.png" alt="yuidust's deck-of-cards thumbnail" width="350" height="auto">
+
+### [Deck 2 - Kin Pixel Playing Cards](https://the-wild-kin.itch.io/kin-pixel-playing-cards)
+<img src="assets/deck2/overview.png" alt="Kin Pixel Playing Cards thumbnail" width="350" height="auto">
 
 ##  :lock: License
 This project is licensed with the GNU General Public License v3.0, please refer to the file to know more.

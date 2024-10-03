@@ -753,6 +753,102 @@ function selectSettingsCategory(idx) {
   categoryDetailsContainer[idx].classList.remove("HIDDEN");
 }
 
+// --------------- CREDITS CAROUSEL ---------------
+
+const aboutCarousel = document.querySelector('.about-carousel');
+const aboutPages = document.querySelectorAll('.about-page');
+let currentPageIndex = 0;
+
+// Set the initial active page
+aboutPages[currentPageIndex].classList.add('active');
+
+function setupCarouselSwipe() {
+  let startX = 0, currentX = 0, deltaX = 0;
+  
+  aboutCarousel.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX; // Record initial X position
+  });
+  
+  aboutCarousel.addEventListener('touchmove', (e) => {
+    currentX = e.touches[0].clientX; // Get current X position
+    deltaX = currentX - startX; // Calculate how far the card has moved horizontally
+  });
+  
+  aboutCarousel.addEventListener('touchend', () => {
+    if (deltaX > 50) {
+      // Swiped to the right: show previous page
+      if (currentPageIndex > 0) {
+        changePage(currentPageIndex - 1, 0);
+      }
+    } else if (deltaX < -50) {
+      // Swiped to the left: show next page
+      if (currentPageIndex < aboutPages.length - 1) {
+        changePage(currentPageIndex + 1, 1);
+      }
+    }
+  });
+}
+
+function changePage(newIndex, direction) {
+  const currentPage = aboutPages[currentPageIndex];
+  const nextPage = aboutPages[newIndex];
+  
+  if (direction == 0) {
+    currentPage.style.animation = "exitRight 0.1s ease forwards";
+    setTimeout(() => {
+      currentPage.style.display = "none";
+      nextPage.style.display = "flex";
+      nextPage.style.animation = "enterLeft 0.2s ease forwards";
+    }, 100);
+    setTimeout(() => {
+      nextPage.style.animation = "none";
+      currentPage.style.animation = "none";
+    }, 300);
+  }
+  else {
+    currentPage.style.animation = "exitLeft 0.1s ease forwards";
+    setTimeout(() => {
+      currentPage.style.display = "none";
+      nextPage.style.display = "flex";
+      nextPage.style.animation = "enterRight 0.2s ease forwards";
+    }, 100);
+    setTimeout(() => {
+      nextPage.style.animation = "none";
+      currentPage.style.animation = "none";
+    }, 300);
+  }
+  
+  
+  currentPage.classList.remove('active');
+  nextPage.classList.add('active');
+  
+  // Update the current page index
+  currentPageIndex = newIndex;
+  
+  // Update the active dot
+  updateDots();
+}
+
+const dots = document.querySelectorAll('.dot');
+function updateDots() {
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentPageIndex);
+  });
+}
+
+dots.forEach((dot) => {
+  dot.addEventListener('click', () => {
+    const index = parseInt(dot.dataset.index, 10);
+    changePage(index);
+  });
+});
+
+// Initialize swipe functionality
+setupCarouselSwipe();
+
+
+// --------------- SETTINGS ---------------
+
 const mirroredBalanceContainer = document.getElementById("mirroredBalanceContainer");
 const balanceBetsControlsContainer = document.getElementById("balanceBetsControlsContainer");
 const balanceBetsSwitch = document.getElementById("balanceBetsSwitch");
@@ -925,7 +1021,7 @@ function shufflePreviewCard() {
     previewFrontCard.alt = `${randomValue}.${randomSeed}-PREVIEW`;
     previewFrontCard.style.animation = "uncoverCard 0.15s ease forwards";
   }, 150);
-    setTimeout(() => {
+  setTimeout(() => {
     previewShuffleCooldown = false;
   }, 250);
 }
@@ -1027,7 +1123,7 @@ function recoverSettingsState() {
     toggleCoverFirstCardsSwitch.checked = false;
   // END appData.coverFirstCardsDrawn
 
-  // selectSettingsCategory(1);
+  // selectSettingsCategory(4);
   saveAppData();
 }
 recoverSettingsState();

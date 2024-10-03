@@ -54,17 +54,15 @@ I will try to keep the repository structure as clean as possible to make mainten
 . DECKSPACE
 │   index.html
 │   index.js
+│   LICENSE
 │   manifest.json
 │   README.md
 │   service_worker.js
 │   style.css
 │
 ├───assets
-│   │   clubs.png
-│   │   diamonds.png
 │   │   emptyPixel.png
-│   │   hearts.png
-│   │   spades.png
+│   │   github-mark.svg
 │   │
 │   ├───covered
 │   │       back1.png
@@ -76,121 +74,59 @@ I will try to keep the repository structure as clean as possible to make mainten
 │   │       back7.png
 │   │       back8.png
 │   │
-│   ├───deck1
-│   │       1.0.png
-│   │       1.1.png
-│   │       1.2.png
-│   │       1.3.png
-│   │       10.0.png
-│   │       10.1.png
-│   │       10.2.png
-│   │       10.3.png
-│   │       11.0.png
-│   │       11.1.png
-│   │       11.2.png
-│   │       11.3.png
-│   │       12.0.png
-│   │       12.1.png
-│   │       12.2.png
-│   │       12.3.png
-│   │       13.0.png
-│   │       13.1.png
-│   │       13.2.png
-│   │       13.3.png
-│   │       2.0.png
-│   │       2.1.png
-│   │       2.2.png
-│   │       2.3.png
-│   │       3.0.png
-│   │       3.1.png
-│   │       3.2.png
-│   │       3.3.png
-│   │       4.0.png
-│   │       4.1.png
-│   │       4.2.png
-│   │       4.3.png
-│   │       5.0.png
-│   │       5.1.png
-│   │       5.2.png
-│   │       5.3.png
-│   │       6.0.png
-│   │       6.1.png
-│   │       6.2.png
-│   │       6.3.png
-│   │       7.0.png
-│   │       7.1.png
-│   │       7.2.png
-│   │       7.3.png
-│   │       8.0.png
-│   │       8.1.png
-│   │       8.2.png
-│   │       8.3.png
-│   │       9.0.png
-│   │       9.1.png
-│   │       9.2.png
-│   │       9.3.png
-│   │
-│   └───deck2
-│           All.png
-│           Back_1.png
-│           Back_2.png
-│           Back_3.png
-│           Back_4.png
-│           Back_5.png
-│           Clubs_10.png
-│           Clubs_2.png
-│           Clubs_3.png
-│           Clubs_4.png
-│           Clubs_5.png
-│           Clubs_6.png
-│           Clubs_7.png
-│           Clubs_8.png
-│           Clubs_9.png
-│           Clubs_ACE.png
-│           Clubs_J.png
-│           Clubs_K.png
-│           Clubs_Q.png
-│           Diamonds_10.png
-│           Diamonds_2.png
-│           Diamonds_3.png
-│           Diamonds_4.png
-│           Diamonds_5.png
-│           Diamonds_6.png
-│           Diamonds_7.png
-│           Diamonds_8.png
-│           Diamonds_9.png
-│           Diamonds_ACE.png
-│           Diamonds_J.png
-│           Diamonds_K.png
-│           Diamonds_Q.png
-│           Hearts_10.png
-│           Hearts_2.png
-│           Hearts_3.png
-│           Hearts_4.png
-│           Hearts_5.png
-│           Hearts_6.png
-│           Hearts_7.png
-│           Hearts_8.png
-│           Hearts_9.png
-│           Hearts_ACE.png
-│           Hearts_J.png
-│           Hearts_K.png
-│           Hearts_Q.png
-│           Joker_1.png
-│           Joker_2.png
-│           Spades_10.png
-│           Spades_2.png
-│           Spades_3.png
-│           Spades_4.png
-│           Spades_5.png
-│           Spades_6.png
-│           Spades_7.png
-│           Spades_8.png
-│           Spades_9.png
-│           Spades_ACE.png
-│           Spades_J.png
-│           Spades_K.png
-│           Spades_Q.png
+│   └───deck1
+│           1.0.png
+│           1.1.png
+│           1.2.png
+│           1.3.png
+│           10.0.png
+│           10.1.png
+│           10.2.png
+│           10.3.png
+│           11.0.png
+│           11.1.png
+│           11.2.png
+│           11.3.png
+│           12.0.png
+│           12.1.png
+│           12.2.png
+│           12.3.png
+│           13.0.png
+│           13.1.png
+│           13.2.png
+│           13.3.png
+│           2.0.png
+│           2.1.png
+│           2.2.png
+│           2.3.png
+│           3.0.png
+│           3.1.png
+│           3.2.png
+│           3.3.png
+│           4.0.png
+│           4.1.png
+│           4.2.png
+│           4.3.png
+│           5.0.png
+│           5.1.png
+│           5.2.png
+│           5.3.png
+│           6.0.png
+│           6.1.png
+│           6.2.png
+│           6.3.png
+│           7.0.png
+│           7.1.png
+│           7.2.png
+│           7.3.png
+│           8.0.png
+│           8.1.png
+│           8.2.png
+│           8.3.png
+│           9.0.png
+│           9.1.png
+│           9.2.png
+│           9.3.png
 │
 ├───fonts
 │   ├───Material_Symbols
@@ -286,4 +222,4 @@ Not ready yet :D
 I'm the only one that worked on this as of now :')
 
 ##  :lock: License
-This project is licensed with MIT License. You can practically do anything with this code. Read the full License file for more specific details.
+This project is licensed with the GNU General Public License v3.0, please refer to the file to know more.

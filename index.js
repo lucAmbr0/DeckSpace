@@ -70,8 +70,8 @@ function saveAppData() {
 recoverAppData();
 
 
-const startAnimation = true;
-const openSettingsAtStart = false;
+const startAnimation = false;
+const openSettingsAtStart = true;
 
 // ---------------  FORCE CARD ASSETS PRE-LOAD  ---------------
 
@@ -1123,7 +1123,7 @@ function recoverSettingsState() {
     toggleCoverFirstCardsSwitch.checked = false;
   // END appData.coverFirstCardsDrawn
 
-  // selectSettingsCategory(4);
+  selectSettingsCategory(4);
   saveAppData();
 }
 recoverSettingsState();

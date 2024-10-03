@@ -60,6 +60,8 @@ let appData = {
   defaultBetAdd: undefined,
   maxBet: undefined,
   minBet: undefined,
+  frontSkin: 1,
+  backCover: 1
 };
 
 function recoverAppData() {
@@ -85,6 +87,8 @@ function recoverAppData() {
       defaultBetAdd: 5,
       maxBet: 99999,
       minBet: 0,
+      frontSkin: 1,
+      backCover: 1
     };
   }
   saveAppData();
@@ -96,8 +100,8 @@ function saveAppData() {
 }
 recoverAppData();
 
-const startAnimation = true;
-const openSettingsAtStart = false;
+const startAnimation = false;
+const openSettingsAtStart = true;
 
 function drawStartCards() {
   for (let i = 0; i < appData.startCards; i++) drawRandomCard();
@@ -532,7 +536,7 @@ function coverCards() {
   cards.forEach(card => {
     card.style.animation = "coverCard 0.15s forwards ease-out";
     setTimeout(() => {
-      card.firstChild.src = "assets/covered/back2.png";
+      card.firstChild.src = `assets/covered/back${appData.backCover}.png`;
       card.style.animation = "uncoverCard 0.15s forwards ease-out";
     }, 150 + (c * 120));
     setTimeout(() => {
@@ -548,7 +552,7 @@ function toggleCoverCard(card) {
     card.classList.remove("cardShown");
     card.style.animation = "coverCard 0.15s forwards ease-out";
     setTimeout(() => {
-      card.firstChild.src = "assets/covered/back2.png";
+      card.firstChild.src = `assets/covered/back${appData.backCover}.png`;
       card.style.animation = "uncoverCard 0.15s forwards ease-out";
     }, 150);
     setTimeout(() => {
@@ -700,7 +704,7 @@ function addCard(value, seed) {
   card.classList.add(`card_${value}.${seed}`);
   card.innerHTML = `<img src="" alt="${value}.${seed}" class="${value}.${seed}">`;
   if (cardsCovered) {
-    card.innerHTML = `<img src="assets/covered/back2.png" alt="${value}.${seed}" class="${value}.${seed}">`;
+    card.innerHTML = `<img src="assets/covered/back${appData.backCover}.png" alt="${value}.${seed}" class="${value}.${seed}">`;
     card.classList.remove("cardShown");
     cardsTable.appendChild(card);
   }
@@ -895,6 +899,24 @@ function changeCardsDrawnAtAppStart() {
   saveAppData();
 }
 
+const backCoverSelect = document.getElementById("backCoverSelect");
+const coveredCardPreview = document.getElementById("coveredCardPreview");
+
+function changeBackCover() {
+  appData.backCover = parseInt(backCoverSelect.value);
+  coveredCardPreview.classList.remove("cardShown");
+  coveredCardPreview.style.animation = "coverCard 0.15s forwards ease-out";
+  setTimeout(() => {
+    coveredCardPreview.src = `assets/covered/back${appData.backCover}.png`;
+    coveredCardPreview.style.animation = "uncoverCard 0.15s forwards ease-out";
+  }, 150);
+  setTimeout(() => {
+    coveredCardPreview.style.animation = "none";
+  }, 300);
+  saveAppData();
+}
+
+
 
 // --------------- CHANGE HTML ELEMENTS STATE TO LAST SET PREFERENCES IN LOCALSTORAGE ---------------
 
@@ -956,9 +978,14 @@ function recoverSettingsState() {
     appData.startCards = 6;
   cardsDrawnAtAppStartInput.value = appData.startCards;
   // END appData.startCards
+  
+  // START appData.backCover
+  if (isNaN(appData.backCover))
+    appData.backCover = 1;
+  backCoverSelect.value = appData.backCover;
+  // END appData.backCover
 
-
-  // selectSettingsCategory(1);
+  selectSettingsCategory(1);
   saveAppData();
 }
 recoverSettingsState();

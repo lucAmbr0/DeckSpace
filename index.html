@@ -141,24 +141,25 @@
                   <h2>Front</h2>
                   <select>
                     <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
                   </select>
                 </div>
                 <div>
                   <h2>Back</h2>
-                  <select>
+                  <select id="backCoverSelect" onchange="changeBackCover()">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
                   </select>
                 </div>
               </div>
               <div class="cardsPreviewContainerBody">
                 <img src="assets/deck1/10.3.png" alt="10.3" class="10.3 cardPreview">
-                <img src="assets/covered/back1.png" alt="coveredCard" class="10.3 cardPreview">
+                <img src="assets/covered/back1.png" id="coveredCardPreview" alt="coveredCard" class="10.3 cardPreview">
               </div>
             </div>
             <div class="switch-container">

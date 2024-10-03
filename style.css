@@ -417,6 +417,50 @@
     }
 }
 
+@keyframes exitLeft {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-10%);
+    }
+}
+
+@keyframes exitRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(10%);
+    }
+}
+
+@keyframes enterRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes enterLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 /* -------------------- RULES --------------------*/
 
 html {
@@ -814,7 +858,8 @@ h4 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transform-origin: center; /* Ensures scaling happens from the center */
+    transform-origin: center;
+    /* Ensures scaling happens from the center */
     display: flex;
     overflow: hidden;
     flex-direction: column;
@@ -896,11 +941,11 @@ h4 {
 }
 
 .settingCategoryBtn:active {
-    background-color: rgba(20,20,20,1);
+    background-color: rgba(20, 20, 20, 1);
 }
 
 .categoryActive {
-    background-color: rgba(20,20,20,1);
+    background-color: rgba(20, 20, 20, 1);
 }
 
 .settingCategoryBtn:first-of-type {
@@ -960,7 +1005,7 @@ h4 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(0,0,0,0.3);
+    background-color: rgb(0, 0, 0, 0.3);
     z-index: 15;
 }
 
@@ -1069,7 +1114,7 @@ h4 {
 .cardsPreviewContainer h1 {
     font-family: var(--HeadingFont);
     font-size: 35px;
-    color: rgb(240,240,240);
+    color: rgb(240, 240, 240);
     font-weight: 700;
     text-align: center;
     border-radius: 0 !important;
@@ -1078,7 +1123,8 @@ h4 {
     padding: 5px 0;
 }
 
-.cardsPreviewContainerHeader, .cardsPreviewContainerBody {
+.cardsPreviewContainerHeader,
+.cardsPreviewContainerBody {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -1097,7 +1143,7 @@ h4 {
     margin: 5px 0 0 10px;
     border-radius: 10px;
     background-color: transparent;
-    color: rgb(245,245,245);
+    color: rgb(245, 245, 245);
     border: solid 1px gray;
     padding: 2px;
     font-family: var(--StandardTextFont);
@@ -1191,6 +1237,7 @@ h4 {
     justify-content: center;
     height: fit-content !important;
 }
+
 .developerTitleContainer img {
     margin-right: 10px;
 }
@@ -1219,6 +1266,7 @@ h4 {
     display: flex;
     justify-content: center;
 }
+
 .nerdLinks {
     font-family: var(--StandardTextFont);
     color: rgb(220, 220, 220);
@@ -1227,5 +1275,40 @@ h4 {
 }
 
 .scrollContainer {
-    scroll-snap-type: y mandatory;
+    height: 100% !important;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.creditsButtonsContainer {
+    display: flex;
+    width: 100%;
+    height: fit-content !important;
+    justify-content: center;
+    position: absolute;
+    bottom: 5%;
+}
+
+.creditsButtonsContainer span {
+    width: 20px;
+    height: 3px;
+    border: none;
+    border-radius: 3px;
+    margin: 0 2px;
+    background-color: rgba(128, 128, 128, 0.5);
+    transition: 0.2s ease background-color;
+}
+
+.creditsButtonsContainer span.active {
+    background-color: rgb(240, 240, 240);
+}
+
+#about-page-2 {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    font-family: var(--HeadingFont);
+    font-size: 25px;
+    color: rgb(235, 235, 235);
 }

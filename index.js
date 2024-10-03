@@ -957,6 +957,8 @@ function recoverSettingsState() {
   cardsDrawnAtAppStartInput.value = appData.startCards;
   // END appData.startCards
 
+
+  // selectSettingsCategory(1);
   saveAppData();
 }
 recoverSettingsState();

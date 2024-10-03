@@ -542,6 +542,8 @@ h4 {
     max-width: 80vw;
     display: flex;
     margin: 40px;
+    border-radius: 40px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.5);
     animation: logoZoomIn 0.3s ease-in-out forwards;
 }
 

@@ -1122,12 +1122,6 @@ h4 {
     transition: 0.2s ease;
 }
 
-.cardPreview:active {
-    scale: 0.95;
-    transform: rotate(1deg);
-}
-
-
 /* -------------------- ABOUT SECTION --------------------*/
 
 .appInfoBox {

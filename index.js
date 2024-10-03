@@ -764,16 +764,16 @@ aboutPages[currentPageIndex].classList.add('active');
 
 function setupCarouselSwipe() {
   let startX = 0, currentX = 0, deltaX = 0;
-  
+
   aboutCarousel.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX; // Record initial X position
   });
-  
+
   aboutCarousel.addEventListener('touchmove', (e) => {
     currentX = e.touches[0].clientX; // Get current X position
     deltaX = currentX - startX; // Calculate how far the card has moved horizontally
   });
-  
+
   aboutCarousel.addEventListener('touchend', () => {
     if (deltaX > 50) {
       // Swiped to the right: show previous page
@@ -792,7 +792,7 @@ function setupCarouselSwipe() {
 function changePage(newIndex, direction) {
   const currentPage = aboutPages[currentPageIndex];
   const nextPage = aboutPages[newIndex];
-  
+
   if (direction == 0) {
     currentPage.style.animation = "exitRight 0.1s ease forwards";
     setTimeout(() => {
@@ -817,14 +817,14 @@ function changePage(newIndex, direction) {
       currentPage.style.animation = "none";
     }, 300);
   }
-  
-  
+
+
   currentPage.classList.remove('active');
   nextPage.classList.add('active');
-  
+
   // Update the current page index
   currentPageIndex = newIndex;
-  
+
   // Update the active dot
   updateDots();
 }
@@ -1054,7 +1054,11 @@ function refreshCardPath() {
     if (String(pre).includes("back")) {
       card.firstChild.src = `assets/covered/back${appData.backCover}.png`;
     }
-  })
+    if (String(pre).includes("deck")) {
+      const x = card.firstChild.alt;
+      card.firstChild.src = `assets/deck${appData.frontSkin}/${x}.png`;
+    }
+  });
 }
 
 
@@ -1125,7 +1129,7 @@ function recoverSettingsState() {
   coveredCardPreview.src = `assets/covered/back${appData.backCover}.png`;
   backCoverSelect.value = appData.backCover;
   // END appData.backCover
-  
+
   // START appData.frontSkin
   if (isNaN(appData.frontSkin))
     appData.frontSkin = 1;

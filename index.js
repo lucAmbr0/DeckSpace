@@ -23,25 +23,6 @@ function serviceWorker() {
 }
 
 
-// ---------------  FORCE CARD ASSETS PRE-LOAD  ---------------
-
-const cardImages = [];
-const seedNames = ["0", "1", "2", "3"];
-for (let value = 1; value <= 13; value++) {
-  for (let seed of seedNames) {
-    cardImages.push(`assets/deck1/${value}.${seed}.png`);
-  }
-}
-for (let i = 1; i < 8; i++)
-  cardImages.push(`assets/covered/back${i}.png`);
-function preloadImages() {
-  cardImages.forEach(src => {
-    const img = new Image();
-    img.src = src;  // Triggers the image to load
-  });
-}
-window.onload = preloadImages();
-
 // ---------------  DEBUG VARIABLES  ---------------
 
 let appData = {
@@ -109,6 +90,25 @@ function drawStartCards() {
   for (let i = 0; i < appData.startCards; i++) drawRandomCard();
 }
 
+
+// ---------------  FORCE CARD ASSETS PRE-LOAD  ---------------
+
+const cardImages = [];
+const seedNames = ["0", "1", "2", "3"];
+for (let value = 1; value <= 13; value++) {
+  for (let seed of seedNames) {
+    cardImages.push(`assets/deck${appData.frontSkin | 1}/${value}.${seed}.png`);
+  }
+}
+for (let i = 1; i < 8; i++)
+  cardImages.push(`assets/covered/back${i}.png`);
+function preloadImages() {
+  cardImages.forEach(src => {
+    const img = new Image();
+    img.src = src;  // Triggers the image to load
+  });
+}
+window.onload = preloadImages();
 
 // ---------------  SPLASHSCREEN ANIMATION  ---------------
 
@@ -564,7 +564,7 @@ function toggleCoverCard(card) {
   else {
     card.style.animation = "coverCard 0.15s forwards ease-out";
     setTimeout(() => {
-      card.firstChild.src = `assets/deck1/${card.firstChild.alt}.png`;
+      card.firstChild.src = `assets/deck${appData.frontSkin | 1}/${card.firstChild.alt}.png`;
       card.style.animation = "uncoverCard 0.15s forwards ease-out";
     }, 150);
     setTimeout(() => {
@@ -581,7 +581,7 @@ function showCards() {
     card.style.animation = "coverCard 0.15s forwards ease-out";
     setTimeout(() => {
       const src = card.firstChild.alt;
-      card.firstChild.src = `assets/deck1/${src}.png`;
+      card.firstChild.src = `assets/deck${appData.frontSkin | 1}/${src}.png`;
       card.classList.add("cardShown");
       card.style.animation = "uncoverCard 0.15s forwards ease-out";
     }, 150 + (c * 120));
@@ -711,7 +711,7 @@ function addCard(value, seed) {
     cardsTable.appendChild(card);
   }
   else {
-    card.innerHTML = `<img src="assets/deck1/${value}.${seed}.png" alt="${value}.${seed}" class="${value}.${seed}">`;
+    card.innerHTML = `<img src="assets/deck${appData.frontSkin | 1}/${value}.${seed}.png" alt="${value}.${seed}" class="${value}.${seed}">`;
     card.classList.add("cardShown");
     cardsTable.appendChild(card);
   }

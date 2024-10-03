@@ -1305,12 +1305,49 @@ h4 {
     background-color: rgb(240, 240, 240);
 }
 
-#about-page-2 {
+.deck1Credits {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+a {
+    color: initial;
+    text-decoration: underline;
+}
+
+.deck1Credits a:visited {
+    color: initial;
+    text-decoration: underline;
+}
+
+.deck1Credits span {
+    color: rgb(235, 235, 235);
+    padding: 0 0 5px 5px;
+}
+
+.deck1Credits a {
     display: flex;
-    text-align: center;
+    align-items: center;
     font-family: var(--HeadingFont);
     font-size: 25px;
-    color: rgb(235, 235, 235);
+    font-weight: 600;
+    text-decoration: underline;
+    color: rgb(235, 235, 235) !important;
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+.deck1Credits h2 {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.deck1Credits img {
+    max-width: 80%;
+    max-height: 60%;
+    margin-bottom: 10px;
 }

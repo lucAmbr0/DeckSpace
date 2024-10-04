@@ -232,5 +232,8 @@ Not ready yet :D
 ### [Deck 2 - Kin Pixel Playing Cards](https://the-wild-kin.itch.io/kin-pixel-playing-cards)
 <img src="assets/deck2/overview.png" alt="Kin Pixel Playing Cards thumbnail" width="350" height="auto">
 
+### [Deck 3 - Hazmat game studios' Hand Drawn Cards](https://hazmat-game-studios.itch.io/hand-drawn-playing-cards)
+<img src="assets/deck3/overview.png" alt="Hand Drawn Playing Cards thumbnail" width="350" height="auto">
+
 ##  :lock: License
 This project is licensed with the GNU General Public License v3.0, please refer to the file to know more.

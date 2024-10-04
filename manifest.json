@@ -7,7 +7,7 @@
   "orientation": "landscape",
   "display": "fullscreen",
   "background_color": "#151515",
-  "theme_color": "#CA1212",
+  "theme_color": "#151515",
   "icons": [
     {
       "src": "https://github.com/lucAmbr0/DeckSpace/blob/master/icons/icon-any-192x192.png?raw=true",

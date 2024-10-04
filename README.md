@@ -1,3 +1,9 @@
+![GitHub repo size](https://img.shields.io/github/repo-size/lucAmbr0/DeckSpace)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/lucAmbr0/DeckSpace)
+![GitHub License](https://img.shields.io/github/license/lucAmbr0/DeckSpace)
+![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/lucAmbr0/DeckSpace)
+
+
 * Worked on this project for: <a href="https://wakatime.com/badge/github/lucAmbr0/DeckSpace"><img src="https://wakatime.com/badge/github/lucAmbr0/DeckSpace.svg?style=flat" alt="wakatime"></a>
 # Introduction
 > This project is in early stage, many things may change often.

@@ -970,6 +970,29 @@ function changeBetDecrease() {
   saveAppData();
 }
 
+function restartApp() {
+  saveAppData();
+  if (navigator.onLine) {
+    window.location.reload(true);
+  }
+}
+
+function clearCache() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      registrations.forEach((registration) => {
+        registration.unregister();
+      });
+    });
+    caches.keys().then((cacheNames) => {
+      cacheNames.forEach((cacheName) => {
+        caches.delete(cacheName);
+      });
+    }).then(() => {
+      window.location.reload(true);
+    });
+  }
+}
 
 const cardsDrawnAtAppStartInput = document.getElementById("cardsDrawnAtAppStartInput");
 
@@ -1143,7 +1166,7 @@ function recoverSettingsState() {
     toggleCoverFirstCardsSwitch.checked = false;
   // END appData.coverFirstCardsDrawn
 
-  // selectSettingsCategory(1);
+  // selectSettingsCategory(2);
   saveAppData();
 }
 recoverSettingsState();

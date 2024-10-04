@@ -41,7 +41,7 @@
       <div id="splashScreenAppInfo">
         <h1>DeckSpace</h1>
         <h3>by lucAmbr0</h2>
-        <h4>v1.75.229</h4>
+        <h4>v1.76.235</h4>
       </div>
     </div>
     <div class="HIDDEN" id="darkOverlay"></div>
@@ -189,7 +189,23 @@
             </div>
             <div style="height: 10px;"></div>
           </div>
-          <div class="categoryDetailsContainer HIDDEN"></div>
+          <div class="categoryDetailsContainer HIDDEN">
+            <div class="restartAppBtnContainer">
+              <button onclick="restartApp()">
+                <span class="material-symbols-outlined">
+                  refresh
+                </span>
+                Restart app
+              </button>
+              <button onclick="clearCache()">
+                <span class="material-symbols-outlined">
+                  delete_forever
+                </span>
+                Clear all data
+              </button>
+            </div>
+            <div style="height: 10px;"></div>
+          </div>
           <div class="categoryDetailsContainer HIDDEN"></div>
           <div class="categoryDetailsContainer HIDDEN">
             <div class="scrollContainer about-carousel">
@@ -202,7 +218,7 @@
                 <p>PWA Name</p>
                 <p class="alignRight">DeckSpace</p>
                 <p>App Version</p>
-                <p class="alignRight">1.75.229</p>
+                <p class="alignRight">1.76.235</p>
                 <p>License</p>
                 <p class="alignRight">GNU GPL v3.0</p>
               </div>

@@ -1163,8 +1163,9 @@ h4 {
 }
 
 .cardsPreviewContainer .cardPreview {
-    width: 50%;
-    margin: 10px 10px 20px 10px;
+    width: 40%;
+    aspect-ratio: 2/3;
+    margin: 10px 5% 20px 5%;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
     transition: 0.2s ease;

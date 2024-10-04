@@ -1171,6 +1171,46 @@ h4 {
     transition: 0.2s ease;
 }
 
+
+.restartAppBtnContainer {
+    display: flex;
+    justify-content: space-between;
+    height: fit-content !important;
+    width: calc(100% - 10px) !important;
+    padding: 5px;
+}
+
+.restartAppBtnContainer button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 25px;
+    font-family: var(--StandardTextFont);
+    font-weight: 500;
+    color: rgb(240, 240, 240);
+    background-color: transparent;
+    border: solid 2px gray;
+    border-radius: 10px;
+    margin: 5px;
+    width: 50%;
+    transition: 0.2s ease all;
+}
+
+.restartAppBtnContainer span {
+    font-size: 25px;
+    margin: auto 5px auto 0;
+}
+
+.restartAppBtnContainer button:active {
+    scale: 0.95;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#metrics {
+    color: white;
+}
+
 /* -------------------- ABOUT SECTION --------------------*/
 
 .appInfoBox {

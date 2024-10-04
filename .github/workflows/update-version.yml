@@ -3,7 +3,7 @@ name: Update Version
 on:
   push:
     branches:
-      - main  # Change to your default branch if needed
+      - master
 
 jobs:
   update-version:

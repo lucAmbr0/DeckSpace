@@ -1163,8 +1163,9 @@ h4 {
 }
 
 .cardsPreviewContainer .cardPreview {
-    width: 50%;
-    margin: 10px 10px 20px 10px;
+    width: 40%;
+    aspect-ratio: 2/3;
+    margin: 10px 5% 20px 5%;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
     transition: 0.2s ease;
@@ -1287,6 +1288,7 @@ h4 {
     width: 100%;
     height: fit-content !important;
     justify-content: center;
+    align-items: center;
     position: absolute;
     bottom: 5%;
 }
@@ -1308,8 +1310,16 @@ h4 {
 .deckCredits {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    justify-content: center;
+}
+
+.deckCredits div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: fit-content;
 }
 
 a {
@@ -1317,17 +1327,17 @@ a {
     text-decoration: underline;
 }
 
-.deckCredits a:visited {
+.deckCredits div a:visited {
     color: initial;
     text-decoration: underline;
 }
 
-.deckCredits span {
+.deckCredits div span {
     color: rgb(235, 235, 235);
     padding: 0 0 5px 5px;
 }
 
-.deckCredits a {
+.deckCredits div a {
     display: flex;
     align-items: center;
     font-family: var(--HeadingFont);
@@ -1339,16 +1349,24 @@ a {
     padding: 0;
 }
 
-.deckCredits h2 {
+.deckCredits div h2 {
     display: flex;
     align-items: center;
     margin: 0;
     padding: 0;
 }
 
+.deckCredits div h4 {
+    margin-top: 20px;
+    color: rgb(210,210,210);
+    font-family: var(--HeadingFont);
+    font-weight: 400;
+}
+
 .deckCredits img {
-    max-width: 80%;
+    display: flex;
+    max-width: 90%;
     max-height: 60%;
-    margin-bottom: 10px;
+    margin-bottom: calc(5% + 10px);
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
 }

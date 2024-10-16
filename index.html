@@ -309,7 +309,7 @@
         </div>
       </div>
     </div>
-    <div class="cardSelector">
+    <div class="cardSelector HIDDEN" id="cardSelector">
       <div class="valueSelector">
         <div>
           <button onclick="selectValue(this)"class="valueButton radiusTopLeft">A</button>
@@ -318,7 +318,7 @@
           <button onclick="selectValue(this)"class="valueButton">4</button>
           <button onclick="selectValue(this)"class="valueButton">5</button>
           <button onclick="selectValue(this)"class="valueButton">6</button>
-          <button onclick="closeCardSelector()"class="radiusTopRight closeCardSelectorBtn"><span class="material-symbols-outlined"> close </span></button>
+          <button onclick="toggleCardSelectorBox()"class="radiusTopRight closeCardSelectorBtn"><span class="material-symbols-outlined"> close </span></button>
         </div>
         <div>
           <button onclick="selectValue(this)"class="valueButton radiusBottomLeft ">7</button>
@@ -413,7 +413,7 @@
             <button onclick="drawRandomCard()">
               <span class="material-symbols-outlined"> casino </span>
             </button>
-            <button onclick="openCardSelector()">
+            <button onclick="toggleCardSelectorBox()">
               <span class="material-symbols-outlined"> add </span>
             </button>
           </div>

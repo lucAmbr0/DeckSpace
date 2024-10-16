@@ -465,6 +465,40 @@
     }
 }
 
+@keyframes cardSelectorIn {
+    0% {
+        opacity: 0;
+        scale: 0.95;
+        transform: translateY(10%);
+        clip-path: inset(100% 0 0 0 round 15px);
+    }
+
+    40% {
+        clip-path: inset(0 0% 0 0 round 15px);
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+        scale: 1;
+        transform: translateY(0);
+
+    }
+}
+
+@keyframes cardSelectorOut {
+    0% {
+        opacity: 1;
+        scale: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        scale: 0.95;
+        transform: translateY(10%);
+    }
+}
+
 /* -------------------- RULES --------------------*/
 
 html {
@@ -1429,6 +1463,7 @@ a {
     padding: 10px;
     border-radius: 15px;
     backdrop-filter: blur(30px);
+    animation: cardSelectorIn 0.3s ease forwards;
 }
 
 .cardSelector button {

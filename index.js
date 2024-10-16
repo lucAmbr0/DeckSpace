@@ -70,7 +70,7 @@ function saveAppData() {
 recoverAppData();
 
 
-const startAnimation = false;
+const startAnimation = true;
 const openSettingsAtStart = false;
 
 // ---------------  FORCE CARD ASSETS PRE-LOAD  ---------------
@@ -849,8 +849,35 @@ setupCarouselSwipe();
 
 // --------------- CARD SELECTOR ---------------
 
-function openCardSelector() {
-  
+const cardSelectorBox = document.getElementById("cardSelector");
+
+const valueButtons = document.querySelectorAll(".valueButton");
+const seedButtons = document.querySelectorAll(".seedButton");
+
+
+function toggleCardSelectorBox() {
+  if (cardSelectorBox.classList.contains("HIDDEN")) {
+    cardSelectorBox.classList.remove("HIDDEN");
+    cardSelectorBox.style.animation = "cardSelectorIn ease 0.2s forwards";
+  }
+  else {
+    cardSelectorBox.style.animation = "cardSelectorOut ease 0.2s forwards";
+    setTimeout(() => {
+      cardSelectorBox.classList.add("HIDDEN");
+      valueButtons.forEach(btn => btn.classList.remove("selectedSeedValue"));
+      seedButtons.forEach(btn => btn.classList.remove("selectedSeedValue"));
+    }, 200);
+  }
+}
+
+function selectValue(value) {
+  valueButtons.forEach(btn => btn.classList.remove("selectedSeedValue"));
+  value.classList.add("selectedSeedValue");
+}
+
+function selectSeed(seed) {
+  seedButtons.forEach(btn => btn.classList.remove("selectedSeedValue"));
+  seed.classList.add("selectedSeedValue");
 }
 
 

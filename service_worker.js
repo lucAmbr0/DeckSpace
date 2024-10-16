@@ -1,8 +1,12 @@
-const cacheName = 'v4';
+const cacheName = 'v5';
 const cacheAssets = [
     'index.html',
     'style.css',
     'index.js',
+    'assets/seeds/spades.png',
+    'assets/seeds/clubs.png',
+    'assets/seeds/hearts.png',
+    'assets/seeds/diamonds.png',
     'assets/deck1/overview.png',
     'assets/deck1/1.0.png',
     'assets/deck1/1.1.png',

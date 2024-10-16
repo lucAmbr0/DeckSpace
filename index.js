@@ -854,6 +854,8 @@ const cardSelectorBox = document.getElementById("cardSelector");
 const valueButtons = document.querySelectorAll(".valueButton");
 const seedButtons = document.querySelectorAll(".seedButton");
 
+let selectedSeed = -1;
+let selectedValue = -1;
 
 function toggleCardSelectorBox() {
   if (cardSelectorBox.classList.contains("HIDDEN")) {
@@ -866,18 +868,27 @@ function toggleCardSelectorBox() {
       cardSelectorBox.classList.add("HIDDEN");
       valueButtons.forEach(btn => btn.classList.remove("selectedSeedValue"));
       seedButtons.forEach(btn => btn.classList.remove("selectedSeedValue"));
+      selectedSeed = -1;
+      selectedValue = -1;
     }, 200);
   }
 }
 
-function selectValue(value) {
+function selectValue(value, num) {
   valueButtons.forEach(btn => btn.classList.remove("selectedSeedValue"));
   value.classList.add("selectedSeedValue");
+  selectedValue = num;
 }
 
-function selectSeed(seed) {
+function selectSeed(seed, num) {
   seedButtons.forEach(btn => btn.classList.remove("selectedSeedValue"));
   seed.classList.add("selectedSeedValue");
+  selectedSeed = num;
+}
+
+function drawSelectedCard() {
+  if (selectedSeed >= 0 && selectedValue >= 0)
+    addCard(selectedValue, selectedSeed);
 }
 
 

@@ -70,7 +70,7 @@ function saveAppData() {
 recoverAppData();
 
 
-const startAnimation = true;
+const startAnimation = false;
 const openSettingsAtStart = false;
 
 // ---------------  FORCE CARD ASSETS PRE-LOAD  ---------------
@@ -845,6 +845,14 @@ dots.forEach((dot) => {
 
 // Initialize swipe functionality
 setupCarouselSwipe();
+
+
+// --------------- CARD SELECTOR ---------------
+
+function openCardSelector() {
+  
+}
+
 
 
 // --------------- SETTINGS ---------------

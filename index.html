@@ -41,7 +41,7 @@
       <div id="splashScreenAppInfo">
         <h1>DeckSpace</h1>
         <h3>by lucAmbr0</h2>
-        <h4>v1.84.252</h4>
+        <h4>v1.85.257</h4>
       </div>
     </div>
     <div class="HIDDEN" id="darkOverlay"></div>
@@ -218,7 +218,7 @@
                 <p>PWA Name</p>
                 <p class="alignRight">DeckSpace</p>
                 <p>App Version</p>
-                <p class="alignRight">1.84.252</p>
+                <p class="alignRight">1.85.257</p>
                 <p>License</p>
                 <p class="alignRight">GNU GPL v3.0</p>
               </div>
@@ -312,30 +312,30 @@
     <div class="cardSelector HIDDEN" id="cardSelector">
       <div class="valueSelector">
         <div>
-          <button onclick="selectValue(this)"class="valueButton radiusTopLeft">A</button>
-          <button onclick="selectValue(this)"class="valueButton">2</button>
-          <button onclick="selectValue(this)"class="valueButton">3</button>
-          <button onclick="selectValue(this)"class="valueButton">4</button>
-          <button onclick="selectValue(this)"class="valueButton">5</button>
-          <button onclick="selectValue(this)"class="valueButton">6</button>
+          <button onclick="selectValue(this, 1)"class="valueButton radiusTopLeft">A</button>
+          <button onclick="selectValue(this, 2)"class="valueButton">2</button>
+          <button onclick="selectValue(this, 3)"class="valueButton">3</button>
+          <button onclick="selectValue(this, 4)"class="valueButton">4</button>
+          <button onclick="selectValue(this, 5)"class="valueButton">5</button>
+          <button onclick="selectValue(this, 6)"class="valueButton">6</button>
           <button onclick="toggleCardSelectorBox()"class="radiusTopRight closeCardSelectorBtn"><span class="material-symbols-outlined"> close </span></button>
         </div>
         <div>
-          <button onclick="selectValue(this)"class="valueButton radiusBottomLeft ">7</button>
-          <button onclick="selectValue(this)"class="valueButton">8</button>
-          <button onclick="selectValue(this)"class="valueButton">9</button>
-          <button onclick="selectValue(this)"class="valueButton">10</button>
-          <button onclick="selectValue(this)"class="valueButton">J</button>
-          <button onclick="selectValue(this)"class="valueButton">Q</button>
-          <button onclick="selectValue(this)"class="valueButton radiusBottomRight">K</button>
+          <button onclick="selectValue(this, 7)"class="valueButton radiusBottomLeft ">7</button>
+          <button onclick="selectValue(this, 8)"class="valueButton">8</button>
+          <button onclick="selectValue(this, 9)"class="valueButton">9</button>
+          <button onclick="selectValue(this, 10)"class="valueButton">10</button>
+          <button onclick="selectValue(this, 11)"class="valueButton">J</button>
+          <button onclick="selectValue(this, 12)"class="valueButton">Q</button>
+          <button onclick="selectValue(this, 13)"class="valueButton radiusBottomRight">K</button>
         </div>
         </div>
         <div class="seedSelector">
-          <button onclick="selectSeed(this)" class="seedButton"><img src="assets/seeds/spades.png" alt="spades"></button>
-          <button onclick="selectSeed(this)" class="seedButton"><img src="assets/seeds/clubs.png" alt="clubs"></button>
-          <button onclick="selectSeed(this)" class="seedButton"><img src="assets/seeds/hearts.png" alt="hearts"></button>
-          <button onclick="selectSeed(this)" class="seedButton"><img src="assets/seeds/diamonds.png" alt="diamonds"></button>
-          <button id="drawCardButton">Draw</button>
+          <button onclick="selectSeed(this, 0)" class="seedButton"><img src="assets/seeds/clubs.png" alt="clubs"></button>
+          <button onclick="selectSeed(this, 1)" class="seedButton"><img src="assets/seeds/diamonds.png" alt="diamonds"></button>
+          <button onclick="selectSeed(this, 2)" class="seedButton"><img src="assets/seeds/hearts.png" alt="hearts"></button>
+          <button onclick="selectSeed(this, 3)" class="seedButton"><img src="assets/seeds/spades.png" alt="spades"></button>
+          <button onclick="drawSelectedCard()" id="drawCardButton">Draw</button>
         </div>
     </div>
     <div>

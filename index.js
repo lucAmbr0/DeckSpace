@@ -70,7 +70,7 @@ function saveAppData() {
 recoverAppData();
 
 
-const startAnimation = false;
+const startAnimation = true;
 const openSettingsAtStart = false;
 
 // ---------------  FORCE CARD ASSETS PRE-LOAD  ---------------

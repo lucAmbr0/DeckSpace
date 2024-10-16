@@ -850,7 +850,21 @@ setupCarouselSwipe();
 // --------------- CARD SELECTOR ---------------
 
 function openCardSelector() {
-  
+
+}
+
+
+const valueButtons = document.querySelectorAll(".valueButton");
+const seedButtons = document.querySelectorAll(".seedButton");
+
+function selectValue(value) {
+  valueButtons.forEach(btn => btn.classList.remove("selectedSeedValue"));
+  value.classList.add("selectedSeedValue");
+}
+
+function selectSeed(seed) {
+  seedButtons.forEach(btn => btn.classList.remove("selectedSeedValue"));
+  seed.classList.add("selectedSeedValue");
 }
 
 
